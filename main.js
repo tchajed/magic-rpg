@@ -7,6 +7,8 @@ import ReactDOM from 'react-dom';
 
 import Hello from './hello.jsx';
 import World from './world.jsx';
+import AsciiGrid from './ascii.jsx';
 
 ReactDOM.render(<Hello/>, document.getElementById('hello'));
 ReactDOM.render(<World/>, document.getElementById('world'));
+ReactDOM.render(<AsciiGrid width={10} height={10}/>, document.getElementById('ascii-grid'));
