@@ -27,10 +27,12 @@ var AsciiGrid = React.createClass({
             for (var y = 0; y < height; y++) {
                 var row = []
                 for (var x = 0; x < width; x++) {
-                    row.push(new Cell('#'));
+                    row.push(new Cell(' '));
                 }
                 grid.push(row)
             }
+            grid[4][4] = new Cell('@', 'character');
+            grid[4][8] = new Cell('#', 'goal');
             return { grid: grid };
     },
 
@@ -47,16 +49,15 @@ var AsciiGrid = React.createClass({
         }
         return <span>
                 {cells.map(function(cell, i) {
-                    console.log(cell);
                     if (cell.isBare()) {
                         return cell.text;
                     }
-                    console.warn("why here?");
-                    return (<span class={cell.cls}
-                            style={cell.getStyle()} key={i}>
+                    return <span className={cell.cls}
+                            style={cell.getStyle()}
+                            key={i}>
                     {cell.text}
-                    </span>);
-                })};
+                    </span>;
+                })}
                 </span>;
     },
 });
