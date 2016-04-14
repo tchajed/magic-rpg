@@ -20,18 +20,28 @@ class Cell {
 }
 
 export default class AsciiGrid extends React.Component {
+    rows() {
+        var nums = [];
+        for (var y = 0; y < this.props.height; y++) {
+            nums.push(y);
+        }
+        return nums;
+    }
+
+    cols() {
+        var nums = [];
+        for (var x = 0; x < this.props.width; x++) {
+            nums.push(x);
+        }
+        return nums;
+    }
+
     constructor(props) {
         super(props);
-        var grid = []
-        var width = this.props.width;
-        var height = this.props.height;
-        for (var y = 0; y < height; y++) {
-            var row = []
-            for (var x = 0; x < width; x++) {
-                row.push(new Cell(' '));
-            }
-            grid.push(row)
-        }
+        var grid = this.rows().map(() => {
+            return this.cols().map(() => new Cell(' '));
+        });
+
         // TODO: move this setup to a separate "experimentation" file
         var y = Math.floor(this.props.height/2);
         grid[y][3] = new Cell('@', 'character');
@@ -41,15 +51,16 @@ export default class AsciiGrid extends React.Component {
 
     render() {
         var cells = [];
-        for (var y = 0; y < this.props.height; y++) {
-            for (var x = 0; x < this.props.width; x++) {
+        this.rows().forEach((y) => {
+            this.cols().forEach((x) => {
                 var cell = this.state.grid[y][x];
                 cells.push(cell);
-            }
+            });
             if (y != this.props.height - 1) {
                 cells.push(new Cell('\n'));
             }
-        }
+        });
+
         return <code className="ascii">
         {cells.map(function(cell, i) {
             if (cell.isBare()) {
