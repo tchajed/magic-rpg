@@ -32,8 +32,10 @@ export default class AsciiGrid extends React.Component {
             }
             grid.push(row)
         }
-        grid[4][4] = new Cell('@', 'character');
-        grid[4][8] = new Cell('#', 'goal');
+        // TODO: move this setup to a separate "experimentation" file
+        var y = Math.floor(this.props.height/2);
+        grid[y][3] = new Cell('@', 'character');
+        grid[y][8] = new Cell('#', 'goal');
         this.state = { grid: grid };
     }
 
@@ -48,7 +50,7 @@ export default class AsciiGrid extends React.Component {
                 cells.push(new Cell('\n'));
             }
         }
-        return <span>
+        return <code className="ascii">
         {cells.map(function(cell, i) {
             if (cell.isBare()) {
                 return cell.text;
@@ -59,6 +61,6 @@ export default class AsciiGrid extends React.Component {
             {cell.text}
             </span>;
         })}
-        </span>;
+        </code>;
     }
 }
