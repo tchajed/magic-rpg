@@ -19,24 +19,25 @@ class Cell {
     }
 }
 
-var AsciiGrid = React.createClass({
-    getInitialState: function() {
-            var grid = []
-            var width = this.props.width;
-            var height = this.props.height;
-            for (var y = 0; y < height; y++) {
-                var row = []
-                for (var x = 0; x < width; x++) {
-                    row.push(new Cell(' '));
-                }
-                grid.push(row)
+export default class AsciiGrid extends React.Component {
+    constructor(props) {
+        super(props);
+        var grid = []
+        var width = this.props.width;
+        var height = this.props.height;
+        for (var y = 0; y < height; y++) {
+            var row = []
+            for (var x = 0; x < width; x++) {
+                row.push(new Cell(' '));
             }
-            grid[4][4] = new Cell('@', 'character');
-            grid[4][8] = new Cell('#', 'goal');
-            return { grid: grid };
-    },
+            grid.push(row)
+        }
+        grid[4][4] = new Cell('@', 'character');
+        grid[4][8] = new Cell('#', 'goal');
+        this.state = { grid: grid };
+    }
 
-    render: function() {
+    render() {
         var cells = [];
         for (var y = 0; y < this.props.height; y++) {
             for (var x = 0; x < this.props.width; x++) {
@@ -48,18 +49,16 @@ var AsciiGrid = React.createClass({
             }
         }
         return <span>
-                {cells.map(function(cell, i) {
-                    if (cell.isBare()) {
-                        return cell.text;
-                    }
-                    return <span className={cell.cls}
-                            style={cell.getStyle()}
-                            key={i}>
-                    {cell.text}
-                    </span>;
-                })}
-                </span>;
-    },
-});
-
-module.exports = AsciiGrid;
+        {cells.map(function(cell, i) {
+            if (cell.isBare()) {
+                return cell.text;
+            }
+            return <span className={cell.cls}
+            style={cell.getStyle()}
+            key={i}>
+            {cell.text}
+            </span>;
+        })}
+        </span>;
+    }
+}
