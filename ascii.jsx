@@ -1,4 +1,5 @@
 import React from 'react';
+import update from 'react-addons-update';
 
 class Cell {
     constructor(text, cls, style) {
@@ -20,43 +21,37 @@ class Cell {
 }
 
 export default class AsciiGrid extends React.Component {
-    rows() {
-        var nums = [];
-        for (var y = 0; y < this.props.height; y++) {
-            nums.push(y);
-        }
-        return nums;
-    }
-
-    cols() {
-        var nums = [];
-        for (var x = 0; x < this.props.width; x++) {
-            nums.push(x);
-        }
-        return nums;
-    }
-
     constructor(props) {
         super(props);
-        var grid = this.rows().map(() => {
-            return this.cols().map(() => new Cell(' '));
-        });
+        var grid = [];
+        for (var y = 0; y < this.props.height; y++) {
+            var row = [];
+            for (var x = 0; x < this.props.width; x++) {
+                row.push(new Cell(' '));
+            }
+            grid.push(row);
+        }
+        this.state = {grid};
+    }
 
-        // TODO: move this setup to a separate "experimentation" file
+    componentDidMount() {
         var y = Math.floor(this.props.height/2);
-        grid[y][3] = new Cell('@', 'character');
-        grid[y][8] = new Cell('#', 'goal');
-        this.state = { grid: grid };
+        this.setState({grid: update(
+            this.state.grid,
+            { [y]: {
+                3: {"$set": new Cell('@', 'character')},
+                8: {"$set": new Cell('#', 'goal')},
+            } }
+        )});
     }
 
     render() {
         var cells = [];
-        this.rows().forEach((y) => {
-            this.cols().forEach((x) => {
-                var cell = this.state.grid[y][x];
+        this.state.grid.forEach((row, y, rows) => {
+            row.forEach((cell, x) => {
                 cells.push(cell);
             });
-            if (y != this.props.height - 1) {
+            if (y != rows.length - 1) {
                 cells.push(new Cell('\n'));
             }
         });
