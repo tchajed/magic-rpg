@@ -32,11 +32,14 @@ class Pos {
 }
 
 class GameObject {
-    constructor(texture, cls, pos) {
-        var lines = texture.split("\n");
-        this.height = lines.length;
-        this.width = lines[0].length;
-        this.texture = lines.map((line) => {
+    constructor(texture, pos) {
+        this.texture = texture;
+        this.pos = pos;
+    }
+
+    static fromText(textureDesc, cls, pos) {
+        var lines = textureDesc.split("\n");
+        var texture = lines.map((line) => {
             // assert line.length == this.width
             var row = [];
             for (var i = 0; i < line.length; i++) {
@@ -44,7 +47,15 @@ class GameObject {
             }
             return row;
         });
-        this.pos = pos;
+        return new GameObject(texture, pos);
+    }
+
+    get height() {
+        return this.texture.length;
+    }
+
+    get width() {
+        return this.texture[0].length;
     }
 
     // returns the locations occupied by the object, organized by row
@@ -55,9 +66,14 @@ class GameObject {
             for (var dx = 0; dx < this.width; dx++) {
                 yLocs.push(this.pos.plus(new Pos(dy, dx)));
             }
-            locs[this.pos.y + dy] = yLocs;
+            locs.set(this.pos.y + dy, yLocs);
         }
         return locs;
+    }
+
+    // shallow copy to an object with new position
+    placedAt(pos) {
+        return new GameObject(this.texture, pos);
     }
 
     // returns an update to place the object
@@ -93,9 +109,9 @@ export default class AsciiGrid extends React.Component {
         this.state = {grid};
     }
 
-    renderBgAt(locations) {
+    renderBgAt(locs) {
         var upd = {};
-        for ([y, yLocs] of locations) {
+        for (let [y, yLocs] of locs) {
             var yUpdate = {};
             yLocs.forEach((loc) => {
                 yUpdate[loc.x] = {
@@ -110,10 +126,12 @@ export default class AsciiGrid extends React.Component {
     updateObject(key, o) {
         if (this.objects[key]) {
             var locs = this.objects[key].area();
+            console.log(locs);
+            var bg = this.renderBgAt(locs);
+            console.log(bg);
             this.setState((state) => {
                 return { grid:
-                    update(state.grid,
-                           this.renderBgAt(locs))
+                    update(state.grid, bg)
                 };
             });
         }
@@ -125,14 +143,21 @@ export default class AsciiGrid extends React.Component {
         });
     }
 
+    moveObjectTo(key, newPos) {
+        this.updateObject(key, this.objects[key].placedAt(newPos));
+    }
+
     componentDidMount() {
         var y = Math.floor(this.props.height/2);
-        var character = new GameObject("@", 'character',
-                                       new Pos(y, 3));
-        var goal = new GameObject("#", 'goal',
-                                       new Pos(y, 8));
+        var character = GameObject.fromText(
+            "@", 'character', new Pos(y, 3));
+        var goal = GameObject.fromText(
+            "#", 'goal', new Pos(y, 8));
         this.updateObject('character', character);
         this.updateObject('goal', goal);
+        setTimeout(() => {
+            this.moveObjectTo('character', new Pos(y, 4));
+        }, 1000);
     }
 
     render() {
