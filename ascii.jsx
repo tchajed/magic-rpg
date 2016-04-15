@@ -15,19 +15,27 @@ class Cell {
 }
 
 class DrawCell extends React.Component {
+    static get propTypes() {
+        return {
+            selected: React.PropTypes.bool,
+            onChange: React.PropTypes.func,
+        };
+    }
+
+    static get defaultProps() {
+        return {
+            selected: false,
+            onChange: () => true,
+        }
+    }
+
     constructor(props) {
         super(props);
-        this.state = {
-            selected: false,
-            hovered: false,
-        }
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(evt) {
-        this.setState((state) => {
-            return { selected: !state.selected }
-        });
+    handleClick(e) {
+        this.props.onChange(e, this);
     }
 
     render() {
@@ -38,8 +46,7 @@ class DrawCell extends React.Component {
         var onClick = cell.isBare() ? null : this.handleClick;
         return <span className={classNames({
             [cell.cls || "bg"]: true,
-            'selected': this.state.selected,
-            'hovered': this.state.hovered,
+            'selected': this.props.selected,
         })}
         style={style}
         onClick={onClick}>
@@ -134,7 +141,12 @@ export default class AsciiGrid extends React.Component {
         this.background = grid;
         this.objects = {};
         // one-time initialization to background
-        this.state = {grid};
+        this.state = {
+            grid,
+            selected: null,
+        };
+
+        this.handleCellClick = this.handleCellClick.bind(this);
     }
 
     renderBgAt(locs) {
@@ -186,6 +198,14 @@ export default class AsciiGrid extends React.Component {
         }, 1000);
     }
 
+    handleCellClick(e, cell) {
+        if (this.state.selected == cell.props.id) {
+            this.setState({selected: null});
+        } else {
+            this.setState({selected: cell.props.id});
+        }
+    }
+
     render() {
         var cells = [];
         this.state.grid.forEach((row, y, rows) => {
@@ -199,7 +219,9 @@ export default class AsciiGrid extends React.Component {
 
         return <code className="ascii">
         {cells.map( (cell, i) => {
-            return <DrawCell cell={cell} key={i} />
+            return <DrawCell cell={cell} id={i} key={i}
+            onChange={this.handleCellClick}
+            selected={this.state.selected == i} />
         })}
         </code>;
     }
