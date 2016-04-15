@@ -20,6 +20,23 @@ class Cell {
     }
 }
 
+class DrawCell extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        if (this.props.cell.isBare()) {
+            return <span>{this.props.cell.text}</span>;
+        }
+
+        return <span className={this.props.cell.cls}
+        style={this.props.cell.getStyle()}>
+        {this.props.cell.text}
+        </span>;
+    }
+}
+
 class Pos {
     constructor(y, x) {
         this.y = y;
@@ -126,9 +143,7 @@ export default class AsciiGrid extends React.Component {
     updateObject(key, o) {
         if (this.objects[key]) {
             var locs = this.objects[key].area();
-            console.log(locs);
             var bg = this.renderBgAt(locs);
-            console.log(bg);
             this.setState((state) => {
                 return { grid:
                     update(state.grid, bg)
@@ -172,15 +187,8 @@ export default class AsciiGrid extends React.Component {
         });
 
         return <code className="ascii">
-        {cells.map(function(cell, i) {
-            if (cell.isBare()) {
-                return cell.text;
-            }
-            return <span className={cell.cls}
-            style={cell.getStyle()}
-            key={i}>
-            {cell.text}
-            </span>;
+        {cells.map( (cell, i) => {
+            return <DrawCell cell={cell} key={i} />
         })}
         </code>;
     }
