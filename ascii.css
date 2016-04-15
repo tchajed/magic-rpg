@@ -22,3 +22,6 @@ body {
 .goal {
     color: #859900;
 }
+.selected {
+    background: #fdf6e3;
+}

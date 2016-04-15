@@ -1,38 +1,49 @@
 import React from 'react';
 import update from 'react-addons-update';
+import classNames from 'classnames';
 
 class Cell {
     constructor(text, cls, style) {
         this.text = text;
-        this.cls = cls || "";
-        this._style = style || null;
+        this.cls = cls;
+        this.style = style;
     }
 
     isBare() {
-        if (this.cls == "" && this._style == null) {
-            return true;
-        }
-        return false;
-    }
-
-    get style() {
-        return this._style || {null};
+        return this.cls === undefined;
     }
 }
 
 class DrawCell extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            selected: false,
+            hovered: false,
+        }
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(evt) {
+        this.setState((state) => {
+            return { selected: !state.selected }
+        });
     }
 
     render() {
-        if (this.props.cell.isBare()) {
-            return <span>{this.props.cell.text}</span>;
-        }
-
-        return <span className={this.props.cell.cls}
-        style={this.props.cell.style}>
-        {this.props.cell.text}
+        var cell = this.props.cell;
+        var cls = cell.cls || "bg";
+        var style = cell.style || null;
+        var text = cell.text || ' ';
+        var onClick = cell.isBare() ? null : this.handleClick;
+        return <span className={classNames({
+            [cell.cls || "bg"]: true,
+            'selected': this.state.selected,
+            'hovered': this.state.hovered,
+        })}
+        style={style}
+        onClick={onClick}>
+        {text}
         </span>;
     }
 }
@@ -116,7 +127,7 @@ export default class AsciiGrid extends React.Component {
         for (var y = 0; y < this.props.height; y++) {
             var row = [];
             for (var x = 0; x < this.props.width; x++) {
-                row.push(new Cell(' '));
+                row.push(new Cell());
             }
             grid.push(row);
         }
