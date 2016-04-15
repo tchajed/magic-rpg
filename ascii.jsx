@@ -5,18 +5,18 @@ class Cell {
     constructor(text, cls, style) {
         this.text = text;
         this.cls = cls || "";
-        this.style = style || null;
+        this._style = style || null;
     }
 
     isBare() {
-        if (this.cls == "" && this.style == null) {
+        if (this.cls == "" && this._style == null) {
             return true;
         }
         return false;
     }
 
-    getStyle() {
-        return this.style || {null};
+    get style() {
+        return this._style || {null};
     }
 }
 
@@ -31,7 +31,7 @@ class DrawCell extends React.Component {
         }
 
         return <span className={this.props.cell.cls}
-        style={this.props.cell.getStyle()}>
+        style={this.props.cell.style}>
         {this.props.cell.text}
         </span>;
     }
