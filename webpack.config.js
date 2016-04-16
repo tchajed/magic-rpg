@@ -9,12 +9,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /.jsx?$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'react-hot',
       },
       {
-        test: /.jsx?$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
