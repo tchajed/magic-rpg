@@ -1,228 +1,172 @@
 import React from 'react';
 import update from 'react-addons-update';
 import classNames from 'classnames';
+import {Pos, Game, Buffer} from './game.jsx';
+import _ from 'lodash';
 
-class Cell {
-    constructor(text, cls, style) {
-        this.text = text;
-        this.cls = cls;
-        this.style = style;
-    }
-
-    isBare() {
-        return this.cls === undefined;
-    }
+class Cell extends React.Component {
 }
 
-class DrawCell extends React.Component {
-    static get propTypes() {
-        return {
-            selected: React.PropTypes.bool,
-            onChange: React.PropTypes.func,
-        };
-    }
-
-    static get defaultProps() {
-        return {
-            selected: false,
-            onChange: () => true,
-        }
-    }
-
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(e) {
-        this.props.onChange(e, this);
-    }
-
-    render() {
-        var cell = this.props.cell;
-        var cls = cell.cls || "bg";
-        var style = cell.style || null;
-        var text = cell.text || ' ';
-        var onClick = cell.isBare() ? null : this.handleClick;
-        return <span className={classNames({
-            [cell.cls || "bg"]: true,
-            'selected': this.props.selected,
-        })}
-        style={style}
-        onClick={onClick}>
-        {text}
-        </span>;
-    }
+class BgCell extends Cell {
+  render() {
+    return <span>{this.props.text}</span>
+  }
 }
 
-class Pos {
-    constructor(y, x) {
-        this.y = y;
-        this.x = x;
+class FgCell extends Cell {
+  static get propTypes() {
+    return {
+      handleClick: React.PropTypes.func,
+      selected: React.PropTypes.bool,
+      objectName: React.PropTypes.string,
     }
+  }
 
-    plus(other) {
-        return new Pos(this.y + other.y, this.x + other.x);
-    }
+  render() {
+    return <span
+      className={classNames({
+        [this.props.objectName]: true,
+        'selected': this.props.selected,
+      })}
+      onClick={this.props.handleClick}
+      >{this.props.text}
+    </span>;
+  }
 }
 
 class GameObject {
-    constructor(texture, pos) {
-        this.texture = texture;
-        this.pos = pos;
-    }
+  constructor(texture, name, pos, handleClick) {
+    this.texture = texture;
+    this.name = name;
+    this.pos = pos;
+    this.handleClick = handleClick;
+  }
 
-    static fromText(textureDesc, cls, pos) {
-        var lines = textureDesc.split("\n");
-        var texture = lines.map((line) => {
-            // assert line.length == this.width
-            var row = [];
-            for (var i = 0; i < line.length; i++) {
-                row.push(new Cell(line.charAt(i), cls));
-            }
-            return row;
-        });
-        return new GameObject(texture, pos);
-    }
+  static parseTexture(textureDesc) {
+    var lines = textureDesc.split("\n");
+    var texture = lines.map((line) => {
+      // assert line.length == this.width
+      var row = [];
+      for (var i = 0; i < line.length; i++) {
+        row.push(line.charAt(i));
+      }
+      return row;
+    });
+    return texture;
+  }
 
-    get height() {
-        return this.texture.length;
-    }
+  get height() {
+    return this.texture.length;
+  }
 
-    get width() {
-        return this.texture[0].length;
-    }
+  get width() {
+    return this.texture[0].length;
+  }
 
-    // returns the locations occupied by the object, organized by row
-    area() {
-        var locs = new Map();
-        for (var dy = 0; dy < this.height; dy++) {
-            var yLocs = [];
-            for (var dx = 0; dx < this.width; dx++) {
-                yLocs.push(this.pos.plus(new Pos(dy, dx)));
-            }
-            locs.set(this.pos.y + dy, yLocs);
-        }
-        return locs;
-    }
+  placedAt(newPos) {
+    return new GameObject(this.texture,
+      this.name,
+      newPos,
+      this.handleClick
+    );
+  }
 
-    // shallow copy to an object with new position
-    placedAt(pos) {
-        return new GameObject(this.texture, pos);
+  render(buf, selected) {
+    for (var dy = 0; dy < this.height; dy++) {
+      for (var dx = 0; dx < this.width; dx++) {
+        var pos = this.pos.plus(dy, dx);
+        var c = this.texture[dy][dx];
+        buf.set(pos,
+        () => <FgCell
+        key={pos}
+        handleClick={() => this.handleClick(this)}
+        selected={selected}
+        objectName={this.name}
+        text={c} />);
+      }
     }
+  }
+}
 
-    // returns an update to place the object
-    render() {
-        var update = {};
-        for (var dy = 0; dy < this.height; dy++) {
-            var rowUpdate = {};
-            for (var dx = 0; dx < this.width; dx++) {
-                rowUpdate[this.pos.x + dx] = {
-                    "$set": this.texture[dy][dx]
-                };
-            }
-            update[this.pos.y + dy] = rowUpdate;
-        }
-        return update;
-    }
+class ObjectFactory {
+  constructor(handleClick) {
+    this.handleClick = handleClick;
+  }
+
+  create(textureDesc, name, pos) {
+    return new GameObject(
+      GameObject.parseTexture(textureDesc),
+      name, pos, this.handleClick
+    );
+  }
 }
 
 export default class AsciiGrid extends React.Component {
-    constructor(props) {
-        super(props);
-        var grid = [];
-        for (var y = 0; y < this.props.height; y++) {
-            var row = [];
-            for (var x = 0; x < this.props.width; x++) {
-                row.push(new Cell());
-            }
-            grid.push(row);
-        }
-        this.background = grid;
-        this.objects = {};
-        // one-time initialization to background
-        this.state = {
-            grid,
-            selected: null,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      objects: {},
+      selected: null,
+    };
+    this.handleObjectClick = this.handleObjectClick.bind(this);
+  }
 
-        this.handleCellClick = this.handleCellClick.bind(this);
-    }
+  updateObject(key, o) {
+    this.setState((state) => {
+      return {
+        objects: _.assign(_.clone(state.objects), {
+          [key]: o,
+        })
+      }
+    });
+  }
 
-    renderBgAt(locs) {
-        var upd = {};
-        for (let [y, yLocs] of locs) {
-            var yUpdate = {};
-            yLocs.forEach((loc) => {
-                yUpdate[loc.x] = {
-                    "$set": this.background[loc.y][loc.x]
-                };
-            });
-            upd[y] = yUpdate;
-        }
-        return upd;
-    }
+  moveObjectTo(key, newPos) {
+    this.setState((state) => {
+      var o = state.objects[key];
+      var objects = _.clone(state.objects);
+      objects[key] = o.placedAt(newPos);
+      return {objects};
+    });
+  }
 
-    updateObject(key, o) {
-        if (this.objects[key]) {
-            var locs = this.objects[key].area();
-            var bg = this.renderBgAt(locs);
-            this.setState((state) => {
-                return { grid:
-                    update(state.grid, bg)
-                };
-            });
-        }
-        this.objects[key] = o;
-        this.setState((state) => {
-            return { grid:
-                update(state.grid, o.render())
-            };
-        });
-    }
+  handleObjectClick(obj) {
+    var newSelection = this.state.selected == obj ? null : obj;
+    this.setState({
+      selected: newSelection,
+    })
+  }
 
-    moveObjectTo(key, newPos) {
-        this.updateObject(key, this.objects[key].placedAt(newPos));
-    }
+  componentDidMount() {
+    var objs = new ObjectFactory(this.handleObjectClick);
+    var y = Math.floor(this.props.height/2);
+    var character = objs.create("@", 'character', new Pos(y, 3));
+    var goal = objs.create("#", 'goal', new Pos(y, 8));
+    this.updateObject('character', character);
+    this.updateObject('goal', goal);
+    setTimeout(() => {
+      this.moveObjectTo('character', new Pos(y, 4));
+    }, 1000);
+  }
 
-    componentDidMount() {
-        var y = Math.floor(this.props.height/2);
-        var character = GameObject.fromText(
-            "@", 'character', new Pos(y, 3));
-        var goal = GameObject.fromText(
-            "#", 'goal', new Pos(y, 8));
-        this.updateObject('character', character);
-        this.updateObject('goal', goal);
-        setTimeout(() => {
-            this.moveObjectTo('character', new Pos(y, 4));
-        }, 1000);
-    }
+  render() {
+    var buf = new Buffer(this.props.width, this.props.height, (pos) => {
+      return <BgCell key={pos} text={' '}/>
+    });
 
-    handleCellClick(e, cell) {
-        if (this.state.selected == cell.props.id) {
-            this.setState({selected: null});
-        } else {
-            this.setState({selected: cell.props.id});
-        }
-    }
+    // TODO: objects should be maintained in a data structure that includes a
+    // z-index for some predicability of rendering order.
+    Object.keys(this.state.objects).forEach((key) => {
+      var o = this.state.objects[key];
+      o.render(buf, this.state.selected == o);
+    });
 
-    render() {
-        var cells = [];
-        this.state.grid.forEach((row, y, rows) => {
-            row.forEach((cell, x) => {
-                cells.push(cell);
-            });
-            if (y != rows.length - 1) {
-                cells.push(new Cell('\n'));
-            }
-        });
+    var cells = [];
+    buf.force().forEach((row, y) => {
+      row.forEach((cell) => cells.push(cell));
+      cells.push(<span key={y}>{"\n"}</span>);
+    });
 
-        return <code className="ascii">
-        {cells.map( (cell, i) => {
-            return <DrawCell cell={cell} id={i} key={i}
-            onChange={this.handleCellClick}
-            selected={this.state.selected == i} />
-        })}
-        </code>;
-    }
+    return <code className="ascii">{cells}</code>
+  }
 }
