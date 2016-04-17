@@ -1,7 +1,7 @@
 import React from 'react';
 import update from 'react-addons-update';
 import classNames from 'classnames';
-import {Pos, Bounds, Game, Buffer} from './game.jsx';
+import {Pos, Bounds, Buffer} from './game.jsx';
 import Mousetrap from 'mousetrap';
 import _ from 'lodash';
 
