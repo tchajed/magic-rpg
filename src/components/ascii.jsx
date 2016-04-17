@@ -3,6 +3,7 @@ import update from 'react-addons-update';
 import classNames from 'classnames';
 import {Pos, Bounds, Buffer} from './game.jsx';
 import Mousetrap from 'mousetrap';
+import Immutable from 'immutable';
 import _ from 'lodash';
 
 class Cell extends React.Component {
@@ -114,7 +115,7 @@ export default class AsciiGrid extends React.Component {
       return _.times(props.width, () => ' ');
     });
     this.state = {
-      objects: {},
+      objects: Immutable.Map(),
       selected: null,
     };
     this.handleObjectClick = this.handleObjectClick.bind(this);
@@ -125,11 +126,10 @@ export default class AsciiGrid extends React.Component {
    */
   applyToObject(key, f) {
     this.setState((state) => {
+      let o = state.objects.get(key);
       return {
-        objects: _.assign(_.clone(state.objects), {
-          [key]: f(state.objects[key]),
-        })
-      }
+        objects: state.objects.set(key, f(o))
+      };
     });
   }
 
@@ -185,10 +185,9 @@ export default class AsciiGrid extends React.Component {
 
     // TODO: objects should be maintained in a data structure that includes a
     // z-index for some predicability of rendering order.
-    Object.keys(this.state.objects).forEach((key) => {
-      var o = this.state.objects[key];
-      o.render(buf, this.state.selected == o);
-    });
+    for (let o of this.state.objects.values()) {
+      o.render(buf, this.state.selected == 0);
+    }
 
     var cells = [];
     buf.force().forEach((row, y) => {
