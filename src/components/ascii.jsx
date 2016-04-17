@@ -110,6 +110,9 @@ export default class AsciiGrid extends React.Component {
   constructor(props) {
     super(props);
     this.bounds = new Bounds(props.width, props.height);
+    this.background = _.times(props.height, () => {
+      return _.times(props.width, () => ' ');
+    });
     this.state = {
       objects: {},
       selected: null,
@@ -176,7 +179,7 @@ export default class AsciiGrid extends React.Component {
     var buf = new Buffer(
       this.bounds,
       (pos) => {
-        return <BgCell key={pos} text={' '}/>
+        return <BgCell key={pos} text={this.background[pos.y][pos.x]} />
       }
     );
 
