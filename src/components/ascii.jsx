@@ -74,7 +74,7 @@ class GameObject {
   render(buf, selected) {
     for (var dy = 0; dy < this.height; dy++) {
       for (var dx = 0; dx < this.width; dx++) {
-        var pos = this.pos.plus(dy, dx);
+        let pos = this.pos.plus(dy, dx);
         var c = this.texture[dy][dx];
         buf.set(pos,
         () => <FgCell
@@ -140,8 +140,8 @@ export default class AsciiGrid extends React.Component {
   componentDidMount() {
     var objs = new ObjectFactory(this.handleObjectClick);
     var y = Math.floor(this.props.height/2);
-    var character = objs.create("@", 'character', new Pos(y, 3));
-    var goal = objs.create("#", 'goal', new Pos(y, 8));
+    var character = objs.create("@@\n@@", 'character', new Pos(y, 3));
+    var goal = objs.create("##\n##", 'goal', new Pos(y, 10));
     this.updateObject('character', character);
     this.updateObject('goal', goal);
     setTimeout(() => {
