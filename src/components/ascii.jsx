@@ -1,7 +1,8 @@
 import React from 'react';
 import update from 'react-addons-update';
 import classNames from 'classnames';
-import {Pos, Game, Buffer} from './game.jsx';
+import {Pos, Bounds, Game, Buffer} from './game.jsx';
+import Mousetrap from 'mousetrap';
 import _ from 'lodash';
 
 class Cell extends React.Component {
@@ -63,6 +64,10 @@ class GameObject {
     return this.texture[0].length;
   }
 
+  get bounds() {
+    return new Bounds(this.width, this.height);
+  }
+
   placedAt(newPos) {
     return new GameObject(this.texture,
       this.name,
@@ -104,6 +109,7 @@ class ObjectFactory {
 export default class AsciiGrid extends React.Component {
   constructor(props) {
     super(props);
+    this.bounds = new Bounds(props.width, props.height);
     this.state = {
       objects: {},
       selected: null,
@@ -111,23 +117,25 @@ export default class AsciiGrid extends React.Component {
     this.handleObjectClick = this.handleObjectClick.bind(this);
   }
 
-  updateObject(key, o) {
+  /**
+   * Replace object at key with f(current o).
+   */
+  applyToObject(key, f) {
     this.setState((state) => {
       return {
         objects: _.assign(_.clone(state.objects), {
-          [key]: o,
+          [key]: f(state.objects[key]),
         })
       }
     });
   }
 
+  updateObject(key, o) {
+    this.applyToObject(key, () => o);
+  }
+
   moveObjectTo(key, newPos) {
-    this.setState((state) => {
-      var o = state.objects[key];
-      var objects = _.clone(state.objects);
-      objects[key] = o.placedAt(newPos);
-      return {objects};
-    });
+    this.applyToObject(key, (o) => o.placedAt(newPos));
   }
 
   handleObjectClick(obj) {
@@ -138,21 +146,39 @@ export default class AsciiGrid extends React.Component {
   }
 
   componentDidMount() {
+    for (let [combo, delta] of [
+      ['left', [0, -1]],
+      ['right', [0, 1]],
+      ['up', [-1, 0]],
+      ['down', [1, 0]],
+    ]) {
+      Mousetrap.bind(combo, () => {
+        this.applyToObject('character', (o) => {
+          var after = o.pos.plus.apply(o.pos, delta);
+          if (!this.bounds.contains(after, o.bounds)) {
+            return o;
+          }
+          return o.placedAt(after);
+        });
+      });
+    }
+
+    // Mainly for testing, create some objects
     var objs = new ObjectFactory(this.handleObjectClick);
     var y = Math.floor(this.props.height/2);
     var character = objs.create("@@\n@@", 'character', new Pos(y, 3));
     var goal = objs.create("##\n##", 'goal', new Pos(y, 10));
     this.updateObject('character', character);
     this.updateObject('goal', goal);
-    setTimeout(() => {
-      this.moveObjectTo('character', new Pos(y, 4));
-    }, 1000);
   }
 
   render() {
-    var buf = new Buffer(this.props.width, this.props.height, (pos) => {
-      return <BgCell key={pos} text={' '}/>
-    });
+    var buf = new Buffer(
+      this.bounds,
+      (pos) => {
+        return <BgCell key={pos} text={' '}/>
+      }
+    );
 
     // TODO: objects should be maintained in a data structure that includes a
     // z-index for some predicability of rendering order.

@@ -1,3 +1,23 @@
+export class Bounds {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  contains(pos, size) {
+    if (size === undefined) {
+      size = {width: 1, height: 1};
+    }
+    if (0 <= pos.x && 0 <= pos.y &&
+      pos.x <= this.width - size.width &&
+      pos.y <= this.height - size.height
+    ) {
+      return true
+    }
+    return false;
+  }
+}
+
 // TODO: make this a factory and avoid using new to construct them
 export class Pos {
     constructor(y, x) {
@@ -18,13 +38,12 @@ export class Pos {
  * A lazy 2D graphics buffer
  */
 export class Buffer {
-  constructor(width, height, def) {
-    this.width = width;
-    this.height = height;
+  constructor(bounds, def) {
+    this.bounds = bounds;
     var buf = [];
-    for (var y = 0; y < height; y++) {
+    for (var y = 0; y < bounds.height; y++) {
       var row = [];
-      for (var x = 0; x < width; x++) {
+      for (var x = 0; x < bounds.width; x++) {
         row.push(def);
       }
       buf.push(row);
@@ -36,7 +55,9 @@ export class Buffer {
    * destructively set the value at a position
    */
   set(p, v) {
-    this.buf[p.y][p.x] = v;
+    if (this.bounds.contains(p)) {
+      this.buf[p.y][p.x] = v;
+    }
   }
 
   force() {
