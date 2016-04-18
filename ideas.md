@@ -1,0 +1,45 @@
+## Game types
+
+- fighting game, real time, combos
+- Advance Wars - strategy, troop movement
+- Metroid - platform adventure
+- Final Fantasy/Pokémon-style RPG: build up party, random encounters, overall story
+- Mario: platformer, save-the-princess justification
+
+## Stories
+- game theory
+- beer game: manage supply chain
+- Metroid: exploring a planet in solitude to fix it
+- arms dealer supplying both sides
+- minion of evil making sure heroes don't save world
+- dystopia: Borderlands, Mad Max; crazy over-the-top megalomaniac villain
+- manage a team/company
+- dystopia
+  - get rid of privacy
+  - income equality
+  - privitization of everything: companies control everything
+  - capitalism everywhere
+  - economic rationality
+- escaping from death
+- parody of open-world games
+- networking game: building relationships to get what you want
+- diplomacy
+- parody of implications of high magic
+  - consequences of picking locks
+  - no information security (lie detection)
+  - perfect memories
+  - energy conservation?
+
+## Mechanics
+- news stories
+- switching weapons is actually really slow
+- overall story gets narration
+- narration is affected by your actions - make fun of character for when they took too long, praise quick and perfect strategy
+- parody picking up skills quickly (as in GTA, for one small example)
+- government propaganda (inspired by Horse Master)
+
+## Questions
+
+* What would be fun to write descriptions of?
+* What would be fun to parody?
+* What would be funny that I want to read?
