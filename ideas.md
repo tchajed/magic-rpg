@@ -1,8 +1,8 @@
 ## Game types
 
 - fighting game, real time, combos
-- Advance Wars - strategy, troop movement
-- Metroid - platform adventure
+- Advance Wars — strategy, troop movement
+- Metroid — platform adventure
 - Final Fantasy/Pokémon-style RPG: build up party, random encounters, overall story
 - Mario: platformer, save-the-princess justification
 
@@ -17,7 +17,7 @@
 - dystopia
   - get rid of privacy
   - income equality
-  - privitization of everything: companies control everything
+  - privatization of everything: companies control everything
   - capitalism everywhere
   - economic rationality
 - escaping from death
@@ -29,12 +29,14 @@
   - no information security (lie detection)
   - perfect memories
   - energy conservation?
+- RPG incorporating many of the tropes in the [big list](http://www222.pair.com/sjohn/blueroom/plots.htm) for quests
+- make fun of how ridiculous games' premises are if taken at face value
 
 ## Mechanics
 - news stories
 - switching weapons is actually really slow
 - overall story gets narration
-- narration is affected by your actions - make fun of character for when they took too long, praise quick and perfect strategy
+- narration is affected by your actions — make fun of character for when they took too long, praise quick and perfect strategy
 - parody picking up skills quickly (as in GTA, for one small example)
 - government propaganda (inspired by Horse Master)
 
