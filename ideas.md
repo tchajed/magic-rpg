@@ -30,6 +30,9 @@
   - perfect memories
   - energy conservation?
 - RPG incorporating many of the tropes in the [big list](http://www222.pair.com/sjohn/blueroom/plots.htm) for quests
+  - overall setting: member of a company of magicians (world of high magic, but only a few have it) that does magical consulting. Maybe rise through the ranks? Random encounters could be various jobs the company sends you on.
+
+    news stories could cover internal memos and outside news about other companies in the same sector
 - make fun of how ridiculous games' premises are if taken at face value
 
 ## Mechanics
