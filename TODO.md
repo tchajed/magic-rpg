@@ -2,7 +2,7 @@
 
 ## Implementation
 
-- [ ] bidirectional communication with Go server
+- [x] bidirectional communication with Go server
 - [ ] updating graphics state from server
 - [ ] text viewer
 - [ ] scrolling background with movement
