@@ -29,3 +29,4 @@ Company of wizards that do magic consulting. Only a few people have magic, but r
     - to get to top of company hierarchy
     - leveling up to deal with some big job
   * fight regulators threatening to shut down industry
+  * tournament ostensibly for rising up the ranks of the company ("everyone goes through this for promotions") but actually opponents ("gym leaders") are important villains in a broader save-the-world story, which is told through the global news that the player receives but the character is blissfully unaware of
