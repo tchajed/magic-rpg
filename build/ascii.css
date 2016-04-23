@@ -26,6 +26,17 @@ body {
     background: #fdf6e3;
 }
 
+#container {
+    position: fixed;
+}
+
+#overlay {
+    margin: 0px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
+
 .unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
