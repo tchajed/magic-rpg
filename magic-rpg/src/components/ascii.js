@@ -1,12 +1,12 @@
-import h from 'hyperscript';
 import './ascii.css';
+import h from 'hyperscript';
 
 export default class AsciiGrid {
-  constructor(text) {
-    this.text = text;
+  constructor(game) {
+    this.game = game;
   }
 
   render() {
-    return h('code.ascii', this.text);
+    return h('pre.unselectable', this.game.render());
   }
 }
