@@ -1,5 +1,5 @@
 import './ascii.css';
-import h from 'hyperscript';
+import h from 'virtual-dom/h';
 
 export default class AsciiGrid {
   constructor(game) {

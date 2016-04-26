@@ -4,8 +4,8 @@
   "description": "Magic RPG",
   "main": "server.js",
   "dependencies": {
-    "hyperscript": "^1.4.7",
-    "lodash": "^4.11.1"
+    "lodash": "^4.11.1",
+    "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
