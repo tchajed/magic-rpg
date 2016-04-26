@@ -2,17 +2,19 @@
 
 ## Implementation
 
-- [x] bidirectional communication with Go server
-- [ ] updating graphics state from server
-- [ ] text viewer
+- [ ] collision detection with objects
 - [ ] scrolling background with movement
-  - [ ] need to check FF/Pokemon to find out what they do
+  - [x] need to check FF/Pokemon to find out what they do
+- [ ] associate text with entities, as a function of state
+- [ ] represent game state machine
+- [ ] saving game state
 
 ## Experimental writing
-- [ ] news text
-- [ ] overall story text
+- [x] news text
+- [x] overall story text
+- [ ] dialogue for intro/bosses
 - [ ] variations based on player actions
-- [ ] battle narration
+- [x] battle narration
 - [ ] text for displaying numerical stats
 
 ## Optional
