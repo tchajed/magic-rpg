@@ -1,14 +1,14 @@
 import AsciiGrid from './components/ascii';
 import Game from './game/game';
 import Mousetrap from 'mousetrap';
-import {Texture, asciiBlock} from './game/assets';
+import {Texture, Background, asciiBlock} from './game/assets';
 import {Coords} from './game/graphics';
 import Entity from './game/entity';
 import createElement from 'virtual-dom/create-element';
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 
-let bg = Texture.background(asciiBlock(`
+let bg = Background.create(asciiBlock(`
 +-----------------------------------------------------+
 |                                                     |
 |                                                     |
@@ -32,7 +32,7 @@ let bg = Texture.background(asciiBlock(`
 
 let player = new Entity(
   new Coords(2, 2),
-  Texture.fromDesc("@@\n@@")
+  Texture.create("@@\n@@")
 );
 
 let game = new Game(bg, {player}, {

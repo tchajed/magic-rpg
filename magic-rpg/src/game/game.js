@@ -4,9 +4,9 @@ import {EventEmitter} from 'events';
 import {RenderBuffer, Coords} from './graphics';
 
 export default class Game extends EventEmitter {
-  constructor(bgTexture, objects, viewPort, selection=null) {
+  constructor(bg, objects, viewPort, selection=null) {
     super();
-    this.bgTexture = bgTexture;
+    this.bg = bg;
     this.objects = objects;
     this.viewPort = viewPort;
     this.selection = selection;
@@ -16,7 +16,7 @@ export default class Game extends EventEmitter {
     let viewPort = this.viewPort;
     let buf = new RenderBuffer(viewPort.size);
     let bgPosition = new Coords(-viewPort.coords.y, -viewPort.coords.x);
-    buf.renderAt(bgPosition, this.bgTexture.cells, 'bg');
+    buf.renderAt(bgPosition, this.bg.cells, 'bg');
 
     for (let id of Object.keys(this.objects)) {
       let o = this.objects[id];
@@ -58,7 +58,7 @@ export default class Game extends EventEmitter {
       throw new Error(`invalid objectId ${objectId}`);
     }
     let coords = update(o.coords);
-    if (!this.viewPort.size.contains(coords, o.bounds)) {
+    if (this.bg.conflicts(coords, o.bounds)) {
       return;
     }
     o.coords = coords;
