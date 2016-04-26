@@ -3,6 +3,7 @@
 ## Implementation
 
 - [ ] collision detection with objects
+- [ ] real ViewPort object
 - [ ] scrolling background with movement
   - [x] need to check FF/Pokemon to find out what they do
 - [ ] associate text with entities, as a function of state
