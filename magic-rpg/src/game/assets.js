@@ -85,7 +85,7 @@ export class Background extends Texture {
     return this.metadata.locs.get(name);
   }
 
-  conflicts(coords, size) {
+  collides(coords, size) {
     for (var dy = 0; dy < size.height; dy++) {
       for (var dx = 0; dx < size.width; dx++) {
         if (!this.mask[coords.y + dy][coords.x + dx]) {

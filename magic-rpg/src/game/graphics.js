@@ -19,6 +19,25 @@ export class Coords {
   }
 }
 
+export class Rectangle {
+  constructor(coords, bounds) {
+    this.coords = coords;
+    this.bounds = bounds;
+  }
+
+  collides(rect) {
+    // transcribed from
+    // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+    if (this.coords.x < rect.coords.x + rect.bounds.width &&
+      this.coords.x + this.bounds.width > rect.coords.x &&
+      this.coords.y < rect.coords.y + rect.bounds.height &&
+      this.bounds.height + this.coords.y > rect.coords.y) {
+      return true;
+    }
+    return false;
+  }
+}
+
 export class Cell {
   constructor(text, objectId=null, selected=false) {
     this.text = text;

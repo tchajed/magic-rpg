@@ -1,7 +1,7 @@
 import h from 'virtual-dom/h';
 import _ from 'lodash';
 import {EventEmitter} from 'events';
-import {RenderBuffer, Coords} from './graphics';
+import {Rectangle, Coords, RenderBuffer} from './graphics';
 
 export default class Game extends EventEmitter {
   constructor(bg, objects, viewPort, selection=null) {
@@ -10,6 +10,40 @@ export default class Game extends EventEmitter {
     this.objects = objects;
     this.viewPort = viewPort;
     this.selection = selection;
+  }
+
+  isObject(objectId) {
+    return this.objects[objectId] !== undefined;
+  }
+
+  assertValidObject(objectId) {
+    if (!this.isObject(objectId)) {
+      throw new Error(`invalid objectId ${objectId}`);
+    }
+  }
+
+  object(objectId) {
+    return this.objects[objectId];
+  }
+
+  // Would objectId collide with anything if positioned at coords?
+  collides(objectId, coords) {
+    let o = this.object(objectId);
+    if (this.bg.collides(coords, o.bounds)) {
+      return true;
+    }
+
+    for (let id of Object.keys(this.objects)) {
+      if (id === objectId) {
+        continue;
+      }
+      let other = this.objects[id];
+      if (other.rect.collides(new Rectangle(coords, o.bounds))) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   segments() {
@@ -43,16 +77,6 @@ export default class Game extends EventEmitter {
     }));
   }
 
-  isObject(objectId) {
-    return this.objects[objectId] !== undefined;
-  }
-
-  assertValidObject(objectId) {
-    if (!this.isObject(objectId)) {
-      throw new Error(`invalid objectId ${objectId}`);
-    }
-  }
-
   select(o) {
     this.assertValidObject(o);
     let newSelection = o;
@@ -69,15 +93,15 @@ export default class Game extends EventEmitter {
   moveObject(objectId, dy, dx) {
     this.assertValidObject(objectId);
     let o = this.objects[objectId];
-    let coords = new Coords(o.coords.y + dy, o.coords.x + dx);
-    if (this.bg.conflicts(coords, o.bounds)) {
+    let newCoords = new Coords(o.coords.y + dy, o.coords.x + dx);
+    if (this.collides(objectId, newCoords)) {
       return;
     }
-    o.coords = coords;
+    o.coords = newCoords;
     this.emit('change', {
       type: 'object',
       objectId,
-      coords
+      coords: o.coords,
     });
   }
 }
