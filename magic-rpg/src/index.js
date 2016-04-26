@@ -3,6 +3,8 @@ import Game from './game/game';
 import {Texture, asciiBlock} from './game/assets';
 import {Coords} from './game/graphics';
 import createElement from 'virtual-dom/create-element';
+import diff from 'virtual-dom/diff';
+import patch from 'virtual-dom/patch';
 
 let bg = Texture.background(asciiBlock(`
 +-----------------------------------------------------+
@@ -36,23 +38,26 @@ let game = new Game(bg, {player}, {
   size: bg.bounds,
 });
 
-let grid = new AsciiGrid(game);
-
-const replaceContents = (node, replacement) => {
-  while (node.firstChild) {
-    node.removeChild(node.firstChild);
+class GridView {
+  constructor(grid, container) {
+    this.grid = grid;
+    this.tree = grid.render();
+    this.rootNode = createElement(this.tree);
+    container.appendChild(this.rootNode);
   }
-  node.appendChild(replacement);
-  return node;
-};
 
-const updateGrid = () => {
-  let rendered = createElement(grid.render());
-  replaceContents(document.querySelector("#ascii-grid"), rendered);
-};
+  update() {
+    let newTree = this.grid.render();
+    let patches = diff(this.tree, newTree);
+    this.rootNode = patch(this.rootNode, patches);
+    this.tree = newTree;
+  }
+}
 
-updateGrid();
+let view = new GridView(
+  new AsciiGrid(game),
+  document.querySelector("#ascii-grid"));
 
 game.on('selected', () => {
-  updateGrid();
+  view.update();
 });
