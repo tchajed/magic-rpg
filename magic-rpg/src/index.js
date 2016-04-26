@@ -12,6 +12,11 @@ let game = new Game(level1.background,
   {'player': level1.player},
   level1.view);
 
+// This is organized poorly - it doesn't make sense for a View to have a model
+// that knows how to render itself.  It would be somewhat nice if View were a
+// composable object, with children that re-composed themselves, but this might
+// be too difficult, and is largely unnecessary if there are only two or three
+// views (grid, selection info, and possibly news separately).
 class View {
   constructor(model) {
     this.model = model;
