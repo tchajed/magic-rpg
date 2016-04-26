@@ -49,7 +49,10 @@ export default class Game extends EventEmitter {
       newSelection = null;
     }
     this.selection = newSelection;
-    this.emit('selected', o);
+    this.emit('change', {
+      type: 'selection',
+      objectId: this.selection,
+    });
   }
 
   moveObject(objectId, update) {
@@ -62,7 +65,8 @@ export default class Game extends EventEmitter {
       return;
     }
     o.coords = coords;
-    this.emit('objectChange', {
+    this.emit('change', {
+      type: 'object',
       objectId,
       coords
     });
