@@ -5,6 +5,11 @@ export class Bounds {
     this.height = height;
     this.width = width;
   }
+
+  contains(coords, size=new Bounds(1, 1)) {
+    return (0 <= coords.x && coords.x + size.width <= this.width &&
+      0 <= coords.y && coords.y + size.height <= this.height);
+  }
 }
 
 export class Coords {
@@ -34,7 +39,9 @@ export class RenderBuffer {
   constructor(size) {
     this.size = size;
     this.cells = _.times(size.height, () => {
-      return _.times(size.width, () => new Cell());
+      let row = _.times(size.width, () => new Cell());
+      row.push(new Cell('\n', 'spacer'));
+      return row;
     });
   }
 
@@ -51,13 +58,12 @@ export class RenderBuffer {
   compressed() {
     let accum = null;
     let rendered = [];
-    for (let y = 0; y < this.size.height; y++) {
-      for (var x = 0; x < this.size.width; x++) {
-        var cell = this.cells[y][x];
+    _.each(this.cells, (row, y) => {
+      _.each(row, (cell, x) => {
         // initialize with first cell
         if (x === 0 && y === 0) {
           accum = cell.copy();
-          continue;
+          return;
         }
         if (cell.objectId === accum.objectId) {
           accum.text += cell.text;
@@ -65,8 +71,8 @@ export class RenderBuffer {
           rendered.push(accum);
           accum = cell.copy();
         }
-      }
-    }
+      });
+    });
     rendered.push(accum);
     return rendered;
   }

@@ -51,4 +51,20 @@ export default class Game extends EventEmitter {
     this.selection = newSelection;
     this.emit('selected', o);
   }
+
+  moveObject(objectId, update) {
+    let o = this.objects[objectId];
+    if (o === 'undefined') {
+      throw new Error(`invalid objectId ${objectId}`);
+    }
+    let coords = update(o.coords);
+    if (!this.viewPort.size.contains(coords, o.bounds)) {
+      return;
+    }
+    o.coords = coords;
+    this.emit('objectChange', {
+      objectId,
+      coords
+    });
+  }
 }

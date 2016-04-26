@@ -1,13 +1,10 @@
 import _ from 'lodash';
 import {Bounds} from './graphics';
 
-const parseDesc = function(desc, isBg=false) {
+const parseDesc = function(desc) {
     let lines = desc.split("\n");
     return _.map(lines, (line) => {
       let row = _.times(line.length, (i) => line.charAt(i));
-      if (isBg) {
-        row.push("\n");
-      }
       return row;
     });
 };
@@ -22,7 +19,7 @@ export class Texture {
   }
 
   static background(desc) {
-    return new Texture(parseDesc(desc, true));
+    return new Texture(parseDesc(desc));
   }
 
   get height() {
