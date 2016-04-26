@@ -2,15 +2,18 @@ import AsciiGrid from './components/ascii';
 import InfoPanel from './components/panel';
 import Game from './game/game';
 import Mousetrap from 'mousetrap';
-import {Coords} from './game/graphics';
 import createElement from 'virtual-dom/create-element';
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
 
 let game = new Game(level1.background,
-  {'player': level1.player},
-  level1.view);
+  {
+    'player': level1.player,
+    'table': level1.table,
+  },
+  level1.view
+);
 
 // This is organized poorly - it doesn't make sense for a View to have a model
 // that knows how to render itself.  It would be somewhat nice if View were a
@@ -71,17 +74,11 @@ new PanelView(new InfoPanel(game)).init(
   document.querySelector('#info-panel')
 );
 
-const movePlayer = (dy, dx) => {
-  game.moveObject('player', (coords) => {
-    return new Coords(coords.y + dy, coords.x + dx);
-  });
-};
-
 for (let [combo, dy, dx] of [
   ['left', 0, -1],
   ['right', 0, 1],
   ['up', -1, 0],
   ['down', 1, 0],
 ]) {
-  Mousetrap.bind(combo, movePlayer.bind(null, dy, dx));
+  Mousetrap.bind(combo, game.moveObject.bind(game, 'player', dy, dx));
 }

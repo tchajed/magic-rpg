@@ -8,7 +8,7 @@ export const background = Background.create(asciiBlock(`
 |                                                     |
 |                                                     |
 |                                                     |
-|                                                     |
+|               3                                     |
 |                                                     |
 |                                                     |
 |                                                     |
@@ -21,17 +21,30 @@ export const background = Background.create(asciiBlock(`
 |                                                     |
 |                                                     |
 +-----------------------------------------------------+
-`)).setLocs({
-  1: {name: 'initView', c: '+'},
-  2: {name: 'playerStart', c: ' '},
+`), {
+  1: {name: 'view', c: '+'},
+  2: {name: 'player', c: ' '},
+  3: {name: 'table', c:' '},
 });
 
 export const player = new Entity(
-  background.loc('playerStart'),
+  background.loc('player'),
   Texture.create("@@\n@@")
 );
 
+export const table = new Entity(
+  background.loc('table'),
+  Texture.create(asciiBlock(`
+/-----/
+|#####|
+|#####|
+|#####|
+|#####|
+/-----/
+`))
+);
+
 export const view = {
-  coords: background.loc('initView'),
+  coords: background.loc('view'),
   size: background.bounds,
 };

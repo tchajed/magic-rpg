@@ -66,10 +66,10 @@ export default class Game extends EventEmitter {
     });
   }
 
-  moveObject(objectId, update) {
+  moveObject(objectId, dy, dx) {
     this.assertValidObject(objectId);
     let o = this.objects[objectId];
-    let coords = update(o.coords);
+    let coords = new Coords(o.coords.y + dy, o.coords.x + dx);
     if (this.bg.conflicts(coords, o.bounds)) {
       return;
     }

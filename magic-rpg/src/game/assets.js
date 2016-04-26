@@ -43,37 +43,39 @@ export const asciiBlock = (s) => {
   return s.substring(first+1, last);
 };
 
+const parseNames = (cells, labelToNameMapping) => {
+  let nameToLocs = new Map();
+  _.each(cells, (row, y) => {
+    _.each(row, (cell, x) => {
+      let info = labelToNameMapping[cell];
+      if (info !== undefined) {
+        if (nameToLocs.has(info.name)) {
+          throw new Error(`duplicate shortcut ${cell} seen at (${y}, ${x})`);
+        }
+        nameToLocs.set(info.name, new Coords(y, x));
+        cells[y][x] = info.c;
+      }
+    });
+  });
+  return nameToLocs;
+};
+
 export class Background extends Texture {
-  constructor(cells, mask) {
+  constructor(cells, mask, metadata) {
     super(cells);
     this.mask = mask;
-    this.metadata = {};
+    this.metadata = metadata;
   }
 
-  static create(desc) {
+  static create(desc, labelToNameMapping) {
     let cells = parseDesc(desc);
+    let nameToLocs = parseNames(cells, labelToNameMapping);
     let mask = _.map(cells, (row) => {
       return _.map(row, (cell) => cell === ' ');
     });
-    return new Background(cells, mask);
-  }
-
-  setLocs(labelToNameMapping) {
-    let nameToLocs = new Map();
-    _.each(this.cells, (row, y) => {
-      _.each(row, (cell, x) => {
-        let info = labelToNameMapping[cell];
-        if (info !== undefined) {
-          if (nameToLocs.has(info.name)) {
-            throw new Error(`duplicate shortcut ${cell} seen at (${y}, ${x})`);
-          }
-          nameToLocs.set(info.name, new Coords(y, x));
-          this.cells[y][x] = info.c;
-        }
-      });
+    return new Background(cells, mask, {
+      locs: nameToLocs,
     });
-    this.metadata.locs = nameToLocs;
-    return this;
   }
 
   loc(name) {
