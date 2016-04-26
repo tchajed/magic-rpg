@@ -7,7 +7,9 @@ export default class InfoPanel {
 
   render() {
     if (this.game.selection === null) {
-      return h('div', h('h3', '(no selection)'));
+      // for debugging
+      // return h('div', h('h3', '(no selection)'));
+      return h('div');
     }
     let o = this.game.objects[this.game.selection];
     return h('div', [
