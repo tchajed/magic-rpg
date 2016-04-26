@@ -1,44 +1,15 @@
 import AsciiGrid from './components/ascii';
 import Game from './game/game';
 import Mousetrap from 'mousetrap';
-import {Texture, Background, asciiBlock} from './game/assets';
 import {Coords} from './game/graphics';
-import Entity from './game/entity';
 import createElement from 'virtual-dom/create-element';
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
+import * as level1 from './assets/level1';
 
-let bg = Background.create(asciiBlock(`
-+-----------------------------------------------------+
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-+-----------------------------------------------------+
-`));
-
-let player = new Entity(
-  new Coords(2, 2),
-  Texture.create("@@\n@@")
-);
-
-let game = new Game(bg, {player}, {
-  coords: new Coords(0, 0),
-  size: bg.bounds,
-});
+let game = new Game(level1.background,
+  {'player': level1.player},
+  level1.view);
 
 class GridView {
   constructor(grid) {

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {Bounds} from './graphics';
+import {Bounds, Coords} from './graphics';
 
 const parseDesc = function(desc) {
     let lines = desc.split("\n");
@@ -47,6 +47,7 @@ export class Background extends Texture {
   constructor(cells, mask) {
     super(cells);
     this.mask = mask;
+    this.metadata = {};
   }
 
   static create(desc) {
@@ -55,6 +56,31 @@ export class Background extends Texture {
       return _.map(row, (cell) => cell === ' ');
     });
     return new Background(cells, mask);
+  }
+
+  setLocs(labelToNameMapping) {
+    let nameToLocs = new Map();
+    _.each(this.cells, (row, y) => {
+      _.each(row, (cell, x) => {
+        let info = labelToNameMapping[cell];
+        if (info !== undefined) {
+          if (nameToLocs.has(info.name)) {
+            throw new Error(`duplicate shortcut ${cell} seen at (${y}, ${x})`);
+          }
+          nameToLocs.set(info.name, new Coords(y, x));
+          this.cells[y][x] = info.c;
+        }
+      });
+    });
+    this.metadata.locs = nameToLocs;
+    return this;
+  }
+
+  loc(name) {
+    if (!this.metadata.locs.has(name)) {
+      throw new Error(`invalid named location ${name}`);
+    }
+    return this.metadata.locs.get(name);
   }
 
   conflicts(coords, size) {
