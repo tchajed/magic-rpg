@@ -29,7 +29,7 @@ export default class Game extends EventEmitter {
   render() {
     let segments = this.segments();
     return h('code.ascii', _.map(segments, (segment) => {
-      if (segment.objectId !== null) {
+      if (this.isObject(segment.objectId)) {
         let selectedClass = segment.selected ? '.selected' : '';
         return h(`span.${segment.objectId}${selectedClass}`,
           {
@@ -43,7 +43,18 @@ export default class Game extends EventEmitter {
     }));
   }
 
+  isObject(objectId) {
+    return this.objects[objectId] !== undefined;
+  }
+
+  assertValidObject(objectId) {
+    if (!this.isObject(objectId)) {
+      throw new Error(`invalid objectId ${objectId}`);
+    }
+  }
+
   select(o) {
+    this.assertValidObject(o);
     let newSelection = o;
     if (this.selection === o) {
       newSelection = null;
@@ -56,10 +67,8 @@ export default class Game extends EventEmitter {
   }
 
   moveObject(objectId, update) {
+    this.assertValidObject(objectId);
     let o = this.objects[objectId];
-    if (o === 'undefined') {
-      throw new Error(`invalid objectId ${objectId}`);
-    }
     let coords = update(o.coords);
     if (this.bg.conflicts(coords, o.bounds)) {
       return;
