@@ -31,14 +31,24 @@ export default class Writing {
     if (typeof config === 'string') {
       return config;
     }
-    if (this.evalTest(config.test)) {
-      return this.getText(config.trueText);
-    } else {
-      return this.getText(config.falseText);
+    if (config.test !== undefined) {
+      if (this.evalTest(config.test)) {
+        return this.getText(config.trueText);
+      } else {
+        return this.getText(config.falseText);
+      }
     }
+    if (config.index !== undefined) {
+      let index = this.state.get(config.index);
+      return this.getText(config.values[index % config.values.length]);
+    }
+    throw new Error(`unsupported text config ${JSON.stringify(config)}`);
   }
 
   for(objectId) {
+    if (text[objectId] === undefined) {
+      return h('p.error', `no text provided for ${objectId}`);
+    }
     if (objectId === 'player') {
       return h('div', [
         h('p', this.getText(text.player)),

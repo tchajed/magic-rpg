@@ -5,6 +5,7 @@ const defaults = () => {
   return {
     level: 'level1',
     talkedToManager: false,
+    newsItem: 0,
   };
 };
 

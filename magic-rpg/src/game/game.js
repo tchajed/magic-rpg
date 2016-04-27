@@ -107,6 +107,9 @@ export default class Game extends EventEmitter {
       newSelection = null;
     }
     this.selection = newSelection;
+    if (this.selection === 'news') {
+      this.state.set('newsItem', this.state.get('newsItem') + 1);
+    }
     this.emit('change', {
       type: 'selection',
       objectId: this.selection,

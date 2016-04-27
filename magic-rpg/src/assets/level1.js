@@ -5,10 +5,10 @@ import Entity from '../game/entity';
 export const background = Background.create(asciiBlock(`
 +--------------------------------------------------+///////+--------------------------+
 |                                                  |///////|                          |
-|  1                                               |///////|                          |
+|  P                 I                             |///////|                          |
 |                                                  |///////|                          |
 |                                                  |///////|                          |
-|          2                                       |///////|         5                |
+|          T                                       |///////|         B                |
 |                                                  |///////|                          |
 |                                                  +-------+                          |
 |                                                                                     |
@@ -16,23 +16,35 @@ export const background = Background.create(asciiBlock(`
 |                                                                                     |
 |                                                  +-------+                          |
 |                                                  |///////|                          |
-|          3                             4         |///////|                          |
+|          M                             A         |///////|        N                 |
 |                                                  |///////|                          |
 |                                                  |///////|                          |
 |                                                  |///////|                          |
 |                                                  |///////|                          |
 +--------------------------------------------------+///////+--------------------------+
 `), {
-  1: {name: 'player', c: ' '},
-  2: {name: 'table', c:' '},
-  3: {name: 'manager', c:' '},
-  4: {name: 'bossA', c: ' '},
-  5: {name: 'bossB', c: ' '},
+  P: {name: 'player', c: ' '},
+  I: {name: 'start', c: ' '},
+  T: {name: 'table', c: ' '},
+  M: {name: 'manager', c: ' '},
+  A: {name: 'bossA', c: ' '},
+  B: {name: 'bossB', c: ' '},
+  N: {name: 'news', c: ' '},
 });
 
 const player = new Entity(
   background.loc('player'),
   Texture.create("@")
+);
+
+const start = new Entity(
+  background.loc('start'),
+  Texture.create("(start)")
+);
+
+const news = new Entity(
+  background.loc('news'),
+  Texture.create("(news)")
 );
 
 const manager = new Entity(
@@ -64,6 +76,8 @@ const table = new Entity(
 
 export const objects = {
   player,
+  start,
+  news,
   manager,
   bossA,
   bossB,

@@ -2,6 +2,10 @@ player: >
     This is you, the player. You are a wizard in Magical Consulting, LLC (a
     Delaware company).
 
+start: >
+    This is a starting block. It has no real-world equivalent, but it abuses
+    the object selection mechanism to introduce the story.
+
 table: >
     This is just a conference table. There's nothing on it and it isn't important.
 
@@ -22,3 +26,13 @@ bossB:
         You don't know who I am! Why should I talk to you?
     trueText: >
         I'm the second boss. I guess I'd fight you or something?
+
+news:
+    index: 'newsItem'
+    values:
+        - >
+            first news
+        - >
+            second news
+        - >
+            third news
