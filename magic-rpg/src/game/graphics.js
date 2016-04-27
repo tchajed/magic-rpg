@@ -38,6 +38,36 @@ export class Rectangle {
   }
 }
 
+export class ViewPort {
+  constructor(origin, size) {
+    this.rect = new Rectangle(origin, size);
+  }
+
+  get origin() {
+    return this.rect.coords;
+  }
+
+  get size() {
+    return this.rect.bounds;
+  }
+
+  contains(rect) {
+    return this.rect.collides(rect);
+  }
+
+  containsPoint(coords) {
+    this.contains(new Rectangle(coords, new Bounds(1, 1)));
+  }
+
+  // translate global coordinates to the local coordinate system
+  translate(coords) {
+    return new Coords(
+      coords.y - this.rect.coords.y,
+      coords.x - this.rect.coords.x
+    );
+  }
+}
+
 export class Cell {
   constructor(text, objectId=null, selected=false) {
     this.text = text;
@@ -69,7 +99,9 @@ export class RenderBuffer {
       _.each(row, (c, dx) => {
         let y = basePos.y + dy,
         x = basePos.x + dx;
-        this.cells[y][x] = new Cell(c, objectId, selected);
+        if (this.size.contains(new Coords(y, x))) {
+          this.cells[y][x] = new Cell(c, objectId, selected);
+        }
       });
     });
   }

@@ -1,4 +1,5 @@
 import {Texture, Background, asciiBlock} from '../game/assets';
+import {Bounds, ViewPort} from '../game/graphics';
 import Entity from '../game/entity';
 
 export const background = Background.create(asciiBlock(`
@@ -44,7 +45,7 @@ export const table = new Entity(
 `))
 );
 
-export const view = {
-  coords: background.loc('view'),
-  size: background.bounds,
-};
+export const view = new ViewPort(
+  background.loc('view'),
+  new Bounds(5, 5)
+);

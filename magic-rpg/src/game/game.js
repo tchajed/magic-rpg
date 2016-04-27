@@ -49,12 +49,17 @@ export default class Game extends EventEmitter {
   segments() {
     let viewPort = this.viewPort;
     let buf = new RenderBuffer(viewPort.size);
-    let bgPosition = new Coords(-viewPort.coords.y, -viewPort.coords.x);
-    buf.renderAt(bgPosition, this.bg.cells, 'bg');
+    let viewOrigin = this.viewPort.translate(new Coords(0, 0));
+    buf.renderAt(viewOrigin, this.bg.cells, 'bg');
 
     for (let id of Object.keys(this.objects)) {
-      let o = this.objects[id];
-      buf.renderAt(o.coords, o.texture.cells, id, id === this.selection);
+      let o = this.object(id);
+      buf.renderAt(
+        this.viewPort.translate(o.coords),
+        o.texture.cells,
+        id,
+        id === this.selection
+      );
     }
 
     return buf.compressed();
