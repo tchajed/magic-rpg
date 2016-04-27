@@ -24,7 +24,7 @@ magic-enhancing funnel, technology created in just the last few decades.</p>
 <p>ANYWAY, you're at the point where you've done a reasonable job in your
 current position, rising through the ranks just in time not to be fired. You're
 ready to go to the next stage, but you haven't gotten the usual email about the
-magical test battle and written exam. So you check in with your boss.</p>
+magical test battle and written exam. So you check in with your manager.</p>
 
 {{else eq object "table"}}
 
@@ -32,38 +32,44 @@ This is just a conference table. There's nothing on it and it isn't important.
 
 {{else eq object "manager"}}
 
-<p>"Hi, I'm your manager. I don't know why I'm telling you, since you ought to
-  know that by now."</p>
+<blockquote>
+<p>Hi, I'm your manager. I don't know why I'm telling you, since you ought to
+  know that by now.</p>
 
-<p>...</p>
+<p>&hellip;</p>
 
-<p>"Ah, we were wondering when you would ask. Every employee in your stage has
+<p>We were wondering when you would ask about that. Every employee in your stage has
     only one way to move up: a series of trials, facing your superiors. Every boss
-    got where they are this way, and maybe you will, too!"</p>
+    got where they are this way, and maybe you will, too!</p>
 
-<p>"You'll be given a series of challenges, each in a specific form or style
+<p>You'll be given a series of challenges, each in a specific form or style
   or element of magic. Each will test your skills, pushing you to be the very
-  best - and rewarding you if you turn out to be."</p>
+  best &mdash; and rewarding you if you turn out to be.</p>
+</blockquote>
 {{else eq object "bossA"}}
 {{#unless state.talkedToManager}}
 You don't know who I am! Why should I talk to you?
 {{else}}
+<blockquote>
 <p>I'm the first boss. I guess I'd fight you or something?</p>
 
 <p>You've trained heavily for this battle. Enough that it might even be a
-fair fight. The leader eyes you as an equal. When --- and if --- you
+fair fight. The boss eyes you as an equal. When &mdash; and if &mdash; you
 emerge victorious, you can know that skill was involved.</p>
+</blockquote>
 {{/unless}}
 {{else eq object "bossB"}}
 {{#unless state.talkedToManager}}
 You don't know who I am! Why should I talk to you?
 {{else}}
-<p>I'm the first boss. I guess I'd fight you or something?</p>
+<blockquote>
+<p>I'm the second boss. I guess I'd fight you or something?</p>
 
-<p>You've waltzed in here looking for trouble. The gym leader eyes you
+<p>You've waltzed in here looking for trouble. The boss eyes you
 like you're 11 years old and thought that determination was all that
 counted and not the cold hard numbers. He doesn't feel the need to go
 easy on you.</p>
+</blockquote>
 {{/unless}}
 {{else eq object "news"}}
 {{{index news state.newsItem}}}
