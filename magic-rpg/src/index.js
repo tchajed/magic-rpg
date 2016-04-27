@@ -6,6 +6,7 @@ import createElement from 'virtual-dom/create-element';
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
+import Writing from './assets/level1-writing';
 
 let game = new Game(level1.background,
   {
@@ -14,6 +15,8 @@ let game = new Game(level1.background,
   },
   level1.view
 );
+
+let writing = new Writing(game.state);
 
 // This is organized poorly - it doesn't make sense for a View to have a model
 // that knows how to render itself.  It would be somewhat nice if View were a
@@ -70,7 +73,7 @@ new GridView(new AsciiGrid(game)).init(
   document.querySelector("#ascii-grid")
 );
 
-new PanelView(new InfoPanel(game)).init(
+new PanelView(new InfoPanel(game, writing)).init(
   document.querySelector('#info-panel')
 );
 

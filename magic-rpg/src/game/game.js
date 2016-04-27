@@ -1,7 +1,8 @@
 import h from 'virtual-dom/h';
 import _ from 'lodash';
 import {EventEmitter} from 'events';
-import {Rectangle, Coords, RenderBuffer} from './graphics';
+import {Rectangle, Bounds, Coords, RenderBuffer} from './graphics';
+import State from './state';
 
 export default class Game extends EventEmitter {
   constructor(bg, objects, viewPort, selection=null) {
@@ -10,6 +11,7 @@ export default class Game extends EventEmitter {
     this.objects = objects;
     this.viewPort = viewPort;
     this.selection = selection;
+    this.state = new State();
     this.centerAround('player');
   }
 

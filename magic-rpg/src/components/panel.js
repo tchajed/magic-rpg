@@ -1,8 +1,9 @@
 import h from 'virtual-dom/h';
 
 export default class InfoPanel {
-  constructor(game) {
+  constructor(game, writing) {
     this.game = game;
+    this.writing = writing;
   }
 
   render() {
@@ -11,10 +12,9 @@ export default class InfoPanel {
       // return h('div', h('h3', '(no selection)'));
       return h('div');
     }
-    let o = this.game.objects[this.game.selection];
     return h('div', [
       h('h3', this.game.selection),
-      h('p', `Coords(${o.coords.y}, ${o.coords.x})`),
+      this.writing.for(this.game.selection),
     ]);
   }
 }
