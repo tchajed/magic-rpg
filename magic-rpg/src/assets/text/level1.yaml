@@ -6,12 +6,41 @@ start: >
     This is a starting block. It has no real-world equivalent, but it abuses
     the object selection mechanism to introduce the story.
 
+    You are a mid-tier wizard at {main company}. The company is huge,
+    responsible for most of the types of magic in the world. Their work is
+    exported all around the world and their name is a byword for quality.
+
+    People used to think of wizards as wearing these silly, antiquated robes
+    and pointy hats. The robes invariably had little lightning bolts. It was
+    almost as if wizards worked in their pajamas and had eccentric taste in
+    hats. This is far from the reality. Magic is a consulting-based business
+    with face-to-face client interaction - most wizards wear business suits and
+    are sharply dressed with ties. The pointy hats aren't nearly so pointy and
+    are actually a sophisticated magic-enhancing funnel, technology created in
+    just the last few decades.
+
+    ANYWAY, you're at the point where you've done a reasonable job in your
+    current position, rising through the ranks just in time not to be fired.
+    You're ready to go to the next stage, but you haven't gotten the usual
+    email about the magical test battle and written exam. So you check in with
+    your boss.
+
 table: >
     This is just a conference table. There's nothing on it and it isn't important.
 
 manager: >
     "Hi, I'm your manager. I don't know why I'm telling you, since you ought to
     know that by now."
+
+    ...
+
+    "Ah, we were wondering when you would ask. Every employee in your stage has
+    only one way to move up: a series of trials, facing your superiors. Every boss
+    got where they are this way, and maybe you will, too!"
+
+    "You'll be given a series of challenges, each in a specific form or style
+    or element of magic. Each will test your skills, pushing you to be the very
+    best - and rewarding you if you turn out to be."
 
 bossA:
     test: 'talkedToManager'
@@ -20,6 +49,10 @@ bossA:
     trueText: >
         I'm the first boss. I guess I'd fight you or something?
 
+        You've trained heavily for this battle. Enough that it might even be a
+        fair fight. The leader eyes you as an equal. When --- and if --- you
+        emerge victorious, you can know that skill was involved.
+
 bossB:
     test: 'talkedToManager'
     falseText: >
@@ -27,12 +60,33 @@ bossB:
     trueText: >
         I'm the second boss. I guess I'd fight you or something?
 
+        You've waltzed in here looking for trouble. The gym leader eyes you
+        like you're 11 years old and thought that determination was all that
+        counted and not the cold hard numbers. He doesn't feel the need to go
+        easy on you.
+
 news:
     index: 'newsItem'
     values:
         - >
-            first news
+            {other country} will today meet with {our president}. Tensions will reign high: issues range from concerns over the magic embargo over {region} to a skirmish over creatures {other country} claims were warships sent my {our country}.
         - >
-            second news
+            The {region} commission on magic control will today rule in a lawsuit over an alleged abuse from {large company}. They will be found guilty and assessed a large penalty of 20 million mana (5% of annual output) to be paid over the next 5 years.
         - >
-            third news
+            There will be nothing charming about the second-quarter earnings report from {company}, the biggest exporter of charmed staffs in the country. The company has faced declining sales of its once popular oaken staffs. In the last year they have rolled out a new line of bamboo-based staffs, aiming to appeal to today's more environmentally conscious young wizards.
+        - >
+            {large company} said it would cut up to 11,000 jobs across sales, marketing, and magical quality assurance by mid-2018. The world's largest peddler of mid-sized wands is facing a shift towards small, charm-sized magic and large site-wide warlock approaches, which together account for 40% of sales and have profit margins in excess of 30%. Shares declined by 4% in unenthusiastic after-hours trading.
+        - >
+            {company} admitted to cheating on magika durability tests for its line of witches' brooms. Shares in {company}, the world's 4th largest broom developer, plummeted by 10% today in light of the latest report from the air safety advisory panel (ASAP). The industry is still reeling from the revelation that several brooms may have been made from sub-standard fibers, which fall out quickly and leak 12 times the recommended magic emissions.
+        - >
+            Eight years after the breach to the dimension of beasts shook the magical protection industry to its core, regulators are cracking down on the ratings agencies that assured everyone nothing could get through the basic worldwide defense system put in place in the 80s. In theory, requiring executives to live close to rifts between portals would align incentives probably. In practice, executives at the protection agencies know best where the rifts actually are and are wont to lie about their placement.
+        - >
+            Expect sparks in today's monthly public magic policy meetings. Having just reduced restrictions on understandable magic incantations in the {~= ECB}'s main policing efforts, the board's boss, {name}, is unlikely to relax policies further any time soon. He may have to respond to allegations from {name}, head of {country's} ultra-conservative non-magical police force, that the board's definition of understandable doesn't take into account local language, and indeed includes Latin and Elvish. The {~= ECB}'s lead central wizard is unlikely to be deterred: he may well argue that magical incantations have a mostly local effect and are unlikely to affect the rest of the populace.
+        - >
+            Turmoil has increased the suffering of the peoples of {small country}, which have been plagued by an increase in dragon summonings from the mostly black mage gang-controlled suburbs. Violence is likely to increase, as dragons don't back down once summoned. Attempts by the UN to bring in specialized dragon-control experts have been met with hostility from the {country}'s government, which many suspect to be run by lizards.
+        - >
+            The annual large business profitably survey's results are due in the next two weeks. Companies have beaten estimates, but analysts largely chock this up to low estimates due to the shortage of {magical ingredient} last year. {Potion chain} shops are doing well, thanks to the recent announcement of hundreds of 24-hour facilities. Large mining corporations have fared less well, with sector profits 24% below the average --- prices for large diggers have declined precipitously with the recent forging of equivalent hand-held axes.
+        - >
+            A (non-magical) police force summit will meet today to discuss the {country}'s prison problem; namely, why are the prisons so empty? There is widespread and bipartisan agreement that teleportation has played a significant role. Expect a formal report and lots of agreements, followed by an identical level of magical arrest resistance.
+        - >
+            Campaigns to litter forests and dungeons with small health potions have cut adventure-related deaths by 70%. The world has much to celebrate on World Health Day. But as public-health experts will be quick to point out, this is no time for complacency. Refilling chests and caves with not only health but mana potions remains a top priority.
