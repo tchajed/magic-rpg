@@ -75,10 +75,10 @@ new PanelView(new InfoPanel(game)).init(
 );
 
 for (let [combo, dy, dx] of [
-  ['left', 0, -1],
-  ['right', 0, 1],
-  ['up', -1, 0],
-  ['down', 1, 0],
+  [['left', 'a'], 0, -1],
+  [['right', 'd'], 0, 1],
+  [['up', 'w'], -1, 0],
+  [['down', 's'], 1, 0],
 ]) {
   Mousetrap.bind(combo, game.moveObject.bind(game, 'player', dy, dx));
 }
