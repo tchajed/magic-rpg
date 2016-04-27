@@ -1,27 +1,27 @@
 import {Texture, Background, asciiBlock} from '../game/assets';
-import {Bounds, ViewPort} from '../game/graphics';
+import {Coords, Bounds, ViewPort} from '../game/graphics';
 import Entity from '../game/entity';
 
 export const background = Background.create(asciiBlock(`
-1-----------------------------------------------------+
-|                                                     |
-|  2                                                  |
-|                                                     |
-|                                                     |
-|                                                     |
-|               3                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-+-----------------------------------------------------+
+1--------------------------------------------------+
+|                                                  |
+|  2                                               |
+|                                                  |
+|                                                  |
+|                                                  |
+|               3                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
++--------------------------------------------------+
 `), {
   1: {name: 'view', c: '+'},
   2: {name: 'player', c: ' '},
@@ -46,6 +46,6 @@ export const table = new Entity(
 );
 
 export const view = new ViewPort(
-  background.loc('view'),
-  new Bounds(5, 5)
+  new Coords(-3, -3),
+  new Bounds(25, 60)
 );

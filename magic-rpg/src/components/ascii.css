@@ -6,6 +6,9 @@
     color: #839496;
     cursor: default;
 }
+.empty {
+    background: #839496;
+}
 .player {
     color: #2aa198;
 }

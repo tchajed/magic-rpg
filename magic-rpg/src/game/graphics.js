@@ -88,7 +88,7 @@ export class RenderBuffer {
   constructor(size) {
     this.size = size;
     this.cells = _.times(size.height, () => {
-      let row = _.times(size.width, () => new Cell());
+      let row = _.times(size.width, () => new Cell(' ', 'empty'));
       row.push(new Cell('\n', 'spacer'));
       return row;
     });
