@@ -29,6 +29,11 @@ export class Texture {
   get bounds() {
     return new Bounds(this.height, this.width);
   }
+
+  // takes y, x
+  mask() {
+    return true;
+  }
 }
 
 // helper to use string constants as textures - strips everything up till the first newline and after the last newline, so that
@@ -61,19 +66,27 @@ const parseNames = (cells, labelToNameMapping) => {
 };
 
 export class Background extends Texture {
-  constructor(cells, mask, metadata) {
+  constructor(cells, mask, traversable, metadata) {
     super(cells);
-    this.mask = mask;
+    this._mask = mask;
+    this.traversable = traversable;
     this.metadata = metadata;
+  }
+
+  mask(y, x) {
+    return this._mask[y][x];
   }
 
   static create(desc, labelToNameMapping) {
     let cells = parseDesc(desc);
     let nameToLocs = parseNames(cells, labelToNameMapping);
     let mask = _.map(cells, (row) => {
+      return _.map(row, (cell) => cell !== '/');
+    });
+    let traversable = _.map(cells, (row) => {
       return _.map(row, (cell) => cell === ' ');
     });
-    return new Background(cells, mask, {
+    return new Background(cells, mask, traversable, {
       locs: nameToLocs,
     });
   }
@@ -88,7 +101,8 @@ export class Background extends Texture {
   collides(coords, size) {
     for (var dy = 0; dy < size.height; dy++) {
       for (var dx = 0; dx < size.width; dx++) {
-        if (!this.mask[coords.y + dy][coords.x + dx]) {
+        if (!this.mask(coords.y + dy, coords.x + dx) ||
+          !this.traversable[coords.y + dy][coords.x + dx]) {
           return true;
         }
       }

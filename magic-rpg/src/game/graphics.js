@@ -98,12 +98,13 @@ export class RenderBuffer {
     });
   }
 
-  renderAt(basePos, cells, objectId, selected=false) {
-    _.each(cells, (row, dy) => {
+  renderAt(basePos, texture, objectId, selected=false) {
+    _.each(texture.cells, (row, dy) => {
       _.each(row, (c, dx) => {
         let y = basePos.y + dy,
         x = basePos.x + dx;
-        if (this.size.contains(new Coords(y, x))) {
+        if (this.size.contains(new Coords(y, x)) &&
+        texture.mask(dy, dx)) {
           this.cells[y][x] = new Cell(c, objectId, selected);
         }
       });
