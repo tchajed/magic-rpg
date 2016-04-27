@@ -14,6 +14,13 @@ export default class Writing {
         state: this.state,
         news,
       }),
+      // delegate events from the generated template
+      onclick: (e) => {
+        if (e.target.id === "clear-data") {
+          this.state.clear();
+          this.state.reset();
+        }
+      },
     });
   }
 }
