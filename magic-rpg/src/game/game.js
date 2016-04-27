@@ -10,6 +10,7 @@ export default class Game extends EventEmitter {
     this.objects = objects;
     this.viewPort = viewPort;
     this.selection = selection;
+    this.centerAround('player');
   }
 
   isObject(objectId) {
@@ -95,6 +96,14 @@ export default class Game extends EventEmitter {
     });
   }
 
+  centerAround(objectId) {
+    let o = this.object(objectId);
+    let dy = Math.floor((this.viewPort.size.height - o.bounds.height)/2);
+    let dx = Math.floor((this.viewPort.size.width - o.bounds.width)/2);
+    let origin = new Coords(o.coords.y - dy, o.coords.x - dx);
+    this.viewPort.origin = origin;
+  }
+
   moveObject(objectId, dy, dx) {
     this.assertValidObject(objectId);
     let o = this.objects[objectId];
@@ -103,6 +112,9 @@ export default class Game extends EventEmitter {
       return;
     }
     o.coords = newCoords;
+    if (objectId === 'player') {
+      this.centerAround(objectId);
+    }
     this.emit('change', {
       type: 'object',
       objectId,

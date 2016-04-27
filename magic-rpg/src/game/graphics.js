@@ -47,6 +47,10 @@ export class ViewPort {
     return this.rect.coords;
   }
 
+  set origin(coords) {
+    this.rect.coords = coords;
+  }
+
   get size() {
     return this.rect.bounds;
   }
