@@ -32,7 +32,7 @@ export const background = Background.create(asciiBlock(`
 
 const player = new Entity(
   background.loc('player'),
-  Texture.create("@@\n@@")
+  Texture.create("@")
 );
 
 const manager = new Entity(
