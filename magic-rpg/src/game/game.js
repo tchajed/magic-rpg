@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {EventEmitter} from 'events';
 import {ViewPort, Rectangle, Bounds, Coords, RenderBuffer} from './graphics';
 import State from './state';
+import store from 'store';
 
 export default class Game extends EventEmitter {
   constructor(bg, objects, viewSize, selection=null) {
@@ -19,6 +20,10 @@ export default class Game extends EventEmitter {
         transition: ev,
       });
     });
+    if (store.get('playerCoords')) {
+      let coords = store.get('playerCoords');
+      this.objects.player.coords = new Coords(coords.y, coords.x);
+    }
     this.centerAround('player');
   }
 
@@ -125,6 +130,7 @@ export default class Game extends EventEmitter {
     }
     o.coords = newCoords;
     if (objectId === 'player') {
+      store.set('playerCoords', o.coords);
       this.centerAround(objectId);
     }
     this.emit('change', {
