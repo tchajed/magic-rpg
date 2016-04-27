@@ -25,12 +25,19 @@ export default class Writing {
   for(objectId) {
     switch (objectId) {
       case 'player':
-      return text(`
+      return h('div', [
+        h('p', asciiBlock(`
 
-        This is you, the player. You are a wizard in Magical Consulting, LLC (a
-        Delaware company).
+          This is you, the player. You are a wizard in Magical Consulting, LLC (a
+            Delaware company).
 
-      `);
+        `)),
+        h('button', {
+          onclick: () => {
+            this.state.clear();
+            this.state.reset();
+        }}, 'clear data'),
+      ]);
       case 'table':
       return text(`
 

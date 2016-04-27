@@ -12,6 +12,7 @@ export default class Game extends EventEmitter {
     this.viewPort = viewPort;
     this.selection = selection;
     this.state = new State();
+    this.state.restore();
     this.state.on('transition', (ev) => {
       this.emit('change', {
         type: 'state',

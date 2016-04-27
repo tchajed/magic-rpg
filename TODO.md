@@ -8,7 +8,7 @@
   - [x] need to check FF/Pokemon to find out what they do
 - [x] associate text with entities, as a function of state
 - [x] represent game state machine
-- [ ] saving game state
+- [x] saving game state
 
 ## Experimental writing
 - [x] news text

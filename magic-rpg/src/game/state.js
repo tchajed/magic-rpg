@@ -1,35 +1,57 @@
 import {EventEmitter} from 'events';
+import store from 'store';
+
+const defaults = () => {
+  return {
+    level: 'level1',
+    talkedToManager: false,
+  };
+};
 
 export default class State extends EventEmitter {
   constructor() {
     super();
-    this.level = 'level1';
-    this.talkedToManager = false;
+    this.props = defaults();
+  }
+
+  restore() {
+    store.forEach((key, val) => {
+      this.props[key] = val;
+    });
+  }
+
+  clear() {
+    store.clear();
+  }
+
+  reset() {
+    this.props = defaults();
   }
 
   get(propname) {
-    if (this[propname] === undefined) {
+    if (this.props[propname] === undefined) {
       throw new Error(`attempt to access non-existant state property ${propname}`);
     }
-    return this[propname];
+    return this.props[propname];
   }
 
   ensure(propname, v) {
-    if (this[propname] === undefined) {
+    if (this.props[propname] === undefined) {
       throw new Error(`attempt to set non-existant state property ${propname}`);
     }
-    if (this[propname] === v) {
+    if (this.props[propname] === v) {
       return;
     }
     this.set(propname, v);
   }
 
   set(propname, v) {
-    if (this[propname] === undefined) {
+    if (this.props[propname] === undefined) {
       throw new Error(`attempt to set non-existant state property ${propname}`);
     }
-    let oldVal = this[propname];
-    this[propname] = v;
+    let oldVal = this.props[propname];
+    this.props[propname] = v;
+    store.set(propname, v);
     this.emit('transition', {
       property: propname,
       oldVal: oldVal,
