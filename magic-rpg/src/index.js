@@ -85,3 +85,5 @@ for (let [combo, dy, dx] of [
 ]) {
   Mousetrap.bind(combo, game.moveObject.bind(game, 'player', dy, dx));
 }
+
+Mousetrap.bind('space', game.action.bind(game));

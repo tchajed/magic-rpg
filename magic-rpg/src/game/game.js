@@ -29,10 +29,10 @@ export default class Game extends EventEmitter {
     return this.objects[objectId];
   }
 
-  // Would objectId collide with anything if positioned at coords?
-  collides(objectId, coords) {
-    let o = this.object(objectId);
-    if (this.bg.collides(coords, o.bounds)) {
+  // Would objectId collide with anything if it took space rect?
+  // Returns a colliding object or null if nothing collides.
+  collides(objectId, rect) {
+    if (this.bg.collides(rect.coords, rect.bounds)) {
       return true;
     }
 
@@ -41,8 +41,8 @@ export default class Game extends EventEmitter {
         continue;
       }
       let other = this.objects[id];
-      if (other.rect.collides(new Rectangle(coords, o.bounds))) {
-        return true;
+      if (other.rect.collides(rect)) {
+        return id;
       }
     }
 
@@ -110,7 +110,7 @@ export default class Game extends EventEmitter {
     this.assertValidObject(objectId);
     let o = this.objects[objectId];
     let newCoords = new Coords(o.coords.y + dy, o.coords.x + dx);
-    if (this.collides(objectId, newCoords)) {
+    if (this.collides(objectId, new Rectangle(newCoords, o.bounds))) {
       return;
     }
     o.coords = newCoords;
@@ -122,5 +122,17 @@ export default class Game extends EventEmitter {
       objectId,
       coords: o.coords,
     });
+  }
+
+  action() {
+    let player = this.object('player');
+    let sphereOfInfluence = new Rectangle(
+      new Coords(player.coords.y - 1, player.coords.x - 1),
+      new Bounds(player.bounds.height + 2, player.bounds.width + 2)
+    );
+    let collision = this.collides('player', sphereOfInfluence);
+    if (collision) {
+      this.select(collision);
+    }
   }
 }
