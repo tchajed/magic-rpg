@@ -7,10 +7,11 @@ export default class Writing {
     this.state = state;
   }
 
-  for(objectId) {
+  for(id, object) {
     return h('div', {
       innerHTML: template({
-        object: objectId,
+        object: id,
+        obj: object,
         state: this.state,
         news,
       }),

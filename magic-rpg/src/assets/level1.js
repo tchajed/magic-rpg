@@ -1,5 +1,5 @@
 import {Texture, Background, asciiBlock} from '../game/assets';
-import {Coords, Bounds} from '../game/graphics';
+import {Bounds} from '../game/graphics';
 import Entity from '../game/entity';
 
 export const background = Background.create(asciiBlock(`
@@ -35,46 +35,55 @@ export const background = Background.create(asciiBlock(`
 });
 
 const player = new Entity(
+  "Player - level 3 wizard",
   background.loc('player'),
   Texture.create("@")
 );
 
 const start = new Entity(
+  "Start",
   background.loc('start'),
   Texture.create("(start)")
 );
 
 const news = new Entity(
+  "News",
   background.loc('news'),
   Texture.create("(news)")
 );
 
 const manager = new Entity(
+  "Manager",
   background.loc('manager'),
   Texture.create("M")
 );
 
 const greeter = new Entity(
-    background.loc('greeter'),
-    Texture.create("*")
+  "greeter",
+  background.loc('greeter'),
+  Texture.create("*")
 );
 
 const bossA = new Entity(
+  "Boss 1",
   background.loc('bossA'),
   Texture.create("A")
 );
 
 const bossB = new Entity(
+  "Final Boss",
   background.loc('bossB'),
   Texture.create("B")
 );
 
 const enemy = new Entity(
-    background.loc('enemy'),
-    Texture.create("E")
+  "Generic enemy",
+  background.loc('enemy'),
+  Texture.create("E")
 );
 
 const table = new Entity(
+  "Table",
   background.loc('table'),
   Texture.create(asciiBlock(`
 /-----/

@@ -7,9 +7,10 @@ export default class InfoPanel {
   }
 
   render() {
-    if (this.game.selection === null) {
+    let selection = this.game.selection;
+    if (selection === null) {
       return h('div');
     }
-    return this.writing.for(this.game.selection);
+    return this.writing.for(selection, this.game.object(selection));
   }
 }

@@ -2,7 +2,8 @@ import {Rectangle} from './graphics';
 
 // object with some state
 export default class Entity {
-  constructor(coords, texture) {
+  constructor(name, coords, texture) {
+    this.name = name;
     this.coords = coords;
     this.texture = texture;
     this.bounds = texture.bounds;
