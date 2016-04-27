@@ -9,15 +9,20 @@ const defaults = () => {
   };
 };
 
+const stateKeys = Object.keys(defaults());
+
 export default class State extends EventEmitter {
   constructor() {
     super();
-    this.props = defaults();
+    let def = defaults();
+    for (let key of stateKeys) {
+      this[key] = def[key];
+    }
   }
 
   restore() {
     store.forEach((key, val) => {
-      this.props[key] = val;
+      this[key] = val;
     });
   }
 
@@ -26,32 +31,32 @@ export default class State extends EventEmitter {
   }
 
   reset() {
-    this.props = defaults();
+    let def = defaults();
+    for (let key of stateKeys) {
+      this[key] = def[key];
+    }
   }
 
   get(propname) {
-    if (this.props[propname] === undefined) {
+    if (this[propname] === undefined) {
       throw new Error(`attempt to access non-existant state property ${propname}`);
     }
-    return this.props[propname];
+    return this[propname];
   }
 
   ensure(propname, v) {
-    if (this.props[propname] === undefined) {
-      throw new Error(`attempt to set non-existant state property ${propname}`);
-    }
-    if (this.props[propname] === v) {
+    if (this[propname] === v) {
       return;
     }
     this.set(propname, v);
   }
 
   set(propname, v) {
-    if (this.props[propname] === undefined) {
+    if (this[propname] === undefined) {
       throw new Error(`attempt to set non-existant state property ${propname}`);
     }
-    let oldVal = this.props[propname];
-    this.props[propname] = v;
+    let oldVal = this[propname];
+    this[propname] = v;
     store.set(propname, v);
     this.emit('transition', {
       property: propname,

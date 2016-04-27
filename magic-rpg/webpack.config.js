@@ -18,6 +18,10 @@ module.exports = {
         loader: 'json!yaml',
       },
       {
+        test: /\.hbs/,
+        loader: "handlebars-loader",
+      },
+      {
         test: /\.js/,
         loader: 'babel',
         include: __dirname + '/src',

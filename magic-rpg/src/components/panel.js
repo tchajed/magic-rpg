@@ -8,13 +8,8 @@ export default class InfoPanel {
 
   render() {
     if (this.game.selection === null) {
-      // for debugging
-      // return h('div', h('h3', '(no selection)'));
       return h('div');
     }
-    return h('div', [
-      h('h3', this.game.selection),
-      this.writing.for(this.game.selection),
-    ]);
+    return this.writing.for(this.game.selection);
   }
 }
