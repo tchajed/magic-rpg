@@ -33,18 +33,20 @@ This is just a conference table. There's nothing on it and it isn't important.
 {{else eq object "manager"}}
 
 <blockquote>
+
 <p>Hi, I'm your manager. I don't know why I'm telling you, since you ought to
-  know that by now.</p>
+know that by now.</p>
 
 <p>&hellip;</p>
 
-<p>We were wondering when you would ask about that. Every employee in your stage has
-    only one way to move up: a series of trials, facing your superiors. Every boss
-    got where they are this way, and maybe you will, too!</p>
+<p>We were wondering when you would ask about that. Every employee in your stage
+has only one way to move up: a series of trials, facing your superiors. Every
+boss got where they are this way, and maybe you will, too!</p>
 
-<p>You'll be given a series of challenges, each in a specific form or style
-  or element of magic. Each will test your skills, pushing you to be the very
-  best &mdash; and rewarding you if you turn out to be.</p>
+<p>You'll be given a series of challenges, each in a specific form or style or
+element of magic. Each will test your skills, pushing you to be the very best
+&mdash; and rewarding you if you turn out to be.</p>
+
 </blockquote>
 {{else eq object "bossA"}}
 {{#unless state.talkedToManager}}
@@ -58,6 +60,23 @@ fair fight. The boss eyes you as an equal. When &mdash; and if &mdash; you
 emerge victorious, you can know that skill was involved.</p>
 </blockquote>
 {{/unless}}
+{{else eq object "enemy"}}
+
+<p>You've trained heavily for this battle. It all comes down to making the
+critical move. Without stopping to look up from your phone, you dispatch the
+enemy with one overpowered move. Your reward is a juicy 15 XP, which you gladly
+take, knowing only 89 are left to get to the next one.</p>
+
+{{else eq object "greeter"}}
+
+<p>You arrive 15 minutes late to the meeting, after wandering around aimlessly,
+reading books that you've walked past every day in the office. Others don't
+comment on your tardiness (how polite of them). Instead they jump right in.</p>
+
+<p>You wander around more, looking for trouble. It would almost seem like you...
+wanted to fight mindless monsters? Who would do that? The creatures of the
+forest oblige you, happily coming to you with their monotonous troubles.</p>
+
 {{else eq object "bossB"}}
 {{#unless state.talkedToManager}}
 You don't know who I am! Why should I talk to you?
@@ -69,6 +88,17 @@ You don't know who I am! Why should I talk to you?
 like you're 11 years old and thought that determination was all that
 counted and not the cold hard numbers. He doesn't feel the need to go
 easy on you.</p>
+
+<p>It had all come to this. The final battle, against this boss of the {board}.
+This boss was special. There was a medical facility outside his office for a
+reason [well, mostly to save you some time]. As everyone but you has gathered,
+he is the leader of a great evil organization, the {evil organization}, which
+secretly controls the world. They have great interest in the {trade deal}
+falling apart, hoping that in the resulting anarchy their clandestine operation
+of illegal wand dealing would be all that people have left, funding their much
+more nefarious plans for world domination and enslavement. Despite this evil,
+the fight will be a fair one, and he will face you head on.</p>
+
 </blockquote>
 {{/unless}}
 {{else eq object "news"}}

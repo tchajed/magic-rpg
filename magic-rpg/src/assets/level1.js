@@ -10,10 +10,10 @@ export const background = Background.create(asciiBlock(`
 |                                                  |///////|                          |
 |          T                                       |///////|         B                |
 |                                                  |///////|                          |
-|                                                  +-------+                          |
+|                                                  +-------+G                         |
 |                                                                                     |
 |                                                                                     |
-|                                                                                     |
+|                                                               E                     |
 |                                                  +-------+                          |
 |                                                  |///////|                          |
 |          M                             A         |///////|        N                 |
@@ -29,7 +29,9 @@ export const background = Background.create(asciiBlock(`
   M: {name: 'manager', c: ' '},
   A: {name: 'bossA', c: ' '},
   B: {name: 'bossB', c: ' '},
+  E: {name: 'enemy', c: ' '},
   N: {name: 'news', c: ' '},
+  G: {name: 'greeter', c: ' '},
 });
 
 const player = new Entity(
@@ -52,6 +54,11 @@ const manager = new Entity(
   Texture.create("M")
 );
 
+const greeter = new Entity(
+    background.loc('greeter'),
+    Texture.create("*")
+);
+
 const bossA = new Entity(
   background.loc('bossA'),
   Texture.create("A")
@@ -60,6 +67,11 @@ const bossA = new Entity(
 const bossB = new Entity(
   background.loc('bossB'),
   Texture.create("B")
+);
+
+const enemy = new Entity(
+    background.loc('enemy'),
+    Texture.create("E")
 );
 
 const table = new Entity(
@@ -79,8 +91,10 @@ export const objects = {
   start,
   news,
   manager,
+  greeter,
   bossA,
   bossB,
+  enemy,
   table
 };
 
