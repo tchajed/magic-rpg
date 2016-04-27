@@ -44,10 +44,6 @@ export default class Game extends EventEmitter {
   // Would objectId collide with anything if it took space rect?
   // Returns a colliding object or null if nothing collides.
   collides(objectId, rect) {
-    if (this.bg.collides(rect.coords, rect.bounds)) {
-      return true;
-    }
-
     for (let id of Object.keys(this.objects)) {
       if (id === objectId) {
         continue;
@@ -56,6 +52,10 @@ export default class Game extends EventEmitter {
       if (other.rect.collides(rect)) {
         return id;
       }
+    }
+
+    if (this.bg.collides(rect.coords, rect.bounds)) {
+      return 'bg';
     }
 
     return false;
@@ -150,7 +150,7 @@ export default class Game extends EventEmitter {
       new Bounds(player.bounds.height + 2, player.bounds.width + 2)
     );
     let collision = this.collides('player', sphereOfInfluence);
-    if (collision) {
+    if (collision && this.isObject(collision)) {
       this.select(collision);
     }
   }
