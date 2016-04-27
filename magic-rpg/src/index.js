@@ -75,13 +75,80 @@ new PanelView(new InfoPanel(game, writing)).init(
   document.querySelector('#info-panel')
 );
 
-for (let [combo, dy, dx] of [
-  [['left', 'a'], 0, -1],
-  [['right', 'd'], 0, 1],
-  [['up', 'w'], -1, 0],
-  [['down', 's'], 1, 0],
-]) {
-  Mousetrap.bind(combo, game.moveObject.bind(game, 'player', dy, dx));
+const keys = new Map([
+  ['left', {
+    shortcuts: ['left', 'a'],
+    delta: [0, -1],
+  }],
+  ['right', {
+    shortcuts: ['right', 'd'],
+    delta: [0, 1],
+  }],
+  ['up', {
+    shortcuts: ['up', 'w'],
+    delta: [-1, 0],
+  }],
+  ['down', {
+    shortcuts: ['down', 's'],
+    delta: [1, 0],
+  }],
+]);
+
+class Movement {
+  constructor(cb, interval) {
+    this.clock = 0;
+    this.cb = cb;
+    this.keysDown = {
+      left: null,
+      right: null,
+      up: null,
+      down: null,
+    };
+    // jshint loopfunc: true
+    for (let [key, data] of keys) {
+      Mousetrap.bind(data.shortcuts, () => {
+        this.keysDown[key] = this.clock;
+        this.clock++;
+      }, 'keydown');
+      Mousetrap.bind(data.shortcuts, () => {
+        this.keysDown[key] = null;
+      }, 'keyup');
+    }
+    this.interval = setInterval(() => {
+      this.handle();
+    }, interval);
+  }
+
+  handle() {
+    let maxKey = null;
+    let maxClock = -1;
+    for (let key of keys.keys()) {
+      if (this.keysDown[key] !== null && this.keysDown[key] > maxClock) {
+        maxClock = this.keysDown[key];
+        maxKey = key;
+      }
+    }
+    if (maxKey !== null) {
+      this.cb(keys.get(maxKey).delta);
+    }
+  }
+
+  changeInterval(interval) {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.handle();
+    }, interval);
+  }
 }
 
+let fastMovement = false;
+
+let movement = new Movement((delta) => {
+  game.moveObject('player', delta[0], delta[1]);
+}, 1000/10);
+
 Mousetrap.bind('space', game.action.bind(game));
+Mousetrap.bind('b', () => {
+  fastMovement = !fastMovement;
+  movement.changeInterval(fastMovement ? 1000/25 : 1000/10);
+});
