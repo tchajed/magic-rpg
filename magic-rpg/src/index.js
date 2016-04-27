@@ -11,7 +11,7 @@ import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
 import Writing from './assets/level1-writing';
 
-let game = new Game(level1.background, level1.objects, level1.view);
+let game = new Game(level1.background, level1.objects, level1.viewSize);
 
 let writing = new Writing(game.state);
 

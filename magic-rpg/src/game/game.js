@@ -1,15 +1,15 @@
 import h from 'virtual-dom/h';
 import _ from 'lodash';
 import {EventEmitter} from 'events';
-import {Rectangle, Bounds, Coords, RenderBuffer} from './graphics';
+import {ViewPort, Rectangle, Bounds, Coords, RenderBuffer} from './graphics';
 import State from './state';
 
 export default class Game extends EventEmitter {
-  constructor(bg, objects, viewPort, selection=null) {
+  constructor(bg, objects, viewSize, selection=null) {
     super();
     this.bg = bg;
     this.objects = objects;
-    this.viewPort = viewPort;
+    this.viewPort = new ViewPort(null, viewSize);
     this.selection = selection;
     this.state = new State();
     this.state.restore();
