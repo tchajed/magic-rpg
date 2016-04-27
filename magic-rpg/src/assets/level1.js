@@ -5,18 +5,18 @@ import Entity from '../game/entity';
 export const background = Background.create(asciiBlock(`
 1--------------------------------------------------+
 |                                                  |
-|  2                                               |
+|  2                                     6         |
 |                                                  |
 |                                                  |
-|                                                  |
-|               3                                  |
-|                                                  |
-|                                                  |
-|                                                  |
+|          3                                       |
 |                                                  |
 |                                                  |
 |                                                  |
 |                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|          4                             5         |
 |                                                  |
 |                                                  |
 |                                                  |
@@ -26,14 +26,32 @@ export const background = Background.create(asciiBlock(`
   1: {name: 'view', c: '+'},
   2: {name: 'player', c: ' '},
   3: {name: 'table', c:' '},
+  4: {name: 'manager', c:' '},
+  5: {name: 'bossA', c: ' '},
+  6: {name: 'bossB', c: ' '},
 });
 
-export const player = new Entity(
+const player = new Entity(
   background.loc('player'),
   Texture.create("@@\n@@")
 );
 
-export const table = new Entity(
+const manager = new Entity(
+  background.loc('manager'),
+  Texture.create("M")
+);
+
+const bossA = new Entity(
+  background.loc('bossA'),
+  Texture.create("A")
+);
+
+const bossB = new Entity(
+  background.loc('bossB'),
+  Texture.create("B")
+);
+
+const table = new Entity(
   background.loc('table'),
   Texture.create(asciiBlock(`
 /-----/
@@ -44,6 +62,14 @@ export const table = new Entity(
 /-----/
 `))
 );
+
+export const objects = {
+  player,
+  manager,
+  bossA,
+  bossB,
+  table
+};
 
 export const view = new ViewPort(
   new Coords(-3, -3),

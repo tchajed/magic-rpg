@@ -1,3 +1,6 @@
+// TODO: load this from index.html before the rest of the page with some webpack
+// configuration
+import './styles.css';
 import AsciiGrid from './components/ascii';
 import InfoPanel from './components/panel';
 import Game from './game/game';
@@ -8,13 +11,7 @@ import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
 import Writing from './assets/level1-writing';
 
-let game = new Game(level1.background,
-  {
-    'player': level1.player,
-    'table': level1.table,
-  },
-  level1.view
-);
+let game = new Game(level1.background, level1.objects, level1.view);
 
 let writing = new Writing(game.state);
 
@@ -62,7 +59,8 @@ class PanelView extends View {
   listen() {
     this.model.game.on('change', (ev) => {
       if (ev.type === 'selection' ||
-      (ev.type === 'object' && ev.objectId == this.selection)) {
+      (ev.type === 'object' && ev.objectId == this.selection) ||
+      ev.type == 'state') {
         this.update();
       }
     });

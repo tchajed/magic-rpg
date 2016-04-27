@@ -12,6 +12,12 @@ export default class Game extends EventEmitter {
     this.viewPort = viewPort;
     this.selection = selection;
     this.state = new State();
+    this.state.on('transition', (ev) => {
+      this.emit('change', {
+        type: 'state',
+        transition: ev,
+      });
+    });
     this.centerAround('player');
   }
 
@@ -87,6 +93,9 @@ export default class Game extends EventEmitter {
 
   select(o) {
     this.assertValidObject(o);
+    if (o === 'manager') {
+      this.state.ensure('talkedToManager', true);
+    }
     let newSelection = o;
     if (this.selection === o) {
       newSelection = null;
