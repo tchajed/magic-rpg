@@ -4,10 +4,10 @@
 
 - [x] collision detection with objects
 - [x] real ViewPort object
-- [ ] scrolling background with movement
+- [x] scrolling background with movement
   - [x] need to check FF/Pokemon to find out what they do
-- [ ] associate text with entities, as a function of state
-- [ ] represent game state machine
+- [x] associate text with entities, as a function of state
+- [x] represent game state machine
 - [ ] saving game state
 
 ## Experimental writing
