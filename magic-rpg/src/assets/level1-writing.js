@@ -1,77 +1,55 @@
 import h from 'virtual-dom/h';
-import {asciiBlock} from '../game/assets';
-
-// generate unstyled text
-const text = (s) => {
-  return h('p', asciiBlock(s));
-};
+import text from './text/level1.yaml';
 
 export default class Writing {
   constructor(state) {
     this.state = state;
   }
 
-  bossCheck() {
-    if (!this.state.get('talkedToManager')) {
-        return text(`
-
-          You don't know who I am! Why should I talk to you?
-
-      `);
+  evalTest(test) {
+    if (typeof test === 'string') {
+      return this.state.get(test);
     }
-    return null;
+    if (Array.isArray(test)) {
+      let result = true;
+      for (let disjunction of test) {
+        let clause = false;
+        if (!Array.isArray(disjunction)) {
+          disjunction = [disjunction];
+        }
+        for (let literal of disjunction) {
+          clause = clause || this.evalTest(literal);
+        }
+        result = result && clause;
+      }
+      return result;
+    }
+    throw new Error(`unsupported test ${JSON.stringify(test)}`);
+  }
+
+  getText(config) {
+    if (typeof config === 'string') {
+      return config;
+    }
+    if (this.evalTest(config.test)) {
+      return this.getText(config.trueText);
+    } else {
+      return this.getText(config.falseText);
+    }
   }
 
   for(objectId) {
-    switch (objectId) {
-      case 'player':
+    if (objectId === 'player') {
       return h('div', [
-        h('p', asciiBlock(`
-
-          This is you, the player. You are a wizard in Magical Consulting, LLC (a
-            Delaware company).
-
-        `)),
+        h('p', this.getText(text.player)),
         h('button', {
           onclick: () => {
             this.state.clear();
             this.state.reset();
-        }}, 'clear data'),
+          }
+        }, 'clear data'),
       ]);
-      case 'table':
-      return text(`
-
-        This is just a conference table. There's nothing on it and it isn't
-        important.
-
-      `);
-      case 'manager':
-      return text(`
-
-        "Hi, I'm your manager. I don't know why I'm telling you, since you ought
-        to know that by now."
-
-      `);
-      case 'bossA': {
-        let check = this.bossCheck();
-        if (check) { return check; }
-        return text(`
-
-          I'm the first boss. I guess I'd fight you or something?
-
-        `);
-      }
-      case 'bossB': {
-          let check = this.bossCheck();
-          if (check) { return check; }
-          return text(`
-
-            I'm the second boss. I guess I'd fight you or something?
-
-          `);
-      }
-      default:
-      return h('div.error', `no text for object ${objectId}`);
     }
+    return this.getText(text[objectId]);
   }
 }

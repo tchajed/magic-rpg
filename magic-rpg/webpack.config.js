@@ -14,6 +14,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.yaml/,
+        loader: 'json!yaml',
+      },
+      {
         test: /\.js/,
         loader: 'babel',
         include: __dirname + '/src',

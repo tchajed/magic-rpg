@@ -16,8 +16,10 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
+    "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "yaml-loader": "^0.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

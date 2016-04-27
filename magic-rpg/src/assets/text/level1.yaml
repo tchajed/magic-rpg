@@ -1,0 +1,24 @@
+player: >
+    This is you, the player. You are a wizard in Magical Consulting, LLC (a
+    Delaware company).
+
+table: >
+    This is just a conference table. There's nothing on it and it isn't important.
+
+manager: >
+    "Hi, I'm your manager. I don't know why I'm telling you, since you ought to
+    know that by now."
+
+bossA:
+    test: 'talkedToManager'
+    falseText: >
+        You don't know who I am! Why should I talk to you?
+    trueText: >
+        I'm the first boss. I guess I'd fight you or something?
+
+bossB:
+    test: 'talkedToManager'
+    falseText: >
+        You don't know who I am! Why should I talk to you?
+    trueText: >
+        I'm the second boss. I guess I'd fight you or something?
