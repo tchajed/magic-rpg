@@ -9,16 +9,24 @@
 - [x] associate text with entities, as a function of state
 - [x] represent game state machine
 - [x] saving game state
+- [ ] delivering story/news to different component
+- [ ] refactored state machine
+- [ ] clean up, especially View code
+
+## Game design - gameplay and story
+
+- [ ] decide what battles play like
+- [ ] decide how and when to convey story
+- [ ] write dialogue explaining what to do
+- [ ] try incorporating RPG trope quest
 
 ## Experimental writing
 - [x] news text
 - [x] overall story text
-- [ ] dialogue for intro/bosses
-- [ ] variations based on player actions
+- [x] dialogue for intro/bosses
 - [x] battle narration
-- [ ] text for displaying numerical stats
 
 ## Optional
 - [ ] render objects on small pane in viewer
-- [ ] text templates incorporating generation logic
+- [x] text templates incorporating generation logic
 - [ ] animation frames
