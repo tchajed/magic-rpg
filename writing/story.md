@@ -86,10 +86,26 @@ especially makes sense if party members are just summons, as opposed to people t
 - Heal at specific centers - if there's money, it should be plentiful
 - can switch between party members during battle
 - no reordering (reduces interface) but perhaps can switch at any time
-- if summons maybe more than one allowed at a time?
+- if members are summons, maybe more than one allowed at a time?
 - need to implement a battle interface for the party to be meaningful
 
 ## Parody
 
 - High parody makes it easier to write
 - Some mechanics have to be real to some extent - quests, leveling up, talking to people
+- Parody:
+  - protagonist doesn't speak and NPCs don't find this weird
+  - talking to same NPC multiple times and expecting same response
+  - not needing to eat/rest?
+  - theme is always saving the world
+  - pick up skills very quickly
+  - experience, leveling up as a proxy for getting better
+  - constantly fighting things?
+  - fetch quests
+  - villain wants to somehow ruin the world
+  - villain minions are highly loyal
+  - magic implies ridiculous consequences of simple violations of physics
+  - economics of RPG worlds never clear
+  - items drop from battles
+  - items found in chests everywhere
+  - regeneration upon leaving an area
