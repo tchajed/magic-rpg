@@ -49,6 +49,7 @@ who knows about the plot?
 - incorporate an RPG trope quest
 - does the main character speak?
 - how does the party work?
+- how much is parody and how much is imitation of RPGs?
 
 ## Battles
 
@@ -62,3 +63,33 @@ minimal viable battle system:
 - boss battles are all direct head-to-head
 - experience via silly grinding (like destroying grass or enchanting objects in an assembly line)
 - experience gained with NPC quests
+
+## Conveying story
+
+can have cutscenes that take the whole display between major events
+
+can divide the info panel into several sections and rotate between them according to events: selection/dialogue, story, news
+
+can show story on selection of specific items
+
+## Speech
+
+in line with Pokemon/Zelda character would not speak, despite interacting with many others
+
+good opportunity for parody
+
+especially makes sense if party members are just summons, as opposed to people that might have a conversation (as in Final Fantasy)
+
+## Party
+
+- Party should grow
+- Heal at specific centers - if there's money, it should be plentiful
+- can switch between party members during battle
+- no reordering (reduces interface) but perhaps can switch at any time
+- if summons maybe more than one allowed at a time?
+- need to implement a battle interface for the party to be meaningful
+
+## Parody
+
+- High parody makes it easier to write
+- Some mechanics have to be real to some extent - quests, leveling up, talking to people
