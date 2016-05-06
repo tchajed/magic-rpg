@@ -65,7 +65,7 @@ const parseNames = (cells, labelToNameMapping) => {
           throw new Error(`duplicate shortcut ${cell} seen at (${y}, ${x})`);
         }
         nameToLocs.set(info.name, new Coords(y, x));
-        cells[y][x] = info.c;
+        cells[y][x] = info.c || ' ';
       }
     });
   });

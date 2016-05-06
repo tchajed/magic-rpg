@@ -56,14 +56,14 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 |       |                         |                                                   |
 +-------+-------------------------+---------------------------------------------------+
 `), {
-  P: {name: 'player', c: ' '},
-  T: {name: 'table', c: ' '},
-  M: {name: 'manager', c: ' '},
-  A: {name: 'bossA', c: ' '},
-  B: {name: 'bossB', c: ' '},
-  E: {name: 'enemy', c: ' '},
-  N: {name: 'news', c: ' '},
-  G: {name: 'greeter', c: ' '},
+  P: {name: 'player'},
+  T: {name: 'table'},
+  M: {name: 'manager'},
+  A: {name: 'bossA'},
+  B: {name: 'bossB'},
+  E: {name: 'enemy'},
+  N: {name: 'news'},
+  G: {name: 'greeter'},
 }).boxDrawing();
 
 const player = new Entity(
