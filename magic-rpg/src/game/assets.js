@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import {Bounds, Coords} from './graphics';
+import boxDrawing from './boxDrawing';
 
 const parseDesc = function(desc) {
     let lines = desc.split("\n");
@@ -12,6 +13,12 @@ const parseDesc = function(desc) {
 export class Texture {
   constructor(cells) {
     this.cells = cells;
+  }
+
+  // destructively turn corner cells into box drawing symbols
+  boxDrawing() {
+    boxDrawing(this.cells);
+    return this;
   }
 
   static create(desc) {
