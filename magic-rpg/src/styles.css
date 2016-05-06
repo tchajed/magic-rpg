@@ -26,3 +26,6 @@ body {
     height: 26em;
     overflow-y: auto;
 }
+#news-panel {
+    width: 40em;
+}

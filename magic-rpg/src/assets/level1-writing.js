@@ -1,6 +1,5 @@
 import h from 'virtual-dom/h';
 import template from './text/level1.hbs';
-import news from './text/news.yaml';
 
 export default class Writing {
   constructor(state) {
@@ -13,7 +12,6 @@ export default class Writing {
         object: id,
         obj: object,
         state: this.state,
-        news,
       }),
       // delegate events from the generated template
       onclick: (e) => {

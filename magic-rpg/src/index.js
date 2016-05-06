@@ -10,10 +10,8 @@ import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
 import Writing from './assets/level1-writing';
+import News from './assets/news';
 
-let game = new Game(level1.background, level1.objects, level1.viewSize);
-
-let writing = new Writing(game.state);
 
 // This is organized poorly - it doesn't make sense for a View to have a model
 // that knows how to render itself.  It would be somewhat nice if View were a
@@ -67,12 +65,28 @@ class PanelView extends View {
   }
 }
 
+class NewsView extends View {
+  listen() {
+    this.model.state.on('transition', ({property}) => {
+      if (property === 'newsItem') {
+        this.update();
+      }
+    });
+  }
+}
+
+let game = new Game(level1.background, level1.objects, level1.viewSize);
+
 new GridView(new AsciiGrid(game)).init(
   document.querySelector("#ascii-grid")
 );
 
-new PanelView(new InfoPanel(game, writing)).init(
+new PanelView(new InfoPanel(game, new Writing(game.state))).init(
   document.querySelector('#info-panel')
+);
+
+new NewsView(new News(game.state)).init(
+  document.querySelector('#news-panel')
 );
 
 const keys = new Map([
