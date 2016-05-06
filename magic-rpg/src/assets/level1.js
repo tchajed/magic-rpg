@@ -57,7 +57,10 @@ const news = new Entity(
 const manager = new Entity(
   "Manager",
   background.loc('manager'),
-  Texture.create("M")
+  {
+    default: Texture.create("!"),
+    seen: Texture.create("M"),
+  }
 );
 
 const greeter = new Entity(

@@ -17,4 +17,13 @@ export default class State extends StateMachine {
       this.set('newsItem', this.get('newsItem') + 1);
     }
   }
+
+  forObject(o) {
+    if (o === 'manager') {
+      if (this.talkedToManager) {
+        return 'seen';
+      }
+    }
+    return 'default';
+  }
 }

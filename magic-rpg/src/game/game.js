@@ -37,7 +37,7 @@ export default class Game extends EventEmitter {
   }
 
   object(objectId) {
-    return this.objects[objectId];
+    return this.objects[objectId].in(this.state.forObject(objectId));
   }
 
   // Would objectId collide with anything if it took space rect?
@@ -47,7 +47,7 @@ export default class Game extends EventEmitter {
       if (id === objectId) {
         continue;
       }
-      let other = this.objects[id];
+      let other = this.object(id);
       if (other.rect.collides(rect)) {
         return id;
       }
@@ -124,7 +124,7 @@ export default class Game extends EventEmitter {
 
   moveObject(objectId, dy, dx) {
     this.assertValidObject(objectId);
-    let o = this.objects[objectId];
+    let o = this.object(objectId);
     let newCoords = new Coords(o.coords.y + dy, o.coords.x + dx);
     if (this.collides(objectId, new Rectangle(newCoords, o.bounds))) {
       return;
