@@ -63,6 +63,9 @@ minimal viable battle system:
 - boss battles are all direct head-to-head
 - experience via silly grinding (like destroying grass or enchanting objects in an assembly line)
 - experience gained with NPC quests
+- boss battles are a magical duel (approximately analogous to Harry Potter, but more summoning going on)
+  - no interactivity
+  - write variants for underleveled (lose), correct level (win), overleveled (win)
 
 ## Conveying story
 
