@@ -7,9 +7,13 @@ export default class News {
   }
 
   render() {
-    return h('div', [
-      h('h2', 'News'),
-      h('div', news[this.state.newsItem % news.length]),
-    ]);
+    if (this.state.newsItem >= 0) {
+      return h('div', [
+        h('h2', 'News'),
+        h('div', news[this.state.newsItem % news.length]),
+      ]);
+    } else {
+      return h('div');
+    }
   }
 }
