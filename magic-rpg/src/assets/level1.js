@@ -7,7 +7,7 @@ export const background = Background.create(asciiBlock(`
 |P |///|  |
 |  +---+  +----------------------------------------+///////+--------------------------+
 |                                                  |///////|                          |
-|                    I                             |///////|                          |
+|                                                  |///////|                          |
 |                                                  |///////|                          |
 |                                                  |///////|                          |
 |          T                                       |///////|         B                |
@@ -26,7 +26,6 @@ export const background = Background.create(asciiBlock(`
 +--------------------------------------------------+///////+--------------------------+
 `), {
   P: {name: 'player', c: ' '},
-  I: {name: 'start', c: ' '},
   T: {name: 'table', c: ' '},
   M: {name: 'manager', c: ' '},
   A: {name: 'bossA', c: ' '},
@@ -40,12 +39,6 @@ const player = new Entity(
   "Player - level 3 wizard",
   background.loc('player'),
   Texture.create("@")
-);
-
-const start = new Entity(
-  "Start",
-  background.loc('start'),
-  Texture.create("(start)")
 );
 
 const news = new Entity(
@@ -102,7 +95,6 @@ const table = new Entity(
 
 export const objects = {
   player,
-  start,
   news,
   manager,
   greeter,
