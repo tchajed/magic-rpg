@@ -1,4 +1,5 @@
 import h from 'virtual-dom/h';
+import './panel.css';
 
 export default class InfoPanel {
   constructor(game, writing) {

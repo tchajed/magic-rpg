@@ -171,3 +171,11 @@ Mousetrap.bind('b', () => {
   fastMovement = !fastMovement;
   movement.changeInterval(fastMovement ? 1000/25 : 1000/10);
 });
+
+let infoPanel = document.querySelector("#info-panel");
+Mousetrap.bind('j', () => {
+  infoPanel.scrollTop += 20;
+});
+Mousetrap.bind('k', () => {
+  infoPanel.scrollTop -= 20;
+});
