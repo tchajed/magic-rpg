@@ -65,7 +65,7 @@ export default class Game extends EventEmitter {
     let viewPort = this.viewPort;
     let buf = new RenderBuffer(viewPort.size);
     let viewOrigin = this.viewPort.translate(new Coords(0, 0));
-    buf.renderAt(viewOrigin, this.bg);
+    buf.renderAt(viewOrigin, this.bg, 'bg');
 
     for (let id of Object.keys(this.objects)) {
       let o = this.object(id);
