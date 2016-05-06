@@ -4,8 +4,7 @@ body {
     font-family: "PT Sans", "DejaVu Sans", Arial, sans;
 }
 #header {
-    padding-top: 2em;
-    height: 5em;
+    height: 4em;
 }
 .unselectable {
     -webkit-touch-callout: none;
@@ -15,6 +14,15 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+#container {
+    display: flex;
+}
+#ascii-grid {
+    float: left;
+}
 #info-panel {
-    width: 600px;
+    margin-left: 2em;
+    width: 40em;
+    height: 26em;
+    overflow-y: auto;
 }
