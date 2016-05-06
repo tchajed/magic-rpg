@@ -2,7 +2,7 @@ import h from 'virtual-dom/h';
 import _ from 'lodash';
 import {EventEmitter} from 'events';
 import {ViewPort, Rectangle, Bounds, Coords, RenderBuffer} from './graphics';
-import State from './state';
+import State from './level1-state';
 import store from 'store';
 
 export default class Game extends EventEmitter {
@@ -12,8 +12,7 @@ export default class Game extends EventEmitter {
     this.objects = objects;
     this.viewPort = new ViewPort(null, viewSize);
     this.selection = selection;
-    this.state = new State();
-    this.state.restore();
+    this.state = new State().restore();
     this.state.on('transition', (ev) => {
       this.emit('change', {
         type: 'state',
@@ -99,17 +98,13 @@ export default class Game extends EventEmitter {
 
   select(o) {
     this.assertValidObject(o);
-    if (o === 'manager') {
-      this.state.ensure('talkedToManager', true);
-    }
     let newSelection = o;
     if (this.selection === o) {
       newSelection = null;
+    } else {
+      this.state.interact(o, this.object(o));
     }
     this.selection = newSelection;
-    if (this.selection === 'news') {
-      this.state.set('newsItem', this.state.get('newsItem') + 1);
-    }
     this.emit('change', {
       type: 'selection',
       objectId: this.selection,

@@ -1,40 +1,39 @@
 import {EventEmitter} from 'events';
 import store from 'store';
 
-const defaults = () => {
-  return {
-    level: 'level1',
-    talkedToManager: false,
-    newsItem: 0,
-  };
-};
+export default class StateMachine extends EventEmitter {
+  // to be overriden
+  defaults() {
+    return {};
+  }
 
-const stateKeys = Object.keys(defaults());
+  get stateKeys() {
+    return Object.keys(this.defaults());
+  }
 
-export default class State extends EventEmitter {
   constructor() {
     super();
-    let def = defaults();
-    for (let key of stateKeys) {
-      this[key] = def[key];
-    }
+    this.reset();
   }
 
   restore() {
     store.forEach((key, val) => {
       this[key] = val;
     });
+    return this;
   }
 
   clear() {
     store.clear();
+    return this;
   }
 
   reset() {
-    let def = defaults();
-    for (let key of stateKeys) {
+    let def = this.defaults();
+    for (let key of this.stateKeys) {
       this[key] = def[key];
     }
+    return this;
   }
 
   get(propname) {
@@ -49,6 +48,7 @@ export default class State extends EventEmitter {
       return;
     }
     this.set(propname, v);
+    return this;
   }
 
   set(propname, v) {
