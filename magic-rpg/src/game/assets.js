@@ -81,7 +81,7 @@ export class Background extends Texture {
     let cells = parseDesc(desc);
     let nameToLocs = parseNames(cells, labelToNameMapping);
     let mask = _.map(cells, (row) => {
-      return _.map(row, (cell) => cell !== '/');
+      return _.map(row, (cell) => cell !== 'x');
     });
     let traversable = _.map(cells, (row) => {
       return _.map(row, (cell) => cell === ' ');
