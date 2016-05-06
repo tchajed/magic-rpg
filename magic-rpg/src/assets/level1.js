@@ -10,44 +10,37 @@ export const background = Background.create(map, {
   N: {name: 'news'},
 }).boxDrawing();
 
-const player = new Entity(
-  "Player - level 3 wizard",
-  background.loc('player'),
-  Texture.create("@")
-);
-
-const news = new Entity(
-  "News",
-  background.loc('news'),
-  Texture.create("(news)")
-);
-
-const manager = new Entity(
-  "Manager",
-  background.loc('manager'),
-  {
-    default: Texture.create("!"),
-    seen: Texture.create("M"),
-  }
-);
-
-const table = new Entity(
-  "Table",
-  background.loc('table'),
-  Texture.create(asciiBlock(`
-/----------/
-|##########|
-|##########|
-|##########|
-/----------/
-`))
-);
-
 export const objects = {
-  player,
-  news,
-  manager,
-  table
+  player: new Entity(
+    "Player - level 3 wizard",
+    background.loc('player'),
+    Texture.create("@")
+  ),
+  news: new Entity(
+    "News",
+    background.loc('news'),
+    Texture.create("(news)")
+  ),
+  manager: new Entity(
+    "Manager",
+    background.loc('manager'),
+    {
+      default: Texture.create("!"),
+      seen: Texture.create("M"),
+    }
+  ),
+  table: new Entity(
+    "Table",
+    background.loc('table'),
+    Texture.create(asciiBlock(`
+      /----------/
+      |##########|
+      |##########|
+      |##########|
+      /----------/
+      `
+    ))
+  ),
 };
 
 export const viewSize = new Bounds(25, 60);
