@@ -45,10 +45,10 @@ export default function boxDrawing(cells) {
         _.each(row, (cell, x) => {
             if (cell === '+') {
                 let surroundings = [
-                    getCell(y-1, x),
-                    getCell(y,x+1),
-                    getCell(y+1, x),
-                    getCell(y,x-1)
+                    getCell(cells, y-1, x),
+                    getCell(cells, y, x+1),
+                    getCell(cells, y+1, x),
+                    getCell(cells, y, x-1),
                 ];
                 cells[y][x] = replacement(surroundings) || "+";
             }
