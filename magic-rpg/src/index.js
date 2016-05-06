@@ -1,11 +1,10 @@
-// TODO: load this from index.html before the rest of the page with some webpack
-// configuration
 import './styles.css';
 import AsciiGrid from './components/ascii';
 import InfoPanel from './components/panel';
 import Game from './game/game';
 import Mousetrap from 'mousetrap';
 import createElement from 'virtual-dom/create-element';
+import h from 'virtual-dom/h';
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
@@ -25,8 +24,9 @@ class View {
     this.rootNode = createElement(this.tree);
   }
 
-  init(container) {
-    container.appendChild(this.rootNode);
+  init(selector) {
+    let component = document.querySelector(selector);
+    component.appendChild(this.rootNode);
     this.listen();
   }
 
@@ -77,17 +77,22 @@ class NewsView extends View {
 
 let game = new Game(level1.background, level1.objects, level1.viewSize);
 
-new GridView(new AsciiGrid(game)).init(
-  document.querySelector("#ascii-grid")
-);
+// header
+new View(
+  {render: () => h('h1', 'Magic RPG')}
+).init("#header");
 
-new PanelView(new InfoPanel(game, new Writing(game.state))).init(
-  document.querySelector('#info-panel')
-);
+new GridView(
+  new AsciiGrid(game))
+  .init("#ascii-grid");
 
-new NewsView(new News(game.state)).init(
-  document.querySelector('#news-panel')
-);
+new PanelView(
+  new InfoPanel(game, new Writing(game.state)))
+  .init("#info-panel");
+
+new NewsView(
+  new News(game.state))
+  .init("#news-panel");
 
 const keys = new Map([
   ['left', {
