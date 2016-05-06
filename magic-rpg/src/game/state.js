@@ -38,7 +38,7 @@ export default class StateMachine extends EventEmitter {
 
   get(propname) {
     if (this[propname] === undefined) {
-      throw new Error(`attempt to access non-existant state property ${propname}`);
+      throw new Error(`attempt to access non-existent state property ${propname}`);
     }
     return this[propname];
   }
@@ -53,7 +53,7 @@ export default class StateMachine extends EventEmitter {
 
   set(propname, v) {
     if (this[propname] === undefined) {
-      throw new Error(`attempt to set non-existant state property ${propname}`);
+      throw new Error(`attempt to set non-existent state property ${propname}`);
     }
     let oldVal = this[propname];
     this[propname] = v;
