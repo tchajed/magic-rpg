@@ -9,6 +9,13 @@ export default class State extends StateMachine {
     };
   }
 
+  get chapter() {
+    if (!this.talkedToManager) {
+      return 'intro';
+    }
+    return null;
+  }
+
   interact(o /*, obj */) {
     if (o === 'manager') {
       this.ensure('talkedToManager', true);

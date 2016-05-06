@@ -1,14 +1,23 @@
 import h from 'virtual-dom/h';
-import template from './text/level1.hbs';
+import story from './text/story.hbs';
+import interaction from './text/interaction.hbs';
 
 export default class Writing {
   constructor(state) {
     this.state = state;
   }
 
+  story() {
+    return h('div', {
+      innerHTML: story({
+        state: this.state,
+      }),
+    });
+  }
+
   for(id, object) {
     return h('div', {
-      innerHTML: template({
+      innerHTML: interaction({
         object: id,
         obj: object,
         state: this.state,

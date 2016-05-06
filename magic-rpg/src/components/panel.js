@@ -1,4 +1,3 @@
-import h from 'virtual-dom/h';
 import './panel.css';
 
 export default class InfoPanel {
@@ -10,7 +9,7 @@ export default class InfoPanel {
   render() {
     let selection = this.game.selection;
     if (selection === null) {
-      return h('div');
+      return this.writing.story();
     }
     return this.writing.for(selection, this.game.object(selection));
   }
