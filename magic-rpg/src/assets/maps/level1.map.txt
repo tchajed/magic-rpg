@@ -1,0 +1,25 @@
++-----------------------------------------------+---------+-------+----------+--------+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+|                                               |      M  |       |          |        |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+|        |   |   |               |   |   |      |  ####   |       |          |        |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+|        |P  |   |               |   |   |      |  ####   |       |          |        |xxxxxxxxx+------------------------------------------------------------------------------------------+
+|     ---+---+---+---         ---+---+---+---   |         |       |          |        |xxxxxxxxx|                                                                                          |
+|        |   |   |               |   |   |      |         |       |          |        |xxxxxxxxx|                                                                                          |
+|        |   |   |               |   |   |      +-- ------+       +------- --+        |xxxxxxxxx|                                                                                          |
+|                                                                                     |xxxxxxxxx|          /--\                                                                            |
+|                                                                                     |xxxxxxxxx|         /####\                                                                           |
+|        |   |   |               |   |   |                                            |xxxxxxxxx|         +----+                                                                           |
+|        |   |   |               |   |   |                                            +---------+         |    |                                                                           |
+|     ---+---+---+---         ---+---+---+---                                                             |    |                                                                           |
+|        |   |   |               |   |   |                                                                +----+                                                                           |
+|        |   |   |               |   |   |                                                                                                                                                 |
+|                                                                                     +---------+                                                                                          |
+|                                                                                     |xxxxxxxxx|                                                                                          |
+|       +--------------------  ---+                                                   |xxxxxxxxx|                                                                                          |
+|       |                         |                    N                              |xxxxxxxxx|                                                                                          |
+|       |  T                      |                                                   |xxxxxxxxx|                                                                                          |
+|       |                         |                                                   |xxxxxxxxx|                                                                                          |
+|       |                         |                                                   |xxxxxxxxx|                                                                                          |
+|       |                         |                                                   |xxxxxxxxx+------------------------------------------------------------------------------------------+
+|       |                         |                                                   |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+|       |                         |                                                   |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
++-------+-------------------------+---------------------------------------------------+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -22,6 +22,10 @@ module.exports = {
         loader: "handlebars-loader",
       },
       {
+        test: /\.map.txt/,
+        loader: 'raw',
+      },
+      {
         test: /\.js/,
         loader: 'babel',
         include: __dirname + '/src',

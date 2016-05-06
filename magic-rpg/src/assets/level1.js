@@ -1,34 +1,9 @@
 import {Texture, Background, asciiBlock} from '../game/assets';
 import {Bounds} from '../game/graphics';
 import Entity from '../game/entity';
+import map from './maps/level1.map.txt';
 
-export const background = Background.create(asciiBlock(`
-+-----------------------------------------------+---------+-------+----------+--------+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-|                                               |      M  |       |          |        |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-|        |   |   |               |   |   |      |  ####   |       |          |        |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-|        |P  |   |               |   |   |      |  ####   |       |          |        |xxxxxxxxx+------------------------------------------------------------------------------------------+
-|     ---+---+---+---         ---+---+---+---   |         |       |          |        |xxxxxxxxx|                                                                                          |
-|        |   |   |               |   |   |      |         |       |          |        |xxxxxxxxx|                                                                                          |
-|        |   |   |               |   |   |      +-- ------+       +------- --+        |xxxxxxxxx|                                                                                          |
-|                                                                                     |xxxxxxxxx|          /--\\                                                                            |
-|                                                                                     |xxxxxxxxx|         /####\\                                                                           |
-|        |   |   |               |   |   |                                            |xxxxxxxxx|         +----+                                                                           |
-|        |   |   |               |   |   |                                            +---------+         |    |                                                                           |
-|     ---+---+---+---         ---+---+---+---                                                             |    |                                                                           |
-|        |   |   |               |   |   |                                                                +----+                                                                           |
-|        |   |   |               |   |   |                                                                                                                                                 |
-|                                                                                     +---------+                                                                                          |
-|                                                                                     |xxxxxxxxx|                                                                                          |
-|       +--------------------  ---+                                                   |xxxxxxxxx|                                                                                          |
-|       |                         |                    N                              |xxxxxxxxx|                                                                                          |
-|       |  T                      |                                                   |xxxxxxxxx|                                                                                          |
-|       |                         |                                                   |xxxxxxxxx|                                                                                          |
-|       |                         |                                                   |xxxxxxxxx|                                                                                          |
-|       |                         |                                                   |xxxxxxxxx+------------------------------------------------------------------------------------------+
-|       |                         |                                                   |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-|       |                         |                                                   |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-+-------+-------------------------+---------------------------------------------------+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-`), {
+export const background = Background.create(map, {
   P: {name: 'player'},
   T: {name: 'table'},
   M: {name: 'manager'},

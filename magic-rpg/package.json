@@ -20,6 +20,7 @@
     "handlebars-loader": "^1.2.0",
     "html-loader": "^0.4.3",
     "json-loader": "^0.5.4",
+    "raw-loader": "^0.5.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "yaml-loader": "^0.1.0"

@@ -10,7 +10,7 @@ function getCell(cells, y, x) {
 }
 
 function arrayMatch(mask, expected, a) {
-  for (var i = 0; i < mask.length; i++) {
+  for (let i = 0; i < mask.length; i++) {
     if (mask[i] && expected[i] !== a[i]) {
       return false;
     }
