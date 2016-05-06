@@ -73,18 +73,18 @@ export class ViewPort {
 }
 
 export class Cell {
-  constructor(text, objectId=null, selected=false) {
+  constructor(text, objectId=null, className="") {
     this.text = text;
     this.objectId = objectId;
-    this.selected = selected;
+    this.className = className;
   }
 
   toString() {
-    return `Cell(${this.text}, ${this.objectId}, ${this.selected})`;
+    return `Cell(${this.text}, ${this.objectId}, ${this.className})`;
   }
 
   copy() {
-    return new Cell(this.text, this.objectId, this.selected);
+    return new Cell(this.text, this.objectId, this.className);
   }
 }
 
@@ -98,14 +98,14 @@ export class RenderBuffer {
     });
   }
 
-  renderAt(basePos, texture, objectId, selected=false) {
+  renderAt(basePos, texture, objectId=null, className="") {
     _.each(texture.cells, (row, dy) => {
       _.each(row, (c, dx) => {
         let y = basePos.y + dy,
         x = basePos.x + dx;
         if (this.size.contains(new Coords(y, x)) &&
         texture.mask(dy, dx)) {
-          this.cells[y][x] = new Cell(c, objectId, selected);
+          this.cells[y][x] = new Cell(c, objectId, className);
         }
       });
     });

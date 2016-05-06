@@ -4,6 +4,7 @@ import {EventEmitter} from 'events';
 import {ViewPort, Rectangle, Bounds, Coords, RenderBuffer} from './graphics';
 import State from './level1-state';
 import store from 'store';
+import classNames from 'classnames';
 
 export default class Game extends EventEmitter {
   constructor(bg, objects, viewSize, selection=null) {
@@ -64,7 +65,7 @@ export default class Game extends EventEmitter {
     let viewPort = this.viewPort;
     let buf = new RenderBuffer(viewPort.size);
     let viewOrigin = this.viewPort.translate(new Coords(0, 0));
-    buf.renderAt(viewOrigin, this.bg, 'bg');
+    buf.renderAt(viewOrigin, this.bg);
 
     for (let id of Object.keys(this.objects)) {
       let o = this.object(id);
@@ -72,7 +73,11 @@ export default class Game extends EventEmitter {
         this.viewPort.translate(o.coords),
         o.texture,
         id,
-        id === this.selection
+        classNames(
+          {[id]: !!id},
+          o.state,
+          { selected: id === this.selection }
+        )
       );
     }
 
@@ -83,15 +88,16 @@ export default class Game extends EventEmitter {
     let segments = this.segments();
     return h('code.ascii', _.map(segments, (segment) => {
       if (this.isObject(segment.objectId)) {
-        let selectedClass = segment.selected ? '.selected' : '';
-        return h(`span.${segment.objectId}${selectedClass}`,
-          {
-            onclick: () => {
-              this.select(segment.objectId);
-            }
-          }, segment.text);
+        return h('span', {
+          className: segment.className,
+          onclick: () => {
+            this.select(segment.objectId);
+          }
+        }, segment.text);
         } else {
-        return h(`span.${segment.objectId}`, segment.text);
+        return h('span', {
+          className: segment.className,
+        }, segment.text);
       }
     }));
   }
