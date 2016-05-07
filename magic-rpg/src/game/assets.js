@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {Bounds, Coords} from './graphics';
+import {Bounds, Coords, Delta} from './graphics';
 import boxDrawing from './boxDrawing';
 
 const parseDesc = function(desc) {
@@ -43,7 +43,8 @@ export class Texture {
   }
 }
 
-// helper to use string constants as textures - strips everything up till the first newline and after the last newline, so that
+// helper to use string constants as textures - strips everything up till the
+// first newline and after the last newline, so that
 //    foo = `
 //    12
 //    34
@@ -115,5 +116,52 @@ export class Background extends Texture {
       }
     }
     return false;
+  }
+
+  // Create a new texture based on attaching bg2 to bg1 at a common named
+  // location marker such that bg2's named pivot is positioned at bg1's named
+  // location. Any overlap is taken from bg2.
+  static stitch(bg1, bg2, marker) {
+    let loc = bg1.loc(marker);
+    let pivot = bg2.loc(marker);
+    let translate21 = Delta.of(loc, pivot);
+    let bg2UL = translate21.apply(Coords.zero);
+    let bg2LR = translate21.apply(new Coords(bg2.bounds.height, bg2.bounds.width));
+    let newUL = new Coords(Math.min(0, bg2UL.y), Math.min(0, bg2UL.x));
+    let newLR = new Coords(Math.max(bg2LR.y, bg1.bounds.height), Math.max(bg2UL.x, bg1.bounds.width));
+    let newSize = new Bounds(newLR.y - newUL.y, newLR.x - newUL.x);
+    let translation1 = Delta.of(Coords.zero, newUL);
+    let translation2 = translate21.plus(translation1);
+
+    let emptyArray = (bounds, def) => {
+      return _.times(bounds.height, () => {
+        return _.times(bounds.width, () => def);
+      });
+    };
+
+    let cells = emptyArray(newSize, 'x');
+    let mask = emptyArray(newSize, false);
+    let traversable = emptyArray(newSize, false);
+    let locs = new Map();
+
+    let copyFrom = (bg, translation) => {
+      _.times(bg.bounds.height, (y) => {
+        _.times(bg.bounds.width, (x) => {
+          let newCoords = translation.apply(new Coords(y, x));
+          cells[newCoords.y][newCoords.x] = bg.cells[y][x];
+          mask[newCoords.y][newCoords.x] = bg._mask[y][x];
+          traversable[newCoords.y][newCoords.x] = bg.traversable[y][x];
+        });
+      });
+
+      for (let [loc, coords] of bg.metadata.locs.entries()) {
+        locs.set(loc, translation.apply(coords));
+      }
+    };
+
+    copyFrom(bg1, translation1);
+    copyFrom(bg2, translation2);
+
+    return new Background(cells, mask, traversable, {locs});
   }
 }

@@ -1,0 +1,24 @@
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxx+------------------------------------------------------------------------------------------+
+xxxxx|                                                                                          |
+xxxxx|                                                                                          |
+xxxxx|                           /----\                                                         |
+xxxxx|          /--\            /######\                                  /--\                  |
+xxxxx|         /####\           +------+                                 /####\                 |
+xxxxx|         +----+           |      |            /---\                +----+                 |
+-----+         |    |           |      |           /#####\               |    |                 |
+               |    |           +------+           +-----+               |    |                 |
+1              +----+                              |     |               +----+                 |
+                                                   |     |                                      |
+-----+                                             +-----+                                      |
+xxxxx|                        /--\              /--\                                            |
+xxxxx|                       /####\            /####\                                           |
+xxxxx|                       +----+            +----+                                           |
+xxxxx|                       |    |            |    |                                           |
+xxxxx|                       |    |            |    |                                           |
+xxxxx|                       +----+            +----+                                           |
+xxxxx+------------------------------------------------------------------------------------------+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

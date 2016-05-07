@@ -1,14 +1,24 @@
 import {Texture, Background, asciiBlock} from '../game/assets';
 import {Bounds} from '../game/graphics';
 import Entity from '../game/entity';
-import map from './maps/level1.map.txt';
+import office from './maps/level1-office.map.txt';
+import village from './maps/level1-village.map.txt';
 
-export const background = Background.create(map, {
-  P: {name: 'player'},
-  T: {name: 'table'},
-  M: {name: 'manager'},
-  N: {name: 'news'},
-}).boxDrawing();
+export const background = Background.stitch(
+  Background.create(office, {
+    P: {name: 'player'},
+    T: {name: 'table'},
+    M: {name: 'manager'},
+    N: {name: 'news'},
+    1: {name: 'stitch'}
+  }).boxDrawing(),
+
+  Background.create(village, {
+    1: {name: 'stitch'},
+  }).boxDrawing(),
+
+  'stitch'
+);
 
 export const objects = {
   player: new Entity(

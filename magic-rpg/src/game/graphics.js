@@ -17,6 +17,31 @@ export class Coords {
     this.y = y;
     this.x = x;
   }
+
+  plus(d) {
+    return new Coords(this.y + d.dy, this.x + d.dx);
+  }
+}
+
+Coords.zero = new Coords(0, 0);
+
+export class Delta {
+  constructor(dy, dx) {
+    this.dy = dy;
+    this.dx = dx;
+  }
+
+  static of(c1, c2) {
+    return new Delta(c1.y - c2.y, c1.x - c2.x);
+  }
+
+  apply(c) {
+    return c.plus(this);
+  }
+
+  plus(d) {
+    return new Delta(this.dy + d.dy, this.dx + d.dx);
+  }
 }
 
 export class Rectangle {
