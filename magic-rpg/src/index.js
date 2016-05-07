@@ -160,16 +160,18 @@ class Movement {
   }
 }
 
-let fastMovement = false;
+let interval = (fastMovement) => {
+  return fastMovement ? 1000/25 : 1000/10;
+};
 
 let movement = new Movement((delta) => {
   game.moveObject('player', delta[0], delta[1]);
-}, 1000/10);
+}, interval(game.state.get('fastMovement')));
 
 Mousetrap.bind('space', game.action.bind(game));
 Mousetrap.bind('b', () => {
-  fastMovement = !fastMovement;
-  movement.changeInterval(fastMovement ? 1000/25 : 1000/10);
+  game.state.set('fastMovement', !game.state.get('fastMovement'));
+  movement.changeInterval(interval(game.state.get('fastMovement')));
 });
 
 let infoPanel = document.querySelector("#info-panel");

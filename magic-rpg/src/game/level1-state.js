@@ -6,6 +6,7 @@ export default class State extends StateMachine {
       level: 'level1',
       talkedToManager: false,
       newsItem: -1,
+      fastMovement: false,
     };
   }
 
