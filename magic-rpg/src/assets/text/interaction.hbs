@@ -3,9 +3,10 @@
 {{/if}}
 
 {{#eq obj.props.room "office"}}
-
 {{> office}}
 
+{{else eq obj.props.room "village"}}
+{{> village}}
 {{else eq object "player"}}
 <p>This is you, the player. You are a wizard in Magical Consulting, LLC (a
 Delaware company).</p>
