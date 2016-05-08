@@ -9,15 +9,17 @@
 - [x] associate text with entities, as a function of state
 - [x] represent game state machine
 - [x] saving game state
-- [ ] delivering story/news to different component
-- [ ] refactored state machine
-- [ ] clean up, especially View code
+- [x] delivering story/news to different component
+- [x] refactored state machine
+- [ ] BUG: key presses are not buffered, so they can be missed
+- [ ] add current room to state machine
+- [ ] advance news on state transitions
 
 ## Game design - gameplay and story
 
 - [ ] decide what battles play like
 - [ ] decide how and when to convey story
-- [ ] write dialogue explaining what to do
+- [x] write dialogue explaining what to do
 - [ ] try incorporating RPG trope quest
 
 ## Experimental writing
@@ -29,4 +31,4 @@
 ## Optional
 - [ ] render objects on small pane in viewer
 - [x] text templates incorporating generation logic
-- [ ] animation frames
+- [ ] UI animation
