@@ -91,6 +91,10 @@ element of magic. Each will test your skills, pushing you to be the very best
 
 {{else eq object "door"}}
 
+{{#unless state.talkedToManager}}
+The door is closed.
+{{else}}
+{{!-- have talked to manager --}}
 <ul>
 {{#unless state.hasSeenExploreHint}}
 <li>Are you <em>sure</em> this is the right door? Positive?</li>
@@ -103,6 +107,7 @@ element of magic. Each will test your skills, pushing you to be the very best
 plan ahead.</li>
 {{/unless}}
 </ul>
+{{/unless}}
 
 {{else}}
   {{> notfound}}

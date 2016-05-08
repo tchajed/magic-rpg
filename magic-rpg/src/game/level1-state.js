@@ -45,7 +45,7 @@ export default class State extends StateMachine {
       }
     }
     if (o === 'door') {
-      if (this.hasSeenAllHints) {
+      if (this.talkedToManager && this.hasSeenAllHints) {
         return 'open';
       }
     }
@@ -69,6 +69,8 @@ export default class State extends StateMachine {
   }
 
   get hasSeenAllHints() {
-    return this.hasSeenExploreHint && this.hasSeenTrainHint && this.hasSeenAfterHint;
+    return (this.hasSeenExploreHint &&
+            this.hasSeenTrainHint &&
+              this.hasSeenAfterHint);
   }
 }
