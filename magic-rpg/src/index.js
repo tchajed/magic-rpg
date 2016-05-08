@@ -174,6 +174,10 @@ Mousetrap.bind('space', () => {
   game.action();
   return false;
 });
+Mousetrap.bind('shift+space', () => {
+  game.select(null);
+  return false;
+});
 Mousetrap.bind('b', () => {
   game.state.set('fastMovement', !game.state.get('fastMovement'));
   movement.changeInterval(interval(game.state.get('fastMovement')));

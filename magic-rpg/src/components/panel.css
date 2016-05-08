@@ -18,3 +18,11 @@ h2 {
 .note-seen {
   color: #5f8700;
 }
+
+.controls .key {
+    font-family: Consolas, monospace;
+}
+
+.controls th {
+    text-align: left;
+}
