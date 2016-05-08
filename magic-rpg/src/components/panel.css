@@ -1,3 +1,16 @@
 h2 {
     margin-top: 0;
 }
+
+.checklist {
+  padding-left: 1em;
+}
+
+.checklist li {
+  margin: 0;
+  list-style: none;
+}
+
+.checklist input {
+  margin-right: 0.5em;
+}

@@ -27,23 +27,67 @@ element of magic. Each will test your skills, pushing you to be the very best
 
   <h2>Memo</h2>
 
+  <p>
+  <strong>REMINDER TO ALL OFFICE PERSONNEL</strong>
+  </p>
+
+  The administration wishes to remind all office workers that slowing down time
+  during the lunch hour is not permitted. Time dilation has serious negative
+  effects on the precision time spells being cast concurrently and we have
+  received several customer complaints about incorrect ageing. We expect all
+  employees to get their work done in normal time.
+
 {{else eq object "note2"}}
 
   <h2>Scrap of paper</h2>
 
+  <p><em>Computer troubleshooting checklist:</em></p>
+
+    <ul class="checklist">
+      <li><input type="checkbox">Restart browser</li>
+      <li><input type="checkbox">Turn off/on computer</li>
+      <li><input type="checkbox">Sacrifice goat while invoking <strong>Ra</strong> (not Poseidon)</li>
+    </ul>
+
 {{else eq object "note3"}}
 
-  <h2>Note</h2>
+  <h2>Sticky note</h2>
+
+  username: tonyk<br />
+  password: k00lmagician32
 
 {{else eq object "note4"}}
 
   <h2>Memo</h2>
 
+  <p>
+  <strong>Reminder: annual company Christmas party</strong>
+  </p>
+
+  All employees and their families are invited to the annual Christmas party, to
+  be held on Hyperion! As you no doubt know, that's a moon of Saturn &mdash; see
+  the attached instructions for exact teleportation coordinates. We would like
+  to remind everyone to please create a protective bubble for yourself and your
+  traveling companions <em>before</em> teleporting. There will be staff at the
+  destination to help, but we'd rather avoid relying on that.
+
 {{else eq object "hint1"}}
 
-  Promotion requires exploration. Leave the building, taking the (only) exit to the
+  1. Promotion requires exploration. Leave the building, taking the (only) exit to the
   east. Your journey will be fraught with many perils, including common folk
   that will ask for your help. We trust you will do the right thing.
+
+{{else eq object "hint2"}}
+
+  2. The test administered by the boss is likely to be too difficult with your
+  present level of training. We recommend acquiring additional training along
+  the way. Magical Consulting believes this training is best left to you to
+  discover, to ensure that it reflects the real world and to keep training costs
+  low.
+
+{{else eq object "hint3"}}
+
+  3. You will receive further instructions upon reaching {first boss}. Good luck.
 
 {{else}}
 <div class="error">No text for {{object}} (in office)</div>
