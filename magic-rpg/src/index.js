@@ -128,9 +128,11 @@ class Movement {
       Mousetrap.bind(data.shortcuts, () => {
         this.keysDown[key] = this.clock;
         this.clock++;
+        return false;
       }, 'keydown');
       Mousetrap.bind(data.shortcuts, () => {
         this.keysDown[key] = null;
+        return false;
       }, 'keyup');
     }
     this.interval = setInterval(() => {
@@ -168,7 +170,10 @@ let movement = new Movement((delta) => {
   game.moveObject('player', delta[0], delta[1]);
 }, interval(game.state.get('fastMovement')));
 
-Mousetrap.bind('space', game.action.bind(game));
+Mousetrap.bind('space', () => {
+  game.action();
+  return false;
+});
 Mousetrap.bind('b', () => {
   game.state.set('fastMovement', !game.state.get('fastMovement'));
   movement.changeInterval(interval(game.state.get('fastMovement')));
@@ -177,7 +182,9 @@ Mousetrap.bind('b', () => {
 let infoPanel = document.querySelector("#info-panel");
 Mousetrap.bind('j', () => {
   infoPanel.scrollTop += 20;
+  return false;
 });
 Mousetrap.bind('k', () => {
   infoPanel.scrollTop -= 20;
+  return false;
 });
