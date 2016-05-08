@@ -1,11 +1,71 @@
 {{#eq object "villager1"}}
+An ordinary citizen stands in the middle of the road. They look friendly enough.
+
   <blockquote>
-    <p>I'm a villager!</p>
+    <p>Hi, stranger! How are you? I'm fine, thanks.</p>
 
     <p>&hellip;</p>
 
     <p>Oh! Here's some helpful advice: Go right!</p>
+
+    <p>I also found this lying around, you can have it.</p>
+
+    {{> expgain amount=30}}
   </blockquote>
+{{else eq object "villager6"}}
+  <p>Hello, wizard. You work in that big office building just down the road, right? I can tell because it's the only company that still requires business casual dress in these parts any more.</p>
+
+  <p>Did you know there's a secret hidden in the big manager's office? It looks empty but there's actually something in the floor. Look around and you might bump into it!</p>
+{{else eq object "villager8"}}
+  <p>A wizard, eh? We don't appreciate your kind around here. And by we I mean me in particular, and by "your kind" I mean unpromoted wizards.</p>
+
+  <p>The last one of you that came by had a line clamoring after him looking for help with this or that, hoping for some freebies from an expert. Boy were they in for a surprise! He helped the first three with some shoddy work, as if he were just doing it for practice, and then just ran off! Can you believe that? I sure hope you'll at least try to be helpful.</p>
+{{else eq object "villager10"}}
+  {{#haveNotTalkedTo .}}
+    <p>Hey, wizard! How's it going? Yeah, me too!</p>
+
+    <p>Do you have a second? Could you fix this broken wheelbarrow for me?</p>
+  {{else unless state.helpedVillager10}}
+    <p>Awesome! Thanks for taking care of that for me.</p>
+
+    {{> expgain amount=30}}
+  {{else}}
+    <p>Thanks for helping!</p>
+  {{/haveNotTalkedTo}}
+{{else eq object "villager3"}}
+  {{#haveNotTalkedTo .}}
+    <p>Could you do me a favor, stranger? I have this letter for <strong>Darius</strong> and I need it delivered. You look like a trustworthy mail carrier, could you take care of it for me? I'd greatly appreciate it and you would be rewarded!</p>
+  {{else eq state.mailDelivery "taken"}}
+    <p>You still have the letter? I'm glad you haven't lost it, but please find <strong>Darius</strong> and give it to him.</p>
+  {{else eq state.mailDelivery "delivered"}}
+    <p>You don't have the letter! That means you must have delivered it! It's so hard for Darius and I to talk. We really appreciate you keeping us in touch.</p>
+
+    {{> expgain amount="30"}}
+  {{else eq state.mailDelivery "done"}}
+    <p>Thanks for helping us out with our mail!</p>
+  {{else eq state.mailDelivery "fully-rewarded"}}
+    <p>I heard (from someone who isn't Darius) that you talked to him and he gave you a little bonus for your efforts. Good for you!</p>
+  {{/haveNotTalkedTo}}
+{{else eq object "villager4"}}
+  {{#eq state.mailDelivery "not-started"}}
+    <p>Oh when will <strong>Caroline</strong> send me that letter she owes me? If only there were a way to reach her.</p>
+
+    <p>&hellip;</p>
+
+    <p>Oh! Hello there, I was just talking to myself. Could you hear that? I could have sworn I didn't say anything out loud. That's pretty creepy.</p>
+  {{else eq state.mailDelivery "taken"}}
+    <p>&hellip;</p>
+
+    <p>This is a most wonderous letter! You must return to <strong>Caroline</strong> and tell her I've received the letter and will write her back soon.</p>
+  {{else eq state.mailDelivery "delivered"}}
+    <p>I suspect you haven't actually told Caroline about the letter yet, have you? Not that I've talked to her, it's just a hunch.</p>
+  {{else eq state.mailDelivery "done"}}
+    <p>&hellip;</p>
+
+    <p>Thank you for all your help.</p>
+
+    {{> expgain amount="30"}}
+  {{/eq}}
 {{else}}
   {{> notfound}}
 {{/eq}}

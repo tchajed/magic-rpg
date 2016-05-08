@@ -5,11 +5,14 @@ export default class State extends StateMachine {
   defaults() {
     return {
       level: 'level1',
+      exp: 0,
       talkedToManager: false,
       newsItem: -1,
       fastMovement: false,
       notesSeen: {},
       villagersTalkedTo: {},
+      helpedVillager10: false,
+      mailDelivery: 'not-started',
     };
   }
 
@@ -25,7 +28,7 @@ export default class State extends StateMachine {
       this.ensure('talkedToManager', true);
     }
     if (o === 'news') {
-      this.set('newsItem', this.get('newsItem') + 1);
+      this.modify('newsItem', (i) => i + 1);
     }
     if (obj.props.type === 'note') {
       this.modify('notesSeen', (s) => {
@@ -33,9 +36,39 @@ export default class State extends StateMachine {
       });
     }
     if (obj.props.type === 'villager') {
-        this.modify('villagersTalkedTo', (s) => {
-            return _.merge({[o]: true}, s);
-        });
+      if (o === 'villager1' &&
+          !this.hasTalkedTo(o)) {
+        this.modify('exp', (e) => e + 30);
+      }
+      if (o === 'villager10' &&
+          this.hasTalkedTo(o) &&
+         !this.helpedVillager10) {
+        this.modify('exp', (e) => e + 30);
+        this.ensure('helpedVillager10', true);
+      }
+
+      if (o === 'villager3') {
+        if (this.mailDelivery == 'not-started') {
+          this.set('mailDelivery', 'taken');
+        }
+        if (this.mailDelivery == 'delivered') {
+          this.set('mailDelivery', 'done');
+          this.modify('exp', (e) => e + 30);
+        }
+      }
+
+      if (o === 'villager4') {
+        if (this.mailDelivery === 'taken') {
+          this.set('mailDelivery', 'delivered');
+        }
+        if (this.mailDelivery === 'done') {
+          this.set('mailDelivery', 'fully-rewarded');
+        }
+      }
+
+      this.modify('villagersTalkedTo', (s) => {
+        return _.assign({}, s, {[o]: true});
+      });
     }
   }
 
@@ -81,7 +114,7 @@ export default class State extends StateMachine {
   get hasSeenAllHints() {
     return (this.hasSeenExploreHint &&
             this.hasSeenTrainHint &&
-              this.hasSeenAfterHint);
+            this.hasSeenAfterHint);
   }
 
   hasTalkedTo(o) {
