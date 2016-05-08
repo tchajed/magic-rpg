@@ -24,16 +24,20 @@ export default class State extends StateMachine {
     return null;
   }
 
+  nextNewsItem() {
+      this.modify('newsItem', (i) => i + 1);
+  }
+
   interact(o, obj) {
     if (o === 'manager') {
       this.ensure('talkedToManager', true);
     }
     if (o === 'news') {
-      this.modify('newsItem', (i) => i + 1);
+      this.nextNewsItem();
     }
     if (obj.props.type === 'note') {
       this.modify('notesSeen', (s) => {
-        return _.merge({[o]: true}, s);
+        return _.assign({}, s, {[o]: true});
       });
     }
     if (obj.props.type === 'villager') {
