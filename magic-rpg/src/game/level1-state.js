@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import StateMachine from './state';
 
 export default class State extends StateMachine {
@@ -7,6 +8,7 @@ export default class State extends StateMachine {
       talkedToManager: false,
       newsItem: -1,
       fastMovement: false,
+      notesSeen: {},
     };
   }
 
@@ -17,21 +19,35 @@ export default class State extends StateMachine {
     return null;
   }
 
-  interact(o /*, obj */) {
+  interact(o, obj) {
     if (o === 'manager') {
       this.ensure('talkedToManager', true);
     }
     if (o === 'news') {
       this.set('newsItem', this.get('newsItem') + 1);
     }
+    if (obj.props.type === 'note') {
+      this.modify('notesSeen', (s) => {
+        return _.merge({[o]: true}, s);
+      });
+    }
   }
 
-  forObject(o) {
+  forObject(o, obj) {
     if (o === 'manager') {
       if (this.talkedToManager) {
         return 'seen';
       }
     }
+    if (obj.props.type === 'note') {
+      if (this.hasSeenNote(o)) {
+        return 'note-seen';
+      }
+    }
     return 'default';
+  }
+
+  hasSeenNote(o) {
+    return this.get('notesSeen')[o] !== undefined;
   }
 }

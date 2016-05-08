@@ -44,34 +44,45 @@ const objects = (background) => {
       {name: "Table"}
     ),
     note1: new Entity(
-      Texture.create(".")
+      Texture.create("."),
+      {type: 'note'}
     ),
     note2: new Entity(
-      Texture.create(".")
+      Texture.create("."),
+      {type: 'note'}
     ),
     note3: new Entity(
-      Texture.create(".")
+      Texture.create("."),
+      {type: 'note'}
     ),
     note4: new Entity(
-      Texture.create(".")
+      Texture.create("."),
+      {type: 'note'}
     ),
     hint1: new Entity(
       Texture.create("."),
-      {name: 'Instructions for level 4 promotion'}
+      {name: 'Instructions for level 4 promotion',
+        type: 'note'}
     ),
     hint2: new Entity(
       Texture.create("."),
-      {name: 'Instructions for level 4 promotion'}
+      {name: 'Instructions for level 4 promotion',
+        type: 'note'}
     ),
     hint3: new Entity(
       Texture.create("."),
-      {name: 'Instructions for level 4 promotion'}
+      {name: 'Instructions for level 4 promotion',
+        type: 'note'}
     ),
   };
 
   for (let o of Object.keys(objects)) {
-    objects[o].placeAt(background.loc(o));
-    objects[o].props.room = 'office';
+    let obj = objects[o];
+    obj.placeAt(background.loc(o));
+    obj.props.room = 'office';
+    if (obj.props.type === 'note') {
+      obj.textures['note-seen'] = Texture.create(".");
+    }
   }
 
   return _.merge(objects, {player});

@@ -38,7 +38,9 @@ export default class Game extends EventEmitter {
   }
 
   object(objectId) {
-    return this.objects[objectId].in(this.state.forObject(objectId));
+    let obj = this.objects[objectId];
+    let state = this.state.forObject(objectId, obj);
+    return this.objects[objectId].in(state);
   }
 
   // Would objectId collide with anything if it took space rect?

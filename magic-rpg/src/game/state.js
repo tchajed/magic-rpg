@@ -51,11 +51,12 @@ export default class StateMachine extends EventEmitter {
     return this;
   }
 
-  set(propname, v) {
+  modify(propname, f) {
     if (this[propname] === undefined) {
       throw new Error(`attempt to set non-existent state property ${propname}`);
     }
     let oldVal = this[propname];
+    let v = f(oldVal);
     this[propname] = v;
     store.set(propname, v);
     this.emit('transition', {
@@ -64,4 +65,9 @@ export default class StateMachine extends EventEmitter {
       newVal: v,
     });
   }
+
+  set(propname, v) {
+    this.modify(propname, () => v);
+  }
+
 }

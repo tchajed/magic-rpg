@@ -14,3 +14,7 @@ h2 {
 .checklist input {
   margin-right: 0.5em;
 }
+
+.note-seen {
+  color: #5f8700;
+}
