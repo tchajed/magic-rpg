@@ -3,14 +3,19 @@ import {Texture} from './assets';
 
 // object with some state
 export default class Entity {
-  constructor(name, coords, textures) {
-    this.name = name;
-    this.coords = coords;
+  constructor(textures, props={}) {
     if (textures instanceof Texture) {
       this.textures = {default: textures};
     } else {
       this.textures = textures;
     }
+    this.props = props;
+    this.coords = null;
+  }
+
+  placeAt(coords) {
+    this.coords = coords;
+    return this;
   }
 
   in(state) {
@@ -25,12 +30,8 @@ class StateEntity {
     this.state = state;
   }
 
-  get name() {
-    return this.entity.name;
-  }
-
-  set name(v) {
-    this.entity.name = v;
+  get props() {
+    return this.entity.props;
   }
 
   get coords() {

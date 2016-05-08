@@ -1,0 +1,50 @@
+{{#eq object "table"}}
+
+This is just a conference table. There's nothing on it and it isn't important.
+
+{{else eq object "manager"}}
+
+<blockquote>
+
+<p>Hi, I'm your manager. I don't know why I'm telling you, since you ought to
+know that by now.</p>
+
+<p>&hellip;</p>
+
+<p>We were wondering when you would ask about that. Every employee in your stage
+has only one way to move up: a series of trials, facing your superiors. Every
+boss got where they are this way, and maybe you will, too!</p>
+
+<p>You'll be given a series of challenges, each in a specific form or style or
+element of magic. Each will test your skills, pushing you to be the very best
+&mdash; and rewarding you if you turn out to be.</p>
+
+<p>These bosses will require intense training. You'll probably want to find some random wizards to fight with (don't worry, it's totally safe, they can always heal up).</p>
+
+</blockquote>
+
+{{else eq object "note1"}}
+
+  <h2>Memo</h2>
+
+{{else eq object "note2"}}
+
+  <h2>Scrap of paper</h2>
+
+{{else eq object "note3"}}
+
+  <h2>Note</h2>
+
+{{else eq object "note4"}}
+
+  <h2>Memo</h2>
+
+{{else eq object "hint1"}}
+
+  Promotion requires exploration. Leave the building, taking the (only) exit to the
+  east. Your journey will be fraught with many perils, including common folk
+  that will ask for your help. We trust you will do the right thing.
+
+{{else}}
+<div class="error">No text for {{object}} (in office)</div>
+{{/eq}}
