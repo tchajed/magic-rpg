@@ -44,10 +44,31 @@ export default class State extends StateMachine {
         return 'note-seen';
       }
     }
+    if (o === 'door') {
+      if (this.hasSeenAllHints) {
+        return 'open';
+      }
+    }
     return 'default';
   }
 
   hasSeenNote(o) {
     return this.get('notesSeen')[o] !== undefined;
+  }
+
+  get hasSeenExploreHint() {
+    return this.hasSeenNote('hint1');
+  }
+
+  get hasSeenTrainHint() {
+    return this.hasSeenNote('hint2');
+  }
+
+  get hasSeenAfterHint() {
+    return this.hasSeenNote('hint3');
+  }
+
+  get hasSeenAllHints() {
+    return this.hasSeenExploreHint && this.hasSeenTrainHint && this.hasSeenAfterHint;
   }
 }

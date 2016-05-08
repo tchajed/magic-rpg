@@ -89,6 +89,21 @@ element of magic. Each will test your skills, pushing you to be the very best
 
   3. You will receive further instructions upon reaching {first boss}. Good luck.
 
+{{else eq object "door"}}
+
+<ul>
+{{#unless state.hasSeenExploreHint}}
+<li>Are you <em>sure</em> this is the right door? Positive?</li>
+{{/unless}}
+{{#unless state.hasSeenTrainHint}}
+<li>Are you <em>sure</em> you know what to do afterward?</li>
+{{/unless}}
+{{#unless state.hasSeenAfterHint}}
+<li>Do you know what to do next? <em>Maybe</em> you should plan ahead. I think you should
+plan ahead.</li>
+{{/unless}}
+</ul>
+
 {{else}}
   {{> notfound}}
 {{/eq}}

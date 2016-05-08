@@ -15,6 +15,7 @@ const background = Background.create(map, {
   A: {name: 'hint1'},
   B: {name: 'hint2'},
   C: {name: 'hint3'},
+  D: {name: 'door'},
   1: {name: 'stitch'}
 }).boxDrawing();
 
@@ -73,6 +74,13 @@ const objects = (background) => {
       Texture.create("."),
       {name: 'Instructions for level 4 promotion',
         type: 'note'}
+    ),
+    door: new Entity(
+      {
+          default: Texture.create("|\n|\n|"),
+              open: Texture.create(""),
+      },
+      {name: 'Door'}
     ),
   };
 
