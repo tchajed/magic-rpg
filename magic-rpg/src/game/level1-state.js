@@ -9,6 +9,7 @@ export default class State extends StateMachine {
       newsItem: -1,
       fastMovement: false,
       notesSeen: {},
+      villagersTalkedTo: {},
     };
   }
 
@@ -31,6 +32,11 @@ export default class State extends StateMachine {
         return _.merge({[o]: true}, s);
       });
     }
+    if (obj.props.type === 'villager') {
+        this.modify('villagersTalkedTo', (s) => {
+            return _.merge({[o]: true}, s);
+        });
+    }
   }
 
   forObject(o, obj) {
@@ -43,6 +49,10 @@ export default class State extends StateMachine {
       if (this.hasSeenNote(o)) {
         return 'note-seen';
       }
+    } else if (obj.props.type === 'villager') {
+      if (this.hasTalkedTo(o)) {
+        return 'talked-to';
+      }
     }
     if (o === 'door') {
       if (this.talkedToManager && this.hasSeenAllHints) {
@@ -53,7 +63,7 @@ export default class State extends StateMachine {
   }
 
   hasSeenNote(o) {
-    return this.get('notesSeen')[o] !== undefined;
+    return this.get('notesSeen')[o] === true;
   }
 
   get hasSeenExploreHint() {
@@ -72,5 +82,9 @@ export default class State extends StateMachine {
     return (this.hasSeenExploreHint &&
             this.hasSeenTrainHint &&
               this.hasSeenAfterHint);
+  }
+
+  hasTalkedTo(o) {
+    return this.get('villagersTalkedTo')[o] === true;
   }
 }

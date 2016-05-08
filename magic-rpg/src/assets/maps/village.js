@@ -11,23 +11,34 @@ const background = Background.create(map, {
   A: {name: 'villager1'},
   B: {name: 'villager2'},
   C: {name: 'villager3'},
+  D: {name: 'villager4'},
+  E: {name: 'villager5'},
+  F: {name: 'villager6'},
+  G: {name: 'villager7'},
+  H: {name: 'villager8'},
+  I: {name: 'villager9'},
+  J: {name: 'villager10'},
+  K: {name: 'villager11'},
+  L: {name: 'villager12'},
 }).boxDrawing();
 
 const objects = (background) => {
-  let objects = {
-    villager1: new Entity(
-      Texture.create("!"),
-      {name: "Villager"}
-    ),
-    villager2: new Entity(
-      Texture.create("!"),
-      {name: "Villager"}
-    ),
-    villager3: new Entity(
-      Texture.create("!"),
-      {name: "Villager"}
-    ),
-  };
+  let villagers = {};
+  for (let i = 1; i <= 12; i++) {
+      let o = 'villager' + i;
+      let talkedChar = String.fromCharCode("A".charCodeAt(0) + i - 1);
+      villagers[o] = new Entity(
+          {
+              'default': Texture.create("!"),
+              'talked-to': Texture.create(talkedChar),
+          },
+          {
+              name: 'Villager',
+              type: 'villager',
+          }
+      );
+  }
+  let objects = villagers;
 
   for (let o of Object.keys(objects)) {
     objects[o].placeAt(background.loc(o));
