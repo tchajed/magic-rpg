@@ -81,7 +81,11 @@ const objects = (background) => {
     obj.placeAt(background.loc(o));
     obj.props.room = 'office';
     if (obj.props.type === 'note') {
-      obj.textures['note-seen'] = Texture.create(".");
+      if (o.startsWith('hint')) {
+        obj.textures['note-seen'] = Texture.create("*");
+      } else {
+        obj.textures['note-seen'] = Texture.create(".");
+      }
     }
   }
 
