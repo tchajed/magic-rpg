@@ -11,6 +11,7 @@ export default class State extends StateMachine {
       fastMovement: false,
       notesSeen: {},
       villagersTalkedTo: {},
+      gooseChaseIndex: -1,
       helpedVillager10: false,
       mailDelivery: 'not-started',
     };
@@ -63,6 +64,13 @@ export default class State extends StateMachine {
         }
         if (this.mailDelivery === 'done') {
           this.set('mailDelivery', 'fully-rewarded');
+        }
+      }
+
+      if (this.gooseChaseChain.indexOf(o) !== -1) {
+        let oIndex = this.gooseChaseChain.indexOf(o);
+        if (oIndex === this.gooseChaseIndex + 1) {
+          this.set('gooseChaseIndex', oIndex);
         }
       }
 
@@ -119,5 +127,25 @@ export default class State extends StateMachine {
 
   hasTalkedTo(o) {
     return this.get('villagersTalkedTo')[o] === true;
+  }
+
+  get gooseChaseChain() {
+    return ['villager2',
+      'villager12',
+      'villager5',
+      'villager7',
+      'villager9'];
+  }
+
+  gooseChaseDoneUpTo(o) {
+    let oIndex = this.gooseChaseChain.lastIndexOf(o);
+    if (oIndex === -1) {
+      throw new Error(`non-goose chase villager ${o} queried`);
+    }
+    return this.gooseChaseIndex >= oIndex;
+  }
+
+  get gooseChaseDone() {
+    return this.gooseChaseIndex == this.gooseChaseChain.length - 1;
   }
 }

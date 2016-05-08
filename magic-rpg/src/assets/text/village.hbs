@@ -66,6 +66,36 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
 
     {{> expgain amount="30"}}
   {{/eq}}
+{{else eq object "villager2"}}
+  {{#gooseChaseDone .}}
+    <p>Hey there wizard. Name's Bob. How's finding everything going?</p>
+  {{else}}
+    <p>Hey there wizard. I have a job for you &mdash; could you find <strong>Loki</strong> for me? He has a thing that I need.</p>
+  {{/gooseChaseDone}}
+{{else eq object "villager12"}}
+  {{#gooseChaseDone .}}
+    <p>Oh yeah, I have that. Well almost. Just go find <strong>Eve</strong> for the last tweak.</p>
+  {{else}}
+    <p>Hey man.</p>
+  {{/gooseChaseDone}}
+{{else eq object "villager5"}}
+  {{#gooseChaseDone .}}
+    <p>Oh yeah, I have that. Well almost. Just go find <strong>Greg</strong> for the last tweak.</p>
+  {{else}}
+    <p>Hey man.</p>
+  {{/gooseChaseDone}}
+{{else eq object "villager7"}}
+  {{#gooseChaseDone .}}
+    <p>Oh yeah, I have that. Well almost. Just go find <strong>Isaac</strong> for the last tweak.</p>
+  {{else}}
+    <p>Hey man.</p>
+  {{/gooseChaseDone}}
+{{else eq object "villager9"}}
+  {{#gooseChaseDone .}}
+    <p>Oh yeah, I have that. Well almost. Just go find <strong>Bob</strong> for the last tweak.</p>
+  {{else}}
+    <p>Hey man.</p>
+  {{/gooseChaseDone}}
 {{else}}
   {{> notfound}}
 {{/eq}}
