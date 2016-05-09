@@ -15,9 +15,9 @@
 |                                                                                     +-----x
 |                                                                                     |xxxxxx
 |       +--------------------  ---+                                                   |xxxxxx
-|       |                         |                    N                              |xxxxxx
+|       |                         |                    W                              |xxxxxx
 |       |  T                      |                                                   |xxxxxx
-|       |                         |                                                   |xxxxxx
+|       |                         |                    S                              |xxxxxx
 |       |                         |                                                   |xxxxxx
 |       |                         |                                                   |xxxxxx
 |       |                         |                                                   |xxxxxx

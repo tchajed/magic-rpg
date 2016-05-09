@@ -19,6 +19,16 @@ h2 {
   color: #5f8700;
 }
 
+.water {
+  background-color: #268bd2;
+  color: #194d71;
+}
+
+.cooler {
+  background-color: #657b83;
+  color: black;
+}
+
 .exp-gain {
   color: #43A047;
 }

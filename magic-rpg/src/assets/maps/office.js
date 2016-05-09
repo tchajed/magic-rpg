@@ -8,7 +8,8 @@ const background = Background.create(map, {
   P: {name: 'player'},
   T: {name: 'table'},
   M: {name: 'manager'},
-  N: {name: 'news'},
+  W: {name: 'water'},
+  S: {name: 'cooler'},
   a: {name: 'note1'},
   b: {name: 'note2'},
   c: {name: 'note3'},
@@ -82,6 +83,19 @@ const objects = () => {
               open: Texture.create(""),
       },
       {name: 'Door'}
+    ),
+    'water': new Entity(
+      Texture.create(asciiBlock(`
+ _ 
+( )
+`))
+    ),
+    'cooler': new Entity(
+      Texture.create(asciiBlock(`
++-+
+| |
++-+
+`)).boxDrawing()
     ),
   };
 
