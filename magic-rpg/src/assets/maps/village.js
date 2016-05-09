@@ -5,6 +5,7 @@ import map from './level1-village.map.txt';
 
 const background = Background.create(map, {
   1: {name: 'stitch'},
+  2: {name: 'stitch2'},
   A: {name: 'villager1'},
   B: {name: 'villager2'},
   C: {name: 'villager3'},
