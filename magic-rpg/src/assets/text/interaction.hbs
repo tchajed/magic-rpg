@@ -3,9 +3,11 @@
 {{/if}}
 
 {{#eq obj.props.room "office"}}
-{{> office}}
+  {{> office}}
 {{else eq obj.props.room "village"}}
-{{> village}}
+  {{> village}}
+{{else eq obj.props.room "boss1"}}
+  {{> boss1}}
 {{else eq object "bossA"}}
 {{#unless state.talkedToManager}}
 You don't know who I am! Why should I talk to you?
@@ -13,18 +15,8 @@ You don't know who I am! Why should I talk to you?
 <blockquote>
 <p>I'm the first boss. I guess I'd fight you or something?</p>
 
-<p>You've trained heavily for this battle. Enough that it might even be a
-fair fight. The boss eyes you as an equal. When &mdash; and if &mdash; you
-emerge victorious, you can know that skill was involved.</p>
 </blockquote>
 {{/unless}}
-{{else eq object "enemy"}}
-
-<p>You've trained heavily for this battle. It all comes down to making the
-critical move. Without stopping to look up from your phone, you dispatch the
-enemy with one overpowered move. Your reward is a juicy 15 XP, which you gladly
-take, knowing only 89 are left to get to the next one.</p>
-
 {{else eq object "greeter"}}
 
 <p>You arrive 15 minutes late to the meeting, after wandering around aimlessly,
@@ -41,11 +33,6 @@ You don't know who I am! Why should I talk to you?
 {{else}}
 <blockquote>
 <p>I'm the second boss. I guess I'd fight you or something?</p>
-
-<p>You've waltzed in here looking for trouble. The boss eyes you
-like you're 11 years old and thought that determination was all that
-counted and not the cold hard numbers. He doesn't feel the need to go
-easy on you.</p>
 
 <p>It had all come to this. The final battle, against this boss of the {board}.
 This boss was special. There was a medical facility outside his office for a

@@ -1,0 +1,25 @@
+{{!-- must be true, but just for uniformity --}}
+{{#eq object "boss1"}}
+  {{#unless state.beatBoss1}}
+    {{#eq state.boss1Leveling '-'}}
+      <p>You've waltzed in here looking for trouble. The boss eyes you
+      like you're 11 years old and thought that determination was all that
+      counted and not the cold hard numbers. He doesn't feel the need to go
+      easy on you.</p>
+    {{else eq state.boss1Leveling '='}}
+      <p>You've trained heavily for this battle. Enough that it might even be a
+      fair fight. The boss eyes you as an equal. When &mdash; and if &mdash; you
+      emerge victorious, you can know that skill was involved.</p>
+
+      {{> expgain amount="50"}}
+    {{else eq state.boss1Leveling '+'}}
+      <p>You've trained heavily for this battle. It all comes down to making the
+      critical move. Without stopping to look up from your phone, you dispatch the
+      enemy with one overpowered move.</p>
+      {{> expgain amount="20"}}
+    {{/eq}}
+  {{else}}
+    {{!-- already beat the boss --}}
+    <p>Good job, wizard. You may now proceed to the next boss.</p>
+  {{/unless}}
+{{/eq}}

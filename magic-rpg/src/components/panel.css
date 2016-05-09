@@ -43,3 +43,12 @@ kbd {
 .controls th {
     text-align: left;
 }
+
+.boss1 {
+  color: #dc322f;
+  font-weight: bold;
+}
+
+.boss1.defeated {
+  color: inherit;
+}

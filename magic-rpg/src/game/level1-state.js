@@ -16,6 +16,7 @@ export default class State extends StateMachine {
       helpedVillager10: false,
       helpedVillager11: false,
       mailDelivery: 'not-started',
+      beatBoss1: false,
     };
   }
 
@@ -63,52 +64,69 @@ export default class State extends StateMachine {
       this.set(`notesSeen.${o}`, true);
     }
     if (obj.props.type === 'villager') {
-      if (o === 'villager1' &&
-          !this.hasTalkedTo(o)) {
-        this.modify('exp', (e) => e + 30);
-      }
-      if (o === 'villager10' &&
-          this.hasTalkedTo(o) &&
-         !this.helpedVillager10) {
-        this.modify('exp', (e) => e + 30);
-        this.set('helpedVillager10', true);
-      }
-
-      if (o === 'villager11' &&
-         this.hasTalkedTo(o) &&
-         !this.helpdVillager11) {
-        this.modify('exp', (e) => e + 30);
-        this.set('helpedVillager11', true);
-      }
-
-      if (o === 'villager3') {
-        if (this.mailDelivery == 'not-started') {
-          this.set('mailDelivery', 'taken');
-        }
-        if (this.mailDelivery == 'delivered') {
-          this.set('mailDelivery', 'done');
-          this.modify('exp', (e) => e + 30);
-        }
-      }
-
-      if (o === 'villager4') {
-        if (this.mailDelivery === 'taken') {
-          this.set('mailDelivery', 'delivered');
-        }
-        if (this.mailDelivery === 'done') {
-          this.set('mailDelivery', 'fully-rewarded');
-        }
-      }
-
-      if (this.gooseChaseChain.indexOf(o) !== -1) {
-        let oIndex = this.gooseChaseChain.indexOf(o);
-        if (oIndex === this.gooseChaseIndex + 1) {
-          this.set('gooseChaseIndex', oIndex);
-        }
-      }
-
-      this.set(`villagersTalkedTo.${o}`, true);
+      this.interactVillager(o);
     }
+    if (o === 'boss1') {
+      let expGain = 0;
+      if (this.boss1Leveling == '=') {
+        expGain = 50;
+      }
+      if (this.boss1Leveling == '+') {
+        expGain = 20;
+      }
+      if (expGain > 0 && !this.beatBoss1) {
+        this.modify('exp', (e) => e + expGain);
+        this.set('beatBoss1', true);
+      }
+    }
+  }
+
+  interactVillager(o) {
+    if (o === 'villager1' &&
+        !this.hasTalkedTo(o)) {
+      this.modify('exp', (e) => e + 30);
+    }
+    if (o === 'villager10' &&
+        this.hasTalkedTo(o) &&
+        !this.helpedVillager10) {
+      this.modify('exp', (e) => e + 30);
+      this.set('helpedVillager10', true);
+    }
+
+    if (o === 'villager11' &&
+        this.hasTalkedTo(o) &&
+        !this.helpdVillager11) {
+      this.modify('exp', (e) => e + 30);
+      this.set('helpedVillager11', true);
+    }
+
+    if (o === 'villager3') {
+      if (this.mailDelivery == 'not-started') {
+        this.set('mailDelivery', 'taken');
+      }
+      if (this.mailDelivery == 'delivered') {
+        this.set('mailDelivery', 'done');
+        this.modify('exp', (e) => e + 30);
+      }
+    }
+
+    if (o === 'villager4') {
+      if (this.mailDelivery === 'taken') {
+        this.set('mailDelivery', 'delivered');
+      }
+      if (this.mailDelivery === 'done') {
+        this.set('mailDelivery', 'fully-rewarded');
+      }
+    }
+
+    if (this.gooseChaseChain.indexOf(o) !== -1) {
+      let oIndex = this.gooseChaseChain.indexOf(o);
+      if (oIndex === this.gooseChaseIndex + 1) {
+        this.set('gooseChaseIndex', oIndex);
+      }
+    }
+
+    this.set(`villagersTalkedTo.${o}`, true);
   }
 
   forObject(o, obj) {
@@ -129,6 +147,11 @@ export default class State extends StateMachine {
     if (o === 'door') {
       if (this.talkedToManager && this.hasSeenAllHints) {
         return 'open';
+      }
+    }
+    if (o === 'boss1') {
+      if (this.beatBoss1) {
+        return 'defeated';
       }
     }
     return 'default';
@@ -178,5 +201,16 @@ export default class State extends StateMachine {
 
   get gooseChaseDone() {
     return this.gooseChaseIndex == this.gooseChaseChain.length - 1;
+  }
+
+  get boss1Leveling() {
+    if (this.exp < 90) {
+      return '-';
+    }
+    if (this.exp === 90) {
+      return '=';
+    }
+    // this.exp > 90
+    return '+';
   }
 }

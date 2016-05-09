@@ -11,7 +11,10 @@ const background = Background.create(map, {
 const objects = () => {
   return {
     boss1: new Entity(
-      Texture.create("!"),
+      {
+        'default': Texture.create("!"),
+        'defeated': Texture.create("!"),
+      },
       {name: 'Boss'}
     ),
   };
