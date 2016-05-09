@@ -132,6 +132,11 @@ export default class Game extends EventEmitter {
     if (newSelection === 'news') {
       return;
     }
+    // hack to fix door bug
+    if (newSelection === 'door' && this.object('door').state === 'open') {
+      this.select(null);
+      return;
+    }
     this.selection = newSelection;
     this.emit('change', {
       type: 'selection',
