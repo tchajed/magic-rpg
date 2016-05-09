@@ -125,7 +125,7 @@ export default class Game extends EventEmitter {
         return;
       }
     }
-    if (newSelection === null) {
+    if (this.selection !== null) {
       // interact on de-selection
       this.state.interact(this.selection, this.object(this.selection));
     }
