@@ -9,14 +9,14 @@ body {
     margin-top: 1em;
 }
 #header .title {
-  font-size: 2em;
+    font-size: 2em;
 }
 #header .revision {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 #header a {
-  text-decoration: inherit;
-  color: inherit;
+    text-decoration: inherit;
+    color: inherit;
 }
 .unselectable {
     -webkit-user-select: none;
@@ -36,5 +36,6 @@ body {
     overflow-y: auto;
 }
 #news-panel {
-    width: 40em;
+    width: 33em;
+    text-align: justify;
 }
