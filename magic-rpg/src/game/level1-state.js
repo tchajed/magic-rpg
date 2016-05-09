@@ -113,7 +113,7 @@ export default class State extends StateMachine {
 
     if (o === 'villager11' &&
         this.hasTalkedTo(o) &&
-        !this.helpdVillager11) {
+        !this.helpedVillager11) {
       this.modify('exp', (e) => e + 30);
       this.set('helpedVillager11', true);
     }
