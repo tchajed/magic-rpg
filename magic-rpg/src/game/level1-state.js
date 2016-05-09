@@ -29,6 +29,22 @@ export default class State extends StateMachine {
     });
   }
 
+  isTransitionImportant(ev) {
+    if (_.isEqual(ev.oldVal, ev.newVal)) {
+      return false;
+    }
+    let checks = {
+      exp: true,
+      'enteredRoom.village': true,
+      talkedToManager: true,
+      beatBoss1: true,
+      'notesSeen.hint1': true,
+      'notesSeen.hint2': true,
+      'notesSeen.hint3': true,
+    };
+    return checks[ev.property] ? true : false;
+  }
+
   talkedToAnyVillagers() {
     for (let villager of Object.keys(this.villagersTalkedTo)) {
       if (this.villagersTalkedTo[villager]) {

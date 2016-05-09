@@ -15,11 +15,8 @@ export default class Game extends EventEmitter {
     this.selection = selection;
     this.state = new State().restore();
     this.state.on('transition', (ev) => {
-      if (ev.property !== 'newsItem') {
-        if (!_.isEqual(ev.newVal, ev.oldVal) &&
-           ev.property !== 'villagersTalkedTo') {
-          this.state.nextNewsItem();
-        }
+      if (this.state.isTransitionImportant(ev)) {
+        this.state.nextNewsItem();
       }
       this.emit('change', {
         type: 'state',
