@@ -4,14 +4,8 @@
 
 {{#eq obj.props.room "office"}}
 {{> office}}
-
 {{else eq obj.props.room "village"}}
 {{> village}}
-{{else eq object "player"}}
-<p>This is you, the player. You are a wizard in Magical Consulting, LLC (a
-Delaware company).</p>
-
-<button id="clear-data">clear data</button>
 {{else eq object "bossA"}}
 {{#unless state.talkedToManager}}
 You don't know who I am! Why should I talk to you?
