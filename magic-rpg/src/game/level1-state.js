@@ -134,6 +134,7 @@ export default class State extends StateMachine {
       }
       if (this.mailDelivery === 'done') {
         this.set('mailDelivery', 'fully-rewarded');
+        this.modify('exp', (e) => e + 30);
       }
     }
 
