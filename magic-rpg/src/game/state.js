@@ -33,6 +33,9 @@ export default class StateMachine extends EventEmitter {
     for (let key of this.stateKeys) {
       this[key] = def[key];
     }
+    this.emit('transition', {
+      property: '*',
+    });
     return this;
   }
 

@@ -18,6 +18,12 @@ export default class Game extends EventEmitter {
       if (this.state.isTransitionImportant(ev)) {
         this.state.nextNewsItem();
       }
+      if (ev.property === '*') {
+        // complete the reset
+        this.objects.player.coords = this.bg.loc('player');
+        this.centerAround('player');
+        this.select(null);
+      }
       this.emit('change', {
         type: 'state',
         transition: ev,
