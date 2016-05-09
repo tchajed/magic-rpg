@@ -1,4 +1,3 @@
-{{!-- must be true, but just for uniformity --}}
 {{#eq object "boss1"}}
   {{#unless state.beatBoss1}}
     {{#eq state.boss1Leveling '-'}}
@@ -22,4 +21,8 @@
     {{!-- already beat the boss --}}
     <p>Good job, wizard. You may now proceed to the next boss.</p>
   {{/unless}}
+{{else eq object "boss1-door"}}
+    The door blocks your way. It's not clear how to open it from here &mdash; maybe somebody will open it for you?
+{{else}}
+  {{> notfound}}
 {{/eq}}
