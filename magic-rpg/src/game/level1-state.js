@@ -10,7 +10,8 @@ export default class State extends StateMachine {
       talkedToManager: false,
       newsItem: -1,
       fastMovement: false,
-      toggleSelection: false,
+      // for debugging, make this available by default
+      toggleSelection: true,
       notesSeen: {},
       villagersTalkedTo: {},
       gooseChaseIndex: -1,
