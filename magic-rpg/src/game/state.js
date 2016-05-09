@@ -36,29 +36,34 @@ export default class StateMachine extends EventEmitter {
     return this;
   }
 
-  get(propname) {
-    if (this[propname] === undefined) {
-      throw new Error(`attempt to access non-existent state property ${propname}`);
+  _resolve(propname) {
+    let proppath = propname.split(".");
+    let final = proppath.pop();
+    let obj = this;
+    if (proppath.length === 0 && obj[final] === undefined) {
+      throw new Error(`attempt to access non-existent property ${propname}`);
     }
-    return this[propname];
+    proppath.forEach((component, i) => {
+      if (obj[component] === undefined) {
+        let badpath = ".".join(propath.slice(i));
+        throw new Error(`attempt to access non-existent path ${badpath}`);
+      }
+      obj = obj[component];
+    });
+    return {obj, prop: final, first: proppath[0]};
   }
 
-  ensure(propname, v) {
-    if (this[propname] === v) {
-      return;
-    }
-    this.set(propname, v);
-    return this;
+  get(propname) {
+    let {obj, prop} = this._resolve(propname);
+    return obj[prop];
   }
 
   modify(propname, f) {
-    if (this[propname] === undefined) {
-      throw new Error(`attempt to set non-existent state property ${propname}`);
-    }
-    let oldVal = this[propname];
+    let {obj, prop, first} = this._resolve(propname);
+    let oldVal = obj[propname];
     let v = f(oldVal);
-    this[propname] = v;
-    store.set(propname, v);
+    obj[prop] = v;
+    store.set(first, this[first]);
     this.emit('transition', {
       property: propname,
       oldVal: oldVal,
@@ -68,7 +73,7 @@ export default class StateMachine extends EventEmitter {
 
   set(propname, v) {
     // reduce spurious transitions and store operations
-    if (this[propname] === v) {
+    if (this.get(propname) === v) {
       return;
     }
     this.modify(propname, () => v);

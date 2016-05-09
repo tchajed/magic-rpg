@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import StateMachine from './state';
 
 export default class State extends StateMachine {
@@ -32,15 +31,13 @@ export default class State extends StateMachine {
 
   interact(o, obj) {
     if (o === 'manager') {
-      this.ensure('talkedToManager', true);
+      this.set('talkedToManager', true);
     }
     if (o === 'news') {
       this.nextNewsItem();
     }
     if (obj.props.type === 'note') {
-      this.modify('notesSeen', (s) => {
-        return _.assign({}, s, {[o]: true});
-      });
+      this.set(`notesSeen.${o}`, true);
     }
     if (obj.props.type === 'villager') {
       if (o === 'villager1' &&
@@ -51,14 +48,14 @@ export default class State extends StateMachine {
           this.hasTalkedTo(o) &&
          !this.helpedVillager10) {
         this.modify('exp', (e) => e + 30);
-        this.ensure('helpedVillager10', true);
+        this.set('helpedVillager10', true);
       }
 
       if (o === 'villager11' &&
          this.hasTalkedTo(o) &&
          !this.helpdVillager11) {
         this.modify('exp', (e) => e + 30);
-        this.ensure('helpedVillager11', true);
+        this.set('helpedVillager11', true);
       }
 
       if (o === 'villager3') {
@@ -87,9 +84,7 @@ export default class State extends StateMachine {
         }
       }
 
-      this.modify('villagersTalkedTo', (s) => {
-        return _.assign({}, s, {[o]: true});
-      });
+      this.set(`villagersTalkedTo.${o}`, true);
     }
   }
 
