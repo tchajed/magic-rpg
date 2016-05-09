@@ -6,6 +6,7 @@ export default class State extends StateMachine {
       level: 'level1',
       exp: 0,
       room: 'office',
+      enteredRoom: {},
       talkedToManager: false,
       newsItem: -1,
       fastMovement: false,
@@ -18,9 +19,31 @@ export default class State extends StateMachine {
     };
   }
 
+  constructor() {
+    super();
+    this.on('transition', (ev) => {
+      if (ev.property === 'room') {
+        this.set(`enteredRoom.${ev.newVal}`, true);
+      }
+    });
+  }
+
+  talkedToAnyVillagers() {
+    for (let villager of Object.keys(this.villagersTalkedTo)) {
+      if (this.villagersTalkedTo[villager]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   get chapter() {
     if (!this.talkedToManager) {
       return 'intro';
+    }
+    if (this.enteredRoom.village &&
+        !this.talkedToAnyVillagers()) {
+      return 'chapter1';
     }
     return null;
   }
