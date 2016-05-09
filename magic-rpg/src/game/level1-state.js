@@ -13,6 +13,7 @@ export default class State extends StateMachine {
       villagersTalkedTo: {},
       gooseChaseIndex: -1,
       helpedVillager10: false,
+      helpedVillager11: false,
       mailDelivery: 'not-started',
     };
   }
@@ -50,6 +51,13 @@ export default class State extends StateMachine {
          !this.helpedVillager10) {
         this.modify('exp', (e) => e + 30);
         this.ensure('helpedVillager10', true);
+      }
+
+      if (o === 'villager11' &&
+         this.hasTalkedTo(o) &&
+         !this.helpdVillager11) {
+        this.modify('exp', (e) => e + 30);
+        this.ensure('helpedVillager11', true);
       }
 
       if (o === 'villager3') {

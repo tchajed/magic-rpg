@@ -32,6 +32,18 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
   {{else}}
     <p>Thanks for helping!</p>
   {{/haveNotTalkedTo}}
+{{else eq object "villager11"}}
+  {{#haveNotTalkedTo .}}
+    <p>Oh look, it's a wizard! You have some time travel abilities, right? Could you look into the past and find my keys? I'm sure I put them down somewhere in the house but can't find them now.</p>
+  {{else unless state.helpdVillager11}}
+    <p>&hellip;</p>
+
+    <p>Oh right, of course! Thanks!</p>
+
+    {{> expgain amount=30}}
+  {{else}}
+    <p>Thanks for finding those for me!</p>
+  {{/haveNotTalkedTo}}
 {{else eq object "villager3"}}
   {{#haveNotTalkedTo .}}
     <p>Could you do me a favor, stranger? I have this letter for <strong>Darius</strong> and I need it delivered. You look like a trustworthy mail carrier, could you take care of it for me? I'd greatly appreciate it and you would be rewarded!</p>
