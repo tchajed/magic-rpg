@@ -9,9 +9,15 @@ const parseDesc = function(desc) {
     if (lines.length === 0) {
       return [[]];
     }
+    let width = _.max(_.map(lines, (l) => l.length));
     return _.map(lines, (line) => {
-      let row = _.times(line.length, (i) => line.charAt(i));
-      return row;
+      return _.times(width, (i) => {
+        if (i < line.length) {
+          return line.charAt(i);
+        } else {
+          return 'x';
+        }
+      });
     });
 };
 
