@@ -162,8 +162,10 @@ export class Background extends Texture {
     let translate21 = Delta.of(loc, pivot);
     let bg2UL = translate21.apply(Coords.zero);
     let bg2LR = translate21.apply(new Coords(bg2.bounds.height, bg2.bounds.width));
-    let newUL = new Coords(Math.min(0, bg2UL.y), Math.min(0, bg2UL.x));
-    let newLR = new Coords(Math.max(bg2LR.y, bg1.bounds.height), Math.max(bg2UL.x, bg1.bounds.width));
+    let newUL = new Coords(Math.min(0, bg2UL.y),
+                           Math.min(0, bg2UL.x));
+    let newLR = new Coords(Math.max(bg2LR.y, bg1.bounds.height),
+                           Math.max(bg2LR.x, bg1.bounds.width));
     let newSize = new Bounds(newLR.y - newUL.y, newLR.x - newUL.x);
     let translation1 = Delta.of(Coords.zero, newUL);
     let translation2 = translate21.plus(translation1);
