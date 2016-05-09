@@ -10,6 +10,10 @@ export class Bounds {
     return (0 <= coords.x && coords.x + size.width <= this.width &&
       0 <= coords.y && coords.y + size.height <= this.height);
   }
+
+  area() {
+    return this.height * this.width;
+  }
 }
 
 export class Coords {
