@@ -68,7 +68,7 @@ class PanelView extends View {
 class NewsView extends View {
   listen() {
     this.model.state.on('transition', ({property}) => {
-      if (property === 'newsItem') {
+      if (property === 'newsItem' || property === '*') {
         this.update();
       }
     });
