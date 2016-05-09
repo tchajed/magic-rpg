@@ -38,9 +38,10 @@ export default class StateMachine extends EventEmitter {
 
   _resolve(propname) {
     let proppath = propname.split(".");
-    let final = proppath.pop();
+    let first = proppath[0];
+    let prop = proppath.pop();
     let obj = this;
-    if (proppath.length === 0 && obj[final] === undefined) {
+    if (proppath.length === 0 && obj[prop] === undefined) {
       throw new Error(`attempt to access non-existent property ${propname}`);
     }
     proppath.forEach((component, i) => {
@@ -50,7 +51,7 @@ export default class StateMachine extends EventEmitter {
       }
       obj = obj[component];
     });
-    return {obj, prop: final, first: proppath[0]};
+    return {obj, prop, first};
   }
 
   get(propname) {
@@ -60,7 +61,7 @@ export default class StateMachine extends EventEmitter {
 
   modify(propname, f) {
     let {obj, prop, first} = this._resolve(propname);
-    let oldVal = obj[propname];
+    let oldVal = obj[prop];
     let v = f(oldVal);
     obj[prop] = v;
     store.set(first, this[first]);
