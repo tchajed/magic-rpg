@@ -5,7 +5,9 @@ import map from './level1-boss1.map.txt';
 
 const background = Background.create(map, {
   2: {name: 'stitch2'},
+  3: {name: 'stitch3'},
   A: {name: 'boss1'},
+  D: {name: 'boss1-door'},
 }).boxDrawing();
 
 const objects = () => {
@@ -16,6 +18,13 @@ const objects = () => {
         'defeated': Texture.create("!"),
       },
       {name: 'Boss'}
+    ),
+    'boss1-door': new Entity(
+      {
+        'default': Texture.create("|\n|"),
+        'open': Texture.create(""),
+      },
+      {name: 'Door'}
     ),
   };
 };

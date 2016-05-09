@@ -172,6 +172,11 @@ export default class State extends StateMachine {
         return 'defeated';
       }
     }
+    if (o === 'boss1-door') {
+      if (this.beatBoss1) {
+        return 'open';
+      }
+    }
     return 'default';
   }
 
