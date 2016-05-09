@@ -5,6 +5,14 @@ Delaware company).</p>
 <p>You have {{state.exp}} experience.</p>
 
 <button id="clear-data">clear data</button>
+
+<button id="toggle-selection-behavior">
+  {{#if state.toggleSelection}}
+  disable selection toggle
+  {{else}}
+  enable selection toggle
+  {{/if}}
+</button>
 {{else eq object "table"}}
 
 This is just a conference table. There's nothing on it and it isn't important.

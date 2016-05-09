@@ -183,7 +183,7 @@ Mousetrap.bind('space', () => {
   game.action();
   return false;
 });
-Mousetrap.bind('shift+space', () => {
+Mousetrap.bind(['shift+space', 'escape'], () => {
   game.select(null);
   return false;
 });

@@ -28,6 +28,9 @@ export default class Writing {
           this.state.clear();
           this.state.reset();
         }
+        if (e.target.id === 'toggle-selection-behavior') {
+          this.state.modify('toggleSelection', (b) => !b);
+        }
       },
     });
   }

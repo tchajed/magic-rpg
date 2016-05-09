@@ -111,8 +111,15 @@ export default class Game extends EventEmitter {
     if (o !== null) {
       this.assertValidObject(o);
     }
-    let newSelection = this.selection === o ? null : o;
-    if (this.selection !== null) {
+    let newSelection = o;
+    if (newSelection === this.selection) {
+      if (this.state.toggleSelection) {
+        newSelection = null;
+      } else {
+        return;
+      }
+    }
+    if (newSelection === null) {
       // interact on de-selection
       this.state.interact(this.selection, this.object(this.selection));
     }
