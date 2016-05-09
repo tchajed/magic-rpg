@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import {Texture, Background, asciiBlock} from '../../game/assets';
 import Entity from '../../game/entity';
+import LevelMap from './level-map';
 import map from './level1-office.map.txt';
 
 const background = Background.create(map, {
@@ -19,11 +20,11 @@ const background = Background.create(map, {
   1: {name: 'stitch'}
 }).boxDrawing();
 
-const objects = (background) => {
+const objects = () => {
   let player = new Entity(
     Texture.create("@"),
     {name: "Player - level 3 wizard"}
-  ).placeAt(background.loc('player'));
+  );
 
   let objects = {
     manager: new Entity(
@@ -86,8 +87,6 @@ const objects = (background) => {
 
   for (let o of Object.keys(objects)) {
     let obj = objects[o];
-    obj.placeAt(background.loc(o));
-    obj.props.room = 'office';
     if (obj.props.type === 'note') {
       if (o.startsWith('hint')) {
         obj.textures['note-seen'] = Texture.create("*");
@@ -100,4 +99,4 @@ const objects = (background) => {
   return _.merge(objects, {player});
 };
 
-export default { background, objects };
+export default new LevelMap("office", background, objects);

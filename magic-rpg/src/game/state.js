@@ -67,6 +67,10 @@ export default class StateMachine extends EventEmitter {
   }
 
   set(propname, v) {
+    // reduce spurious transitions and store operations
+    if (this[propname] === v) {
+      return;
+    }
     this.modify(propname, () => v);
   }
 

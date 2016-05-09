@@ -6,6 +6,7 @@ export default class State extends StateMachine {
     return {
       level: 'level1',
       exp: 0,
+      room: 'office',
       talkedToManager: false,
       newsItem: -1,
       fastMovement: false,

@@ -1,10 +1,7 @@
 import {Texture, Background} from '../../game/assets';
 import Entity from '../../game/entity';
+import LevelMap from './level-map';
 import map from './level1-village.map.txt';
-
-// TODO: can abstract this away to a Map class (need different name, though)
-// that automatically does the boxDrawing, adds placements, has a name (for
-// eventually keeping track of current room).
 
 const background = Background.create(map, {
   1: {name: 'stitch'},
@@ -22,7 +19,7 @@ const background = Background.create(map, {
   L: {name: 'villager12'},
 }).boxDrawing();
 
-const objects = (background) => {
+const objects = () => {
   let villagers = {};
   for (let i = 1; i <= 12; i++) {
       let o = 'villager' + i;
@@ -40,12 +37,7 @@ const objects = (background) => {
   }
   let objects = villagers;
 
-  for (let o of Object.keys(objects)) {
-    objects[o].placeAt(background.loc(o));
-    objects[o].props.room = 'village';
-  }
-
   return objects;
 };
 
-export default {background, objects};
+export default new LevelMap("village", background, objects);

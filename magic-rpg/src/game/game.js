@@ -147,6 +147,7 @@ export default class Game extends EventEmitter {
     o.coords = newCoords;
     if (objectId === 'player') {
       store.set('playerCoords', o.coords);
+      this.state.set('room', this.bg.room(o.coords.y, o.coords.x));
       this.centerAround(objectId);
     }
     this.emit('change', {

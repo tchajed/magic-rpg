@@ -3,7 +3,12 @@ import {Bounds, Coords, Delta} from './graphics';
 import boxDrawing from './boxDrawing';
 
 const parseDesc = function(desc) {
-    let lines = desc.split("\n");
+    let lines = _.filter(desc.split("\n"), (line) => {
+      return line.length > 0;
+    });
+    if (lines.length === 0) {
+      return [[]];
+    }
     return _.map(lines, (line) => {
       let row = _.times(line.length, (i) => line.charAt(i));
       return row;
@@ -74,29 +79,47 @@ const parseNames = (cells, labelToNameMapping) => {
 };
 
 export class Background extends Texture {
-  constructor(cells, mask, traversable, metadata) {
+  constructor(cells, cellProps, metadata) {
     super(cells);
-    this._mask = mask;
-    this.traversable = traversable;
+    this.cellProps = cellProps;
     this.metadata = metadata;
   }
 
   mask(y, x) {
-    return this._mask[y][x];
+    return this.cellProps[y][x].mask;
+  }
+
+  traversable(y, x) {
+    return this.cellProps[y][x].traversable;
+  }
+
+  room(y, x) {
+    return this.cellProps[y][x].room;
   }
 
   static create(desc, labelToNameMapping) {
     let cells = parseDesc(desc);
     let nameToLocs = parseNames(cells, labelToNameMapping);
-    let mask = _.map(cells, (row) => {
-      return _.map(row, (cell) => cell !== 'x');
+    let cellProps = _.map(cells, (row) => {
+      return _.map(row, (cell) => {
+        return {
+          mask: cell !== 'x',
+          traversable: cell === ' ',
+        };
+      });
     });
-    let traversable = _.map(cells, (row) => {
-      return _.map(row, (cell) => cell === ' ');
-    });
-    return new Background(cells, mask, traversable, {
+    return new Background(cells, cellProps, {
       locs: nameToLocs,
     });
+  }
+
+  setRoom(name) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        this.cellProps[y][x].room = name;
+      }
+    }
+    return this;
   }
 
   loc(name) {
@@ -110,7 +133,7 @@ export class Background extends Texture {
     for (var dy = 0; dy < size.height; dy++) {
       for (var dx = 0; dx < size.width; dx++) {
         if (!this.mask(coords.y + dy, coords.x + dx) ||
-          !this.traversable[coords.y + dy][coords.x + dx]) {
+          !this.traversable(coords.y + dy, coords.x + dx)) {
           return true;
         }
       }
@@ -140,8 +163,11 @@ export class Background extends Texture {
     };
 
     let cells = emptyArray(newSize, 'x');
-    let mask = emptyArray(newSize, false);
-    let traversable = emptyArray(newSize, false);
+    let cellProps = emptyArray(newSize, {
+      mask: false,
+      traversable: false,
+      room: 'none',
+    });
     let locs = new Map();
 
     let copyFrom = (bg, translation) => {
@@ -149,8 +175,7 @@ export class Background extends Texture {
         _.times(bg.bounds.width, (x) => {
           let newCoords = translation.apply(new Coords(y, x));
           cells[newCoords.y][newCoords.x] = bg.cells[y][x];
-          mask[newCoords.y][newCoords.x] = bg._mask[y][x];
-          traversable[newCoords.y][newCoords.x] = bg.traversable[y][x];
+          cellProps[newCoords.y][newCoords.x] = _.clone(bg.cellProps[y][x]);
         });
       });
 
@@ -162,6 +187,6 @@ export class Background extends Texture {
     copyFrom(bg1, translation1);
     copyFrom(bg2, translation2);
 
-    return new Background(cells, mask, traversable, {locs});
+    return new Background(cells, cellProps, {locs});
   }
 }
