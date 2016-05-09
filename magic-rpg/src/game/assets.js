@@ -92,6 +92,10 @@ export class Background extends Texture {
   }
 
   mask(y, x) {
+    if (this.cellProps[y] === undefined ||
+        this.cellProps[y][x] === undefined) {
+      return false;
+    }
     return this.cellProps[y][x].mask;
   }
 
@@ -138,8 +142,10 @@ export class Background extends Texture {
   collides(coords, size) {
     for (var dy = 0; dy < size.height; dy++) {
       for (var dx = 0; dx < size.width; dx++) {
-        if (!this.mask(coords.y + dy, coords.x + dx) ||
-          !this.traversable(coords.y + dy, coords.x + dx)) {
+        let y = coords.y + dy,
+          x = coords.x + dx;
+        if (!this.mask(y, x) ||
+          !this.traversable(y, x)) {
           return true;
         }
       }
