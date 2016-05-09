@@ -1,6 +1,7 @@
 {{#eq object "villager1"}}
 An ordinary citizen stands in the middle of the road. They look friendly enough.
 
+{{#haveNotTalkedTo .}}
   <blockquote>
     <p>Hi, stranger! How are you? I'm fine, thanks.</p>
 
@@ -12,15 +13,23 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
 
     {{> expgain amount=30}}
   </blockquote>
+{{else}}
+  <p>&hellip; but they don't say anything.</p>
+{{/haveNotTalkedTo}}
 {{else eq object "villager6"}}
+  <blockquote>
   <p>Hello, wizard. You work in that big office building just down the road, right? I can tell because it's the only company that still requires business casual dress in these parts any more.</p>
 
   <p>Did you know there's a secret hidden in the big manager's office? It looks empty but there's actually something in the floor. Look around and you might bump into it!</p>
+  </blockquote>
 {{else eq object "villager8"}}
+  <blockquote>
   <p>A wizard, eh? We don't appreciate your kind around here. And by we I mean me in particular, and by "your kind" I mean unpromoted wizards.</p>
 
   <p>The last one of you that came by had a line clamoring after him looking for help with this or that, hoping for some freebies from an expert. Boy were they in for a surprise! He helped the first three with some shoddy work, as if he were just doing it for practice, and then just ran off! Can you believe that? I sure hope you'll at least try to be helpful.</p>
+  </blockquote>
 {{else eq object "villager10"}}
+  <blockquote>
   {{#haveNotTalkedTo .}}
     <p>Hey, wizard! How's it going? Yeah, me too!</p>
 
@@ -32,7 +41,9 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
   {{else}}
     <p>Thanks for helping!</p>
   {{/haveNotTalkedTo}}
+  </blockquote>
 {{else eq object "villager11"}}
+  <blockquote>
   {{#haveNotTalkedTo .}}
     <p>Oh look, it's a wizard! You have some time travel abilities, right? Could you look into the past and find my keys? I'm sure I put them down somewhere in the house but can't find them now.</p>
   {{else unless state.helpedVillager11}}
@@ -44,7 +55,9 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
   {{else}}
     <p>Thanks for finding those for me!</p>
   {{/haveNotTalkedTo}}
+  </blockquote>
 {{else eq object "villager3"}}
+  <blockquote>
   {{#haveNotTalkedTo .}}
     <p>Could you do me a favor, stranger? I have this letter for <strong>Darius</strong> and I need it delivered. You look like a trustworthy mail carrier, could you take care of it for me? I'd greatly appreciate it and you would be rewarded!</p>
   {{else eq state.mailDelivery "taken"}}
@@ -58,7 +71,9 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
   {{else eq state.mailDelivery "fully-rewarded"}}
     <p>I heard (from someone who isn't Darius) that you talked to him and he gave you a little bonus for your efforts. Good for you!</p>
   {{/haveNotTalkedTo}}
+  </blockquote>
 {{else eq object "villager4"}}
+  <blockquote>
   {{#eq state.mailDelivery "not-started"}}
     <p>Oh when will <strong>Caroline</strong> send me that letter she owes me? If only there were a way to reach her.</p>
 
@@ -77,14 +92,20 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
     <p>Thank you for all your help.</p>
 
     {{> expgain amount="30"}}
+  {{else eq state.mailDelivery "fully-rewarded"}}
+    <p>Thank you for all your help.</p>
   {{/eq}}
+  </blockquote>
 {{else eq object "villager2"}}
+  <blockquote>
   {{#gooseChaseDone .}}
     <p>Hey there wizard. Name's Bob. How's finding everything going?</p>
   {{else}}
     <p>Hey there wizard. I have a job for you &mdash; could you find <strong>Loki</strong> for me? He has a thing that I need.</p>
   {{/gooseChaseDone}}
+  </blockquote>
 {{else eq object "villager12"}}
+  <blockquote>
   {{#gooseChaseDone .}}
     <p>Oh yeah, I have that. Well almost. Just go find <strong>Eve</strong> for the last tweak.</p>
   {{else}}
@@ -96,18 +117,23 @@ An ordinary citizen stands in the middle of the road. They look friendly enough.
   {{else}}
     <p>Hey man.</p>
   {{/gooseChaseDone}}
+  </blockquote>
 {{else eq object "villager7"}}
+  <blockquote>
   {{#gooseChaseDone .}}
     <p>Oh yeah, I have that. Well almost. Just go find <strong>Isaac</strong> for the last tweak.</p>
   {{else}}
     <p>Hey man.</p>
   {{/gooseChaseDone}}
+  </blockquote>
 {{else eq object "villager9"}}
+  <blockquote>
   {{#gooseChaseDone .}}
     <p>Oh yeah, I have that. Well almost. Just go find <strong>Bob</strong> for the last tweak.</p>
   {{else}}
     <p>Hey man.</p>
   {{/gooseChaseDone}}
+  </blockquote>
 {{else}}
   {{> notfound}}
 {{/eq}}
