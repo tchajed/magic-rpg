@@ -5,6 +5,7 @@ import map from './boss2.map.txt';
 
 const background = Background.create(map, {
   6: {name: 'stitch6'},
+  7: {name: 'stitch7'},
   B: {name: 'boss2'},
   a: {name: 'boss2-lackey1'},
   b: {name: 'boss2-lackey2'},

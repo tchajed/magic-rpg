@@ -1,0 +1,65 @@
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx+-----------------------+                                                                             x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                       |                                                                             x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  +--------------------+                                                                             x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |                                                                                                  x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  +--------------------------------------------------------------                                    x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |                                                             a                                    x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   +----------------------------------------------------------                                    x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |                                                                                              x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |                                                                                              x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |                                                                                              x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |                                                                                              x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |                                                                                              x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |---+------------------                                                                        x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |   |                 b                                                                        x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  |   |   |   +--------------                                                                        x
+xxxx+----------------------------------------------------------------------------+xxx|  |   |   |   |                                                                                      x
+xxxx|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo+---+  |   |   |   |                                                                                      x
+xxxx|oooooooooooooooooooooooooooooooooooooooooo+-----------------o                      |   |   |   |                                                                                      x
+xxxx|oooooooooooooooooooooooooooooooooooooooooo|                   o--------------------+   |   |   |                                                                                      x
+xxxx|ooooooooooooooooooooooooooo+--------------+ +---------------+                          |   |   |                                                                                      x
+xxxx|ooooooooooooooooooooooooooo|                |ooooooooooooooo+--------------------------+   |   |    +---------+                                                                       x
+xxxx|ooooooooooooooooooooooooooo| +------------+ +---------------+                              |   |    |         |                                                                       x
+xxxx|ooooooooooooooooooooooooooo| |oooooooooooo|                   o----------------------------+   |    |   +-----+---------------------------------------------------                    x
+xxxx|oooooooooo+----------------+ |oooooooooooo+-----------------+                                  |    |   |                                                        c                    x
+xxxx|oooooooooo|                  |oooooooooooooooooooooooooooooo+----------------------------------+    |   |    +----------+-----------------------------------------                    x
+xxxx|oooooooooo| +--------------+ |oooooooooooo+-----------------+                                       |   |    |          |                                                             x
+xxxx|oooooooooo| |oooooooooooooo| |oooooooooooo|                   o-------------------------------------+   |    |    +-----+                                                             x
+xxxx|oooooooooo| |oooooooooooooo| +------------+ +---------------+                                           |    |    |                                                                   x
+xxxx|oooooooooo| |oooooooooooooo|                |ooooooooooooooo+-------------------------------------------+    |    |                                                                   x
+xxxx|oooooooooo| |oooooooooooooo+--------------+ +---------------+                                                |    |                                                                   x
+----+oooooooooo| |ooooooooooooooooooooooooooooo|                   o----------------------------------------------+    |                                                                   x
+    +----------+ |ooooooooooooooooooooooooooooo+-----------------+                                                     |                                                                   x
+7                |ooooooooooooooooooooooooooooooooooooooooooooooo+-------------------------------+---------------------+             +---------                                            x
+    +----------+ |ooooooooooooooooooooooooooooo+-----------------+                               |                                   |        d                                            x
+----+oooooooooo| |ooooooooooooooooooooooooooooo|                   o------------------------+    +-----------------------------------+  +------                                            x
+xxxx|oooooooooo| |oooooooooooooo+--------------+ +---------------+                          |                                           |                                                  x
+xxxx|oooooooooo| |oooooooooooooo|                |ooooooooooooooo+--------------------------+------------------------------+------------+                                                  x
+xxxx|oooooooooo| |oooooooooooooo| +------------+ +---------------+                                                         |                                                               x
+xxxx|oooooooooo| |oooooooooooooo| |oooooooooooo|                   o---------------------------------------------------+   |                                                               x
+xxxx|oooooooooo| +--------------+ |oooooooooooo+-----------------+                                                     |   |                                                               x
+xxxx|oooooooooo|                  |oooooooooooooooooooooooooooooo+--------------------------------------------------+  |   |                                                               x
+xxxx|oooooooooo+----------------+ |oooooooooooo+-----------------+                                                  |  |   +---------------------------+                                   x
+xxxx|ooooooooooooooooooooooooooo| |oooooooooooo|                   o--------------------------------------------+   |  |                               |                                   x
+xxxx|ooooooooooooooooooooooooooo| +------------+ +---------------+                                              |   +--+----------------------------+  |                                   x
+xxxx|ooooooooooooooooooooooooooo|                |ooooooooooooooo+-------------------------------------------+  |   |                               |  |                                   x
+xxxx|ooooooooooooooooooooooooooo+--------------+ +---------------+                                           |  |   |                               |  |                                   x
+xxxx|oooooooooooooooooooooooooooooooooooooooooo|                   o--------------------------------------+  |  |   |                               |  |                                   x
+xxxx|oooooooooooooooooooooooooooooooooooooooooo+-----------------o                                        |  |  |   |                               |  |                                   x
+xxxx|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo                         |  |  |   |                               |  |                                   x
+xxxx+--------------------------------------------------------------------------------------------+        |  |  |   +--------------------------+    |  +-----------------------------------x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|        |  |  |                              |    |                                     8x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|        |  |  +------------------------+-----+    +--------------------------------------x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|        |  |                           |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx+---------+        |  +------------------------+  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                  |                           |  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                  |                           |  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx+------------------+                           |  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                           |  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                           |  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                           |  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                           |  |                                                 x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                           |  +---------------                                  x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|                           |                 e                                  x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx+---------------------------+------------------                                  x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
