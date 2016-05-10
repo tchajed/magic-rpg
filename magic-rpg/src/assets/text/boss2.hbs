@@ -1,0 +1,24 @@
+{{#eq object 'boss2-lackey1'}}
+  <p>An office worker sits at his desk. He has a pile of papers on his
+  desk.</p>
+
+  <blockquote>
+    <p>Are you going in there to fight our boss? Good luck with that.</p>
+  </blockquote>
+{{else eq object 'boss2-lackey2'}}
+  <p>An office worker is intently focused on his work.</p>
+
+  <blockquote>
+    <p>&hellip;</p>
+    <p>Who are you? Why are you bothering me? It's times like these I wish I
+    could just close my door.</p>
+  </blockquote>
+{{else eq object 'boss2-lackey3'}}
+  <p>An office worker pretends to work, but his screen is clearly showing Reddit.</p>
+
+  <blockquote>
+    <p>Huh, are you here for the boss man? He's just through that open door.</p>
+  </blockquote>
+{{else}}
+  {{> notfound}}
+{{/eq}}

@@ -30,6 +30,10 @@ export default class State extends StateMachine {
       buyStatus: 'ignorant',
       sourced: {},
       bridgeStatus: 0,
+
+      // boss2
+
+      beatBoss2: false,
     };
   }
 
@@ -56,6 +60,7 @@ export default class State extends StateMachine {
       'notesSeen.hint3': true,
       'bridgeStatus': true,
       'buyStatus': (oldVal, newVal) => newVal === 'explained',
+      beatBoss2: true,
     };
     let check = checks[ev.property];
     if (check === undefined) {
@@ -122,6 +127,9 @@ export default class State extends StateMachine {
     }
     if (obj.props.type === 'dealer') {
       this.interactDealer(o, obj);
+    }
+    if (o === 'boss2') {
+      this.set('beatBoss2', true);
     }
   }
 
@@ -268,6 +276,16 @@ export default class State extends StateMachine {
     if (obj.props.type === 'dealer') {
       if (this.sourced[obj.props.resource]) {
         return 'purchased';
+      }
+    }
+    if (o === 'boss2') {
+      if (this.beatBoss2) {
+        return 'defeated';
+      }
+    }
+    if (o === 'boss2-exit') {
+      if (this.beatBoss2) {
+        return 'open';
       }
     }
     return 'default';
