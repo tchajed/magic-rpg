@@ -10,8 +10,14 @@ function getCell(cells, y, x) {
 }
 
 function arrayMatch(mask, expected, a) {
+  let matchExpected = (e, v) => {
+    if (Array.isArray(e)) {
+      return e.indexOf(v) !== -1;
+    }
+    return e === v;
+  };
   for (let i = 0; i < mask.length; i++) {
-    if (mask[i] && expected[i] !== a[i]) {
+    if (mask[i] && !(matchExpected(expected[i], a[i]))) {
       return false;
     }
   }
@@ -31,7 +37,12 @@ function replacement(surr) {
     [[true, false, false, true], '┘'],
     [[false, false, true, true], '┐'],
   ], ([mask, repl]) => {
-    if (arrayMatch(mask, ['|', '-', '|', '-'], surr)) {
+    if (arrayMatch(mask, [
+      ['|', '+'],
+      ['-', '+'],
+      ['|', '+'],
+      ['-', '+'],
+    ], surr)) {
       r = repl;
       return false;
     }
@@ -41,6 +52,7 @@ function replacement(surr) {
 }
 
 export default function boxDrawing(cells) {
+  let replacements = [];
     _.each(cells, (row, y) => {
         _.each(row, (cell, x) => {
             if (cell === '+') {
@@ -50,10 +62,20 @@ export default function boxDrawing(cells) {
                     getCell(cells, y+1, x),
                     getCell(cells, y, x-1),
                 ];
-                cells[y][x] = replacement(surroundings) || "+";
+                // buffer replacements so we can match on + while computing
+                // them
+                let repl = replacement(surroundings);
+                if (repl) {
+                  replacements.push({y, x, repl});
+                }
             }
         });
     });
+    // replace all +'s
+    _.each(replacements, ({y, x, repl}) => {
+      cells[y][x] = repl;
+    });
+    // replace other line-drawing characters
     _.each(cells, (row, y) => {
         _.each(row, (cell, x) => {
             if (cell === '-') {
