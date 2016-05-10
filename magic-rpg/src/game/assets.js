@@ -188,8 +188,10 @@ export class Background extends Texture {
       _.times(bg.bounds.height, (y) => {
         _.times(bg.bounds.width, (x) => {
           let newCoords = translation.apply(new Coords(y, x));
-          cells[newCoords.y][newCoords.x] = bg.cells[y][x];
-          cellProps[newCoords.y][newCoords.x] = _.clone(bg.cellProps[y][x]);
+          if (bg.cellProps[y][x].mask) {
+            cells[newCoords.y][newCoords.x] = bg.cells[y][x];
+            cellProps[newCoords.y][newCoords.x] = _.clone(bg.cellProps[y][x]);
+          }
         });
       });
 
