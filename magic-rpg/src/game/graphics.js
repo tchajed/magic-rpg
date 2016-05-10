@@ -127,6 +127,8 @@ export class RenderBuffer {
     });
   }
 
+  // TODO: this is pretty heavy in the profile; for bg, should not render every
+  // texture pixel but instead every viewport pixel
   renderAt(basePos, texture, objectId=null, className="") {
     _.each(texture.cells, (row, dy) => {
       _.each(row, (c, dx) => {

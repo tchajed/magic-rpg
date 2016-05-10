@@ -78,7 +78,7 @@ export default class Game extends EventEmitter {
     let viewOrigin = this.viewPort.translate(new Coords(0, 0));
     buf.renderAt(viewOrigin, this.bg, 'bg');
 
-    for (let id of Object.keys(this.objects)) {
+    _.forOwn(this.objects, (v, id) => {
       let o = this.object(id);
       buf.renderAt(
         this.viewPort.translate(o.coords),
@@ -90,7 +90,7 @@ export default class Game extends EventEmitter {
           { selected: id === this.selection }
         )
       );
-    }
+    });
 
     return buf.compressed();
   }
