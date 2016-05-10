@@ -49,7 +49,7 @@ export default class StateMachine extends EventEmitter {
     }
     proppath.forEach((component, i) => {
       if (obj[component] === undefined) {
-        let badpath = ".".join(propath.slice(i));
+        let badpath = proppath.slice(i).join(".");
         throw new Error(`attempt to access non-existent path ${badpath}`);
       }
       obj = obj[component];
