@@ -3,7 +3,7 @@
     <p>Hi, we could use your help. We run a magic carpet business, but we lost
     access to all our raw materials at the same time! Maybe you could help us
     source them from the right suppliers?</p>
-  {{else}}
+  {{else eq state.buyStatus 'explained'}}
     <p>Great! Thanks for agreeing to help us out. We're counting on you to get
     our town's economy back on track and avoid putting lots of people out of
     work.</p>
@@ -13,6 +13,34 @@
     in-house, but we need your help sourcing the materials. Don't make the
     materials <em>too</em> expensive, or we'll be better off not making any and
     that's just what we'll do.</p>
+  {{else}}
+  {{#if state.isMissingResources}}
+  <p>As you know, it takes thread, magical powder, and a power source to make a
+  magic carpet. Where are we going to get the {{state.missingResources}}?</p>
+  {{/if}}
+  {{#if state.doneSourcing}}
+  <p>These are perfect! Thank you so much!</p>
+  {{else}}
+  {{#unless state.sourceConstraints.[one-power]}}
+  <p>There are too many batteries in that. Why would you do that?</p>
+  {{else unless state.sourceConstraints.[silk->uranium]}}
+  <p>Ooh, it looks like the magic carpets are underpowered. Are you sure your
+  choice of thread and power source work together?</p>
+  {{else unless state.sourceConstraints.[!silk+uranium]}}
+  <p>These materials are too expensive! We'd lose money buy making them, so why
+  bother?</p>
+  {{else unless state.sourceConstraints.[!polyester]}}
+  <p>We made one and it just kind of fell apart.</p>
+  {{else unless state.sourceConstraints.[lion->power]}}
+  <p>The magic carpets are slightly underpowered in quality assurance tests. Can you try to get materials that get us more range?</p>
+  {{else unless state.sourceConstraints.[power->silk]}}
+  <p>We couldn't get the magic to stick, so they didn't really have
+  <em>flight</em>, just <em>lift</em>. It works for me, but it'll never get
+  past safety regulations.</p>
+  {{else}}
+  <div class="error">Some constraint should be violated</div>
+  {{/unless}}
+  {{/if}}
   {{/eq}}
 {{else eq obj.props.type "dealer"}}
 {{#buying .}}

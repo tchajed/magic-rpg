@@ -317,21 +317,40 @@ export default class State extends StateMachine {
       'thread':  sourced.polyester || sourced.cotton || sourced.silk,
       'powder': sourced.control || sourced.power || sourced.all,
       'power': sourced.lion || sourced.ur || sourced.all,
+      'one-power': countTrue([sourced.lion, sourced.ur, sourced.all]) === 1,
       'silk->uranium': implies(sourced.silk, sourced.uranium),
       '!silk+uranium': !(sourced.silk && sourced.uranium),
       '!polyester': !sourced.polyester,
       'lion->power': implies(sourced.lion, sourced.power),
       'power->silk': implies(sourced.power, sourced.silk),
-      'one-power': countTrue([sourced.lion, sourced.ur, sourced.all]) === 1,
     };
   }
 
-  get halfwaySourced() {
+  get missingResources() {
+    let constraints = this.sourceConstraints;
+    let resources = _.flatMap(['thread', 'powder', 'power'], (resource) => {
+      return constraints[resource] ? [] : [resource];
+    });
+    if (resources.length === 0) {
+      return '';
+    }
+    if (resources.length === 1) {
+      return resources[0];
+    }
+    resources[resources.length-1] = "and " + resources[resources.length-1];
+    return resources.join(", ");
+  }
+
+  get isMissingResources() {
     let constraints = this.sourceConstraints;
     if (constraints.thread && constraints.powder && constraints.power) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
+  }
+
+  get halfwaySourced() {
+    return !this.isMissingResources;
   }
 
   get almostDoneSourcing() {
