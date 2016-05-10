@@ -1,7 +1,7 @@
 export default class LevelMap {
   constructor(name, background, objects) {
     this.name = name;
-    this.background = background.setRoom(name);
+    this.background = background.boxDrawing().setRoom(name);
     this._objects = objects();
   }
 

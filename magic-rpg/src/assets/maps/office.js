@@ -19,7 +19,7 @@ const background = Background.create(map, {
   C: {name: 'hint3'},
   D: {name: 'door'},
   1: {name: 'stitch1'}
-}).boxDrawing();
+});
 
 const objects = () => {
   let player = new Entity(

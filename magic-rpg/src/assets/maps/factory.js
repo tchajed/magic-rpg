@@ -18,7 +18,7 @@ const background = Background.create(map, {
   A: {name: 'all-dealer'},
   L: {name: 'lion-dealer'},
   U: {name: 'ur-dealer'},
-}).boxDrawing();
+});
 
 const objects = () => {
   let dealer = (name, resource) => {

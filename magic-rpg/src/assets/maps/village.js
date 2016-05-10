@@ -18,7 +18,7 @@ const background = Background.create(map, {
   J: {name: 'villager10'},
   K: {name: 'villager11'},
   L: {name: 'villager12'},
-}).boxDrawing();
+});
 
 const objects = () => {
   let villagers = {};

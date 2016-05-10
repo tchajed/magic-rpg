@@ -8,7 +8,7 @@ const background = Background.create(map, {
   3: {name: 'stitch3'},
   A: {name: 'boss1'},
   D: {name: 'boss1-door'},
-}).boxDrawing();
+});
 
 const objects = () => {
   return {

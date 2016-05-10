@@ -5,7 +5,7 @@ import map from './factory-road.map.txt';
 const background = Background.create(map, {
   3: {name: 'stitch3'},
   4: {name: 'stitch4'},
-}).boxDrawing();
+});
 
 const objects = () => {
   return {};
