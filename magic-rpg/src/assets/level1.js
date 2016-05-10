@@ -6,6 +6,7 @@ import village from './maps/village';
 import boss1 from './maps/boss1';
 import factoryRoad from './maps/factory-road';
 import factory from './maps/factory';
+import boss2Road from './maps/boss2-road';
 
 let levelMaps = [
   [office, null],
@@ -13,6 +14,7 @@ let levelMaps = [
   [boss1, 'stitch2'],
   [factoryRoad, 'stitch3'],
   [factory, 'stitch4'],
+  [boss2Road, 'stitch5'],
 ];
 
 function stitchAll(levelMaps) {
