@@ -1,7 +1,7 @@
 import {Texture, Background} from '../../game/assets';
 import Entity from '../../game/entity';
 import LevelMap from './level-map';
-import map from './level1-village.map.txt';
+import map from './village.map.txt';
 
 const background = Background.create(map, {
   1: {name: 'stitch1'},

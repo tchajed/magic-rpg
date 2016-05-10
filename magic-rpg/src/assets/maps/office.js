@@ -2,7 +2,7 @@ import _ from 'lodash';
 import {Texture, Background, asciiBlock} from '../../game/assets';
 import Entity from '../../game/entity';
 import LevelMap from './level-map';
-import map from './level1-office.map.txt';
+import map from './office.map.txt';
 
 const background = Background.create(map, {
   P: {name: 'player'},
