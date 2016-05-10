@@ -16,18 +16,18 @@ xxxxxxxxxxxxxxxx|           |@@  N  *>|       | *& C & $|      |    S    |      
   |xxxxxxxxxxxxx|                                                                              |####\ |####\ |####\      |###|                                     |
   |xxxxxxxxxxxxx|                                                                             |######|######|######\-----+###|                                     |
   |xxxxxxxxxxxxx|           +---------+       +---------+                                     |                              |                                     |
-  |xxxxxxxxxxxxx|           |         |       |         |                                     |            +--+     \|/      |                                     |
-  |xxxxxxxxxxxxx|           |    F    |       |    P    |                                     |     I      |%%|    --+--     |                                     |
-  |xxxxxxxxxxxxx|           |         |       |         |                                     |            +--+     /|\                                            |
-  |xxxxxxxxxxxxx|           |         |       |         |                                     |                                                                    |
+  |xxxxxxxxxxxxx|           | .  .. . |       | .  ...  |                                     |            +--+     \|/      |                                     |
+  |xxxxxxxxxxxxx|           |..  F    |       | .  P   .|                                     |     I      |%%|    --+--     |                                     |
+  |xxxxxxxxxxxxx|           |        .|       |.    .   |                                     |            +--+     /|\                                            |
+  |xxxxxxxxxxxxx|           |.        |       |         |                                     |                                                                    |
   +-------------+           +---- ----+       +---- ----+        +---------+                  |     -------------            |                                     |
-  B                                                              |         |                  |     O     O     O            |                                     |
-5                 W                                              |    A    |                  |                              |                                     |
-                                                                 |         |                  |                              |                                     |
+  B                                                              |.  =   ==|                  |     O     O     O            |                                     |
+5                 W                                              |.^  A   &|                  |                              |                                     |
+                                                                 | .      =|                  |                              |                                     |
   +-------------+          +---------+        +---------+        |         |                  +------------------------------+                                     |
-  |xxxxxxxxxxxxx|          |         |        |         |        +---- ----+                                                                                       |
-  |xxxxxxxxxxxxx|          |    L    |        |    U    |                                                                                                          |
-  |xxxxxxxxxxxxx|          |         |        |         |                                                                                                          |
+  |xxxxxxxxxxxxx|          |= =  == =|        |$$    @# |        +---- ----+                                                                                       |
+  |xxxxxxxxxxxxx|          |^   L    |        |X   U   X|                                                                                                          |
+  |xxxxxxxxxxxxx|          | &     & |        |         |                                                                                                          |
   |xxxxxxxxxxxxx|          |         |        |         |                                                                                                          |
   |xxxxxxxxxxxxx|          +---- ----+        +---- ----+                                                                                                          |
   |xxxxxxxxxxxxx|                                                                                                                                                  |
