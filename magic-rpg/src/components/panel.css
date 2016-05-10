@@ -62,3 +62,7 @@ kbd {
 .boss1.defeated {
   color: inherit;
 }
+
+.purchased {
+  color: #5f8700;
+}

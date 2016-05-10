@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {Texture, asciiBlock, Background} from '../../game/assets';
 import Entity from '../../game/entity';
 import LevelMap from './level-map';
@@ -28,7 +29,9 @@ const objects = () => {
       },
       {
         name: name + ' Dealer',
+        resourceName: name.toLowerCase(),
         resource,
+        type: 'dealer',
       }
     );
   };

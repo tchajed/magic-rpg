@@ -1,4 +1,9 @@
+import _ from 'lodash';
 import StateMachine from './state';
+
+function countTrue(booleans) {
+  return _.filter(booleans).length;
+}
 
 export default class State extends StateMachine {
   defaults() {
@@ -19,6 +24,12 @@ export default class State extends StateMachine {
       helpedVillager11: false,
       mailDelivery: 'not-started',
       beatBoss1: false,
+
+      // factory
+
+      buyStatus: 'ignorant',
+      sourced: {},
+      bridgeStatus: 0,
     };
   }
 
@@ -43,8 +54,17 @@ export default class State extends StateMachine {
       'notesSeen.hint1': true,
       'notesSeen.hint2': true,
       'notesSeen.hint3': true,
+      'bridgeStatus': true,
+      'buyStatus': (oldVal, newVal) => newVal === 'explained',
     };
-    return checks[ev.property] ? true : false;
+    let check = checks[ev.property];
+    if (check === undefined) {
+      return false;
+    }
+    if (check === true) {
+      return true;
+    }
+    return check(ev.oldVal, ev.newVal);
   }
 
   talkedToAnyVillagers() {
@@ -97,6 +117,33 @@ export default class State extends StateMachine {
         this.set('beatBoss1', true);
       }
     }
+    if (o === 'plant-manager') {
+      if (this.buyStatus === 'ignorant') {
+        this.set('buyStatus', 'explained');
+      } else if (this.buyStatus === 'explained') {
+        this.set('buyStatus', 'agreed');
+      } else if (this.buyStatus === 'agreed') {
+        if (this.doneSourcing) {
+          this.set('bridgeStatus', 100);
+          return;
+        }
+        if (this.almostDoneSourcing && this.bridgeStatus < 90) {
+          this.set('bridgeStatus', 90);
+          return;
+        }
+        if (this.halfwaySourced && this.bridgeStatus < 50) {
+          this.set('bridgeStatus', 50);
+          return;
+        }
+      }
+    }
+    if (obj.props.type === 'dealer') {
+      this.interactDealer(o, obj);
+    }
+  }
+
+  get permissionToBuy() {
+    return this.buyStatus === 'agreed';
   }
 
   interactVillager(o) {
@@ -148,6 +195,13 @@ export default class State extends StateMachine {
     this.set(`villagersTalkedTo.${o}`, true);
   }
 
+  interactDealer(o, obj) {
+    if (!this.permissionToBuy) {
+      return;
+    }
+    this.modify(`sourced.${obj.props.resource}`, (b) => !b);
+  }
+
   forObject(o, obj) {
     if (o === 'manager') {
       if (this.talkedToManager) {
@@ -176,6 +230,22 @@ export default class State extends StateMachine {
     if (o === 'boss1-door') {
       if (this.beatBoss1) {
         return 'open';
+      }
+    }
+    if (o === 'bridge') {
+      if (this.bridgeStatus === 100) {
+        return 'done';
+      }
+      if (this.bridgeStatus >= 90) {
+        return 'almost-done';
+      }
+      if (this.bridgeStatus >= 50) {
+        return 'halfway';
+      }
+    }
+    if (obj.props.type === 'dealer') {
+      if (this.sourced[obj.props.resource]) {
+        return 'purchased';
       }
     }
     return 'default';
@@ -236,5 +306,50 @@ export default class State extends StateMachine {
     }
     // this.exp > 90
     return '+';
+  }
+
+  get sourceConstraints() {
+    let implies = (a, b) => {
+      return !a || b;
+    };
+    let sourced = this.get('sourced');
+    return {
+      'thread':  sourced.nylon || sourced.cotton || sourced.silk,
+      'powder': sourced.control || sourced.power || sourced.all,
+      'power': sourced.lion || sourced.ur || sourced.all,
+      'silk->uranium': implies(sourced.silk, sourced.uranium),
+      '!silk+uranium': !(sourced.silk && sourced.uranium),
+      '!nylon': !sourced.nylon,
+      'lion->power': implies(sourced.lion, sourced.power),
+      'power->silk': implies(sourced.power, sourced.silk),
+      'one-power': countTrue([sourced.lion, sourced.ur, sourced.all]) === 1,
+    };
+  }
+
+  get halfwaySourced() {
+    let constraints = this.sourceConstraints;
+    if (constraints.thread && constraints.powder && constraints.power) {
+      return true;
+    }
+    return false;
+  }
+
+  get almostDoneSourcing() {
+    let constraints = this.sourceConstraints;
+    let satisfied = _.map(Object.keys(constraints), (name) => constraints[name]);
+    // all but 0 or 1 contraints are met
+    if (countTrue(satisfied) >= satisfied.length - 1) {
+      return true;
+    }
+  }
+
+  get doneSourcing() {
+    let constraints = this.sourceConstraints;
+    for (let name of Object.keys(constraints)) {
+      if (!constraints[name]) {
+        return false;
+      }
+    }
+    return true;
   }
 }

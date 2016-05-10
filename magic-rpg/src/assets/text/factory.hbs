@@ -1,5 +1,25 @@
 {{#eq object "plant-manager"}}
-  Hi, we could use your help.
+  {{#eq state.buyStatus 'ignorant'}}
+    <p>Hi, we could use your help. We run a magic carpet business, but we lost
+    access to all our raw materials at the same time! Maybe you could help us
+    source them from the right suppliers?</p>
+  {{else}}
+    <p>Great! Thanks for agreeing to help us out. We're counting on you to get
+    our town's economy back on track and avoid putting lots of people out of
+    work.</p>
+
+    <p> As everyone knows, it takes thread, magical powder, and a power source to
+    make a magic carpet. We have all the tools needed to assemble them here
+    in-house, but we need your help sourcing the materials. Don't make the
+    materials <em>too</em> expensive, or we'll be better off not making any and
+    that's just what we'll do.</p>
+  {{/eq}}
+{{else eq obj.props.type "dealer"}}
+{{#buying .}}
+Cool! Thanks for agreeing to buy {{obj.props.resourceName}}. You won't regret it.
+{{else}}
+Sorry to see you go as a customer.
+{{/buying}}
 {{else}}
   {{> notfound}}
 {{/eq}}
