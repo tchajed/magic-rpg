@@ -4,21 +4,30 @@ import {Bounds} from '../game/graphics';
 import office from './maps/office';
 import village from './maps/village';
 import boss1 from './maps/boss1';
+import factoryRoad from './maps/factory-road';
 
-export const background = Background.stitch(
-  office.background,
-  Background.stitch(
-    village.background,
-    boss1.background,
-    'stitch2'
-  ),
-  'stitch'
-);
+let levelMaps = [
+  office,
+  ['stitch1', village],
+  ['stitch2', boss1],
+  ['stitch3', factoryRoad],
+];
 
-export const objects = _.merge(
-  office.objects(background),
-  village.objects(background),
-  boss1.objects(background)
+function stitchAll(levelMaps) {
+  let bg = levelMaps.shift().background;
+  for (let [stitch, nextMap] of levelMaps) {
+    bg = Background.stitch(bg, nextMap.background, stitch);
+  }
+  return bg;
+}
+
+export const background = stitchAll(levelMaps);
+
+export const objects = _.merge.apply(
+  null,
+  _.map([office, village, boss1, factoryRoad], (map) => {
+    return map.objects(background);
+  })
 );
 
 export const viewSize = new Bounds(25, 60);
