@@ -7,15 +7,15 @@ import boss1 from './maps/boss1';
 import factoryRoad from './maps/factory-road';
 
 let levelMaps = [
-  office,
-  ['stitch1', village],
-  ['stitch2', boss1],
-  ['stitch3', factoryRoad],
+  [office, null],
+  [village, 'stitch1'],
+  [boss1, 'stitch2'],
+  [factoryRoad, 'stitch3'],
 ];
 
 function stitchAll(levelMaps) {
-  let bg = levelMaps.shift().background;
-  for (let [stitch, nextMap] of levelMaps) {
+  let bg = levelMaps[0][0].background;
+  for (let [nextMap, stitch] of levelMaps.slice(1)) {
     bg = Background.stitch(bg, nextMap.background, stitch);
   }
   return bg;
@@ -23,11 +23,15 @@ function stitchAll(levelMaps) {
 
 export const background = stitchAll(levelMaps);
 
-export const objects = _.merge.apply(
-  null,
-  _.map([office, village, boss1, factoryRoad], (map) => {
-    return map.objects(background);
-  })
-);
+export const objects = (() => {
+  let maps = _.map(levelMaps, (map) => {
+    return map[0];
+  });
+  return _.merge.apply(
+    null,
+    _.map(maps, (map) => {
+      return map.objects(background);
+    }));
+})();
 
 export const viewSize = new Bounds(25, 60);
