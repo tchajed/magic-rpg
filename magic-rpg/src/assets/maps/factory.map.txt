@@ -16,9 +16,9 @@ xxxxxxxxxxxxxxxx|           |@@  N  *>|       | *& C & $|      |    S    |      
   |xxxxxxxxxxxxx|                                                                              |####\ |####\ |####\      |###|                                     |
   |xxxxxxxxxxxxx|                                                                             |######|######|######\-----+###|                                     |
   |xxxxxxxxxxxxx|           +---------+       +---------+                                     |                              |                                     |
-  |xxxxxxxxxxxxx|           |         |       |         |                                     |                              |                                     |
-  |xxxxxxxxxxxxx|           |    F    |       |    P    |                                     |     I                        |                                     |
-  |xxxxxxxxxxxxx|           |         |       |         |                                     |                                                                    |
+  |xxxxxxxxxxxxx|           |         |       |         |                                     |            +--+     \|/      |                                     |
+  |xxxxxxxxxxxxx|           |    F    |       |    P    |                                     |     I      |%%|    --+--     |                                     |
+  |xxxxxxxxxxxxx|           |         |       |         |                                     |            +--+     /|\                                            |
   |xxxxxxxxxxxxx|           |         |       |         |                                     |                                                                    |
   +-------------+           +---- ----+       +---- ----+        +---------+                  |     -------------            |                                     |
   B                                                              |         |                  |     O     O     O            |                                     |
