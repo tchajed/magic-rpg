@@ -9,9 +9,29 @@ const background = Background.create(map, {
   I: {name: 'plant-manager'},
   B: {name: 'bridge'},
   W: {name: 'bridge-worker'},
+  N: {name: 'nylon-dealer'},
+  C: {name: 'cotton-dealer'},
+  S: {name: 'silk-dealer'},
+  F: {name: 'control-dealer'},
+  P: {name: 'power-dealer'},
+  A: {name: 'all-dealer'},
+  L: {name: 'lion-dealer'},
+  U: {name: 'ur-dealer'},
 }).boxDrawing();
 
 const objects = () => {
+  let dealer = (name, resource) => {
+    return new Entity(
+      {
+        'default': Texture.create("!"),
+        purchased: Texture.create("!"),
+      },
+      {
+        name: name + ' Dealer',
+        resource,
+      }
+    );
+  };
   return {
     'plant-manager': new Entity(
       Texture.create("!"),
@@ -42,6 +62,15 @@ const objects = () => {
       },
       {name: 'Bridge'}
     ),
+
+    'nylon-dealer': dealer('Nylon', 'nylon'),
+    'cotton-dealer': dealer('Cotton', 'cotton'),
+    'silk-dealer': dealer('Silk', 'silk'),
+    'control-dealer': dealer('Fine Control Powder', 'control'),
+    'power-dealer': dealer('Long-lasting Powder', 'power'),
+    'all-dealer': dealer('All-Purpose Powder', 'all'),
+    'lion-dealer': dealer('Li-Ion batteries', 'lion'),
+    'ur-dealer': dealer('Uranium', 'ur'),
   };
 };
 

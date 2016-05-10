@@ -6,30 +6,30 @@ xxxxxxxxxxxxxxxx|                                                               
 xxxxxxxxxxxxxxxx|                                                                                                                                                  |
 xxxxxxxxxxxxxxxx|                                                                                                         o                                        |
 xxxxxxxxxxxxxxxx|                                                                                                           o                                      |
-xxxxxxxxxxxxxxxx|                                                                                                        +---+                                     |
-xxxxxxxxxxxxxxxx|                                                                                                        |###|                                     |
-xxxxxxxxxxxxxxxx|                                                                                                        |###|                                     |
---+xxxxxxxxxxxxx|                                                                                                        |###|                                     |
-  |xxxxxxxxxxxxx|                                                                                ^      ^      ^         |###|                                     |
-  |xxxxxxxxxxxxx|                                                                               |#\    |#\    |#\        |###|                                     |
+xxxxxxxxxxxxxxxx|           +---------+       +---------+      +---------+                                               +---+                                     |
+xxxxxxxxxxxxxxxx|           | $    &  |       | ^    ^ $|      |$$$   $$$|                                               |###|                                     |
+xxxxxxxxxxxxxxxx|           |@@  N  *>|       | *& C & $|      |    S    |                                               |###|                                     |
+--+xxxxxxxxxxxxx|           |%#    .#o|       |()     ()|      |         |                                               |###|                                     |
+  |xxxxxxxxxxxxx|           |         |       |         |      |         |                       ^      ^      ^         |###|                                     |
+  |xxxxxxxxxxxxx|           +---- ----+       +---- ----+      +---- ----+                      |#\    |#\    |#\        |###|                                     |
   |xxxxxxxxxxxxx|                                                                              |###\  |###\  |###\       |###|                                     |
   |xxxxxxxxxxxxx|                                                                              |####\ |####\ |####\      |###|                                     |
   |xxxxxxxxxxxxx|                                                                             |######|######|######\-----+###|                                     |
-  |xxxxxxxxxxxxx|                                                                             |                              |                                     |
-  |xxxxxxxxxxxxx|                                                                             |                              |                                     |
-  |xxxxxxxxxxxxx|                                                                             |     I                        |                                     |
-  |xxxxxxxxxxxxx|                                                                             |                                                                    |
-  |xxxxxxxxxxxxx|                                                                             |                                                                    |
-  +-------------+                                                                             |     -------------            |                                     |
-  B                                                                                           |     O     O     O            |                                     |
-5                 W                                                                           |                              |                                     |
-                                                                                              |                              |                                     |
-  +-------------+                                                                             +------------------------------+                                     |
-  |xxxxxxxxxxxxx|                                                                                                                                                  |
-  |xxxxxxxxxxxxx|                                                                                                                                                  |
-  |xxxxxxxxxxxxx|                                                                                                                                                  |
-  |xxxxxxxxxxxxx|                                                                                                                                                  |
-  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|           +---------+       +---------+                                     |                              |                                     |
+  |xxxxxxxxxxxxx|           |         |       |         |                                     |                              |                                     |
+  |xxxxxxxxxxxxx|           |    F    |       |    P    |                                     |     I                        |                                     |
+  |xxxxxxxxxxxxx|           |         |       |         |                                     |                                                                    |
+  |xxxxxxxxxxxxx|           |         |       |         |                                     |                                                                    |
+  +-------------+           +---- ----+       +---- ----+        +---------+                  |     -------------            |                                     |
+  B                                                              |         |                  |     O     O     O            |                                     |
+5                 W                                              |    A    |                  |                              |                                     |
+                                                                 |         |                  |                              |                                     |
+  +-------------+          +---------+        +---------+        |         |                  +------------------------------+                                     |
+  |xxxxxxxxxxxxx|          |         |        |         |        +---- ----+                                                                                       |
+  |xxxxxxxxxxxxx|          |    L    |        |    U    |                                                                                                          |
+  |xxxxxxxxxxxxx|          |         |        |         |                                                                                                          |
+  |xxxxxxxxxxxxx|          |         |        |         |                                                                                                          |
+  |xxxxxxxxxxxxx|          +---- ----+        +---- ----+                                                                                                          |
   |xxxxxxxxxxxxx|                                                                                                                                                  |
   |xxxxxxxxxxxxx|                                                                                                                                                  |
   |xxxxxxxxxxxxx|                                                                                                                                                  |
