@@ -118,24 +118,7 @@ export default class State extends StateMachine {
       }
     }
     if (o === 'plant-manager') {
-      if (this.buyStatus === 'ignorant') {
-        this.set('buyStatus', 'explained');
-      } else if (this.buyStatus === 'explained') {
-        this.set('buyStatus', 'agreed');
-      } else if (this.buyStatus === 'agreed') {
-        if (this.doneSourcing) {
-          this.set('bridgeStatus', 100);
-          return;
-        }
-        if (this.almostDoneSourcing && this.bridgeStatus < 90) {
-          this.set('bridgeStatus', 90);
-          return;
-        }
-        if (this.halfwaySourced && this.bridgeStatus < 50) {
-          this.set('bridgeStatus', 50);
-          return;
-        }
-      }
+      this.interactPlantManager();
     }
     if (obj.props.type === 'dealer') {
       this.interactDealer(o, obj);
@@ -200,6 +183,45 @@ export default class State extends StateMachine {
       return;
     }
     this.modify(`sourced.${obj.props.resource}`, (b) => !b);
+  }
+
+  interactPlantManager() {
+      if (this.buyStatus === 'ignorant') {
+        this.set('buyStatus', 'explained');
+      } else if (this.buyStatus === 'explained') {
+        this.set('buyStatus', 'agreed');
+      } else if (this.buyStatus === 'agreed') {
+        if (this.doneSourcing) {
+          this.set('bridgeStatus', 100);
+          return;
+        }
+        if (this.almostDoneSourcing && this.bridgeStatus < 90) {
+          this.set('bridgeStatus', 90);
+          return;
+        }
+        if (this.halfwaySourced && this.bridgeStatus < 50) {
+          this.set('bridgeStatus', 50);
+          return;
+        }
+      }
+    if (this.buyStatus === 'ignorant') {
+      this.set('buyStatus', 'explained');
+    } else if (this.buyStatus === 'explained') {
+      this.set('buyStatus', 'agreed');
+    } else if (this.buyStatus === 'agreed') {
+      if (this.doneSourcing) {
+        this.set('bridgeStatus', 100);
+        return;
+      }
+      if (this.almostDoneSourcing && this.bridgeStatus < 90) {
+        this.set('bridgeStatus', 90);
+        return;
+      }
+      if (this.halfwaySourced && this.bridgeStatus < 50) {
+        this.set('bridgeStatus', 50);
+        return;
+      }
+    }
   }
 
   forObject(o, obj) {
