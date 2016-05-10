@@ -1,4 +1,27 @@
-{{#eq object "plant-manager"}}
+{{#eq object "bridge"}}
+<p>It's a bridge to some unknown and no doubt interesting land.</p>
+
+<p>
+{{#eq obj.state "default"}}
+Looks like a bunch of building materials and no actual bridge. Not sure what the materials are supported by.
+{{else eq obj.state "halfway"}}
+The bridge is halfway done! Maybe you'll be able to cross after all.
+{{else eq obj.state "almost-done"}}
+Almost there, but they have to finish if you want to get off on this side.
+Which you do.
+{{/eq}}
+</p>
+{{else eq object "bridge-worker"}}
+{{#eq state.bridgeStatus 100}}
+<p>We've been hard at work, and the bridge is finally done!</p>
+{{else}}
+<p>We're still working on the bridge across this gap.</p>
+
+{{#eq state.bridgeStatus 90}}
+<p>It's almost done! Just wait a little longer. We just need some more time, and we'll take care of it, all on our own.</p>
+{{/eq}}
+{{/eq}}
+{{else eq object "plant-manager"}}
   {{#eq state.buyStatus 'ignorant'}}
     <p>Hi, we could use your help. We run a magic carpet business, but we lost
     access to all our raw materials at the same time! Maybe you could help us
