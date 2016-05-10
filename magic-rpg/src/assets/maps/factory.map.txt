@@ -1,0 +1,40 @@
+xxxxxxxxxxxxxxxx+--------------------------------------------------------------------------------------------------------------------------------------------------+
+xxxxxxxxxxxxxxxx|                                                                                                                                                  |
+xxxxxxxxxxxxxxxx|                                                                                                                                                  |
+xxxxxxxxxxxxxxxx|                                                                                                                                                  |
+xxxxxxxxxxxxxxxx|                                                                                                           o                                      |
+xxxxxxxxxxxxxxxx|                                                                                                                                                  |
+xxxxxxxxxxxxxxxx|                                                                                                         o                                        |
+xxxxxxxxxxxxxxxx|                                                                                                           o                                      |
+xxxxxxxxxxxxxxxx|                                                                                                        +---+                                     |
+xxxxxxxxxxxxxxxx|                                                                                                        |###|                                     |
+xxxxxxxxxxxxxxxx|                                                                                                        |###|                                     |
+--+xxxxxxxxxxxxx|                                                                                                        |###|                                     |
+  |xxxxxxxxxxxxx|                                                                                ^      ^      ^         |###|                                     |
+  |xxxxxxxxxxxxx|                                                                               |#\    |#\    |#\        |###|                                     |
+  |xxxxxxxxxxxxx|                                                                              |###\  |###\  |###\       |###|                                     |
+  |xxxxxxxxxxxxx|                                                                              |####\ |####\ |####\      |###|                                     |
+  |xxxxxxxxxxxxx|                                                                             |######|######|######\-----+###|                                     |
+  |xxxxxxxxxxxxx|                                                                             |                              |                                     |
+  |xxxxxxxxxxxxx|                                                                             |                              |                                     |
+  |xxxxxxxxxxxxx|                                                                             |     I                        |                                     |
+  |xxxxxxxxxxxxx|                                                                             |                                                                    |
+  |xxxxxxxxxxxxx|                                                                             |                                                                    |
+  +-------------+                                                                             |     -------------            |                                     |
+  B                                                                                           |     O     O     O            |                                     |
+5                 W                                                                           |                              |                                     |
+                                                                                              |                              |                                     |
+  +-------------+                                                                             +------------------------------+                                     |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |
+  |xxxxxxxxxxxxx|                                                                                                                                                  |---
+  |xxxxxxxxxxxxx|                                                                                                                                                     4
+--+xxxxxxxxxxxxx|                                                                                                                                                  +---
+xxxxxxxxxxxxxxxx+--------------------------------------------------------------------------------------------------------------------------------------------------+
