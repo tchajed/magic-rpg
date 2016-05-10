@@ -314,12 +314,12 @@ export default class State extends StateMachine {
     };
     let sourced = this.get('sourced');
     return {
-      'thread':  sourced.nylon || sourced.cotton || sourced.silk,
+      'thread':  sourced.polyester || sourced.cotton || sourced.silk,
       'powder': sourced.control || sourced.power || sourced.all,
       'power': sourced.lion || sourced.ur || sourced.all,
       'silk->uranium': implies(sourced.silk, sourced.uranium),
       '!silk+uranium': !(sourced.silk && sourced.uranium),
-      '!nylon': !sourced.nylon,
+      '!polyester': !sourced.polyester,
       'lion->power': implies(sourced.lion, sourced.power),
       'power->silk': implies(sourced.power, sourced.silk),
       'one-power': countTrue([sourced.lion, sourced.ur, sourced.all]) === 1,

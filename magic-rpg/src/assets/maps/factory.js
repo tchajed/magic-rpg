@@ -10,7 +10,7 @@ const background = Background.create(map, {
   I: {name: 'plant-manager'},
   B: {name: 'bridge'},
   W: {name: 'bridge-worker'},
-  N: {name: 'nylon-dealer'},
+  N: {name: 'polyester-dealer'},
   C: {name: 'cotton-dealer'},
   S: {name: 'silk-dealer'},
   F: {name: 'control-dealer'},
@@ -66,7 +66,7 @@ const objects = () => {
       {name: 'Bridge'}
     ),
 
-    'nylon-dealer': dealer('Nylon', 'nylon'),
+    'polyester-dealer': dealer('Polyester', 'polyester'),
     'cotton-dealer': dealer('Cotton', 'cotton'),
     'silk-dealer': dealer('Silk', 'silk'),
     'control-dealer': dealer('Fine Control Powder', 'control'),
