@@ -68,6 +68,7 @@ export default class State extends StateMachine {
       beatBoss2: false,
 
       // pre-dungeon hinting
+      pickedAnyObject: false,
       heldObject: null,
       fetched: {},
     };
@@ -152,6 +153,10 @@ export default class State extends StateMachine {
     if (this.enteredRoom.boss2 &&
         !this.talkedToAnyBoss2Crew()) {
       return 'ch2.5-boss2';
+    }
+    if (this.enteredRoom['pre-dungeon'] &&
+       !this.pickedAnyObject) {
+      return 'ch3-pre-dungeon';
     }
     return null;
   }
@@ -295,9 +300,12 @@ export default class State extends StateMachine {
   }
 
   interactObject(o) {
+    // set this even if you (try to) pick up the dragon
+    this.set('pickedAnyObject', true);
     // dragon
     if (o === 'object11') {
       this.set('heldObject', null);
+      return;
     }
     this.set('heldObject', o);
   }
