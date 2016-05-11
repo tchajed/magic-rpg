@@ -2,6 +2,14 @@
   {{> hinter}}
 {{else eq obj.props.type "object"}}
   {{> object}}
+{{else eq object "dungeon-sign"}}
+<p class="wizard-sign">
+WIZARDS <br />
+ONLY, <br />
+FOOLS
+</p>
+
+<p>You chuckle.</p>
 {{else}}
   {{> notfound}}
 {{/eq}}

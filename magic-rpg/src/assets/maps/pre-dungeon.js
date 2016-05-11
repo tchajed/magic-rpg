@@ -6,6 +6,7 @@ import map from './pre-dungeon.map.txt';
 let namedLocs = {
   7: {name: 'stitch7'},
   8: {name: 'stitch8'},
+  S: {name: 'dungeon-sign'},
 };
 
 for (let i = 1; i <= 5; i++) {
@@ -46,7 +47,13 @@ const objects = () => {
         type: 'object',
       });
   }
-  return _.merge(hinters, objects);
+  let sign = {
+    'dungeon-sign': new Entity(
+      Texture.create("[###]"),
+      { name: 'Sign' }
+    ),
+  };
+  return _.merge(hinters, objects, sign);
 };
 
 export default new LevelMap('pre-dungeon', background, objects);
