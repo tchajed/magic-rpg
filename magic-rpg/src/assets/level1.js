@@ -8,6 +8,7 @@ import factoryRoad from './maps/factory-road';
 import factory from './maps/factory';
 import boss2Road from './maps/boss2-road';
 import boss2 from './maps/boss2';
+import preDungeon from './maps/pre-dungeon';
 import dungeon from './maps/dungeon';
 import emptyRoom from './maps/empty-room';
 
@@ -23,7 +24,8 @@ let levelMaps = [
   [factory, 'stitch4'],
   [boss2Road, 'stitch5'],
   [boss2, 'stitch6'],
-  [dungeon, 'stitch7'],
+  [preDungeon, 'stitch7'],
+  [dungeon, 'stitch8'],
 ].concat(emptyRooms);
 
 function stitchAll(levelMaps) {

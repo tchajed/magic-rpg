@@ -1,11 +1,10 @@
-import {Texture, Background} from '../../game/assets';
-import Entity from '../../game/entity';
+import {Background} from '../../game/assets';
 import LevelMap from './level-map';
 import map from './dungeon.map.txt';
 
 const background = Background.create(map, {
-  7: {name: 'stitch7'},
   8: {name: 'stitch8'},
+  9: {name: 'stitch9'},
   a: {name: 'stitch-a'},
   b: {name: 'stitch-b'},
   c: {name: 'stitch-c'},

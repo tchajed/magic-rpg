@@ -1,0 +1,26 @@
+xxxxxxxxxxxxxx+------------------------------------------------------+
+xxxxxxxxxxxxxx|                                                      |
+xxxxxxxxxxxxxx|                                                      |
+xxxxxxxxxxxxxx|                                                      |
+xxxxxxxxxxxxxx|       +------------+     +----------+                |
+xxxxxxxxxxxxxx|       |            |     |          |                |
+xxxxxxxxxxxxxx|       |  A         |     |  B       |                |
+xxxxxxxxxxxxxx|       |            |     |      C   |                |
+xxxxxxxxxxxxxx|       |            |     |          |                |
+xxxxxxxxxxxxxx|       +---  -------+     +--  ------+                |
+xxxxxxxxxxxxxx|                                                      |
+--------------+                                                      +----------------x
+                                                                                      x
+7                                        +----------+                                8x
+                                         |          |                                 x
+--------------+                          |  E       |                +----------------x
+xxxxxxxxxxxxxx|      +---------+         |          |                |
+xxxxxxxxxxxxxx|      |         |         +----  ----+                |
+xxxxxxxxxxxxxx|      | D       |                                     |
+xxxxxxxxxxxxxx|      |         |                                     |
+xxxxxxxxxxxxxx|      |         |                     F               |
+xxxxxxxxxxxxxx|      +---  ----+                                     |
+xxxxxxxxxxxxxx|                                                      |
+xxxxxxxxxxxxxx|                                                      |
+xxxxxxxxxxxxxx|                                                      |
+xxxxxxxxxxxxxx+------------------------------------------------------+
