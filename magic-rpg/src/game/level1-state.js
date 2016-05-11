@@ -157,7 +157,8 @@ export default class State extends StateMachine {
       return 'ch2.5-boss2';
     }
     if (this.enteredRoom['pre-dungeon'] &&
-       !this.pickedAnyObject) {
+       !this.pickedAnyObject &&
+       !this.enteredRoom.boss3) {
       return 'ch3-pre-dungeon';
     }
     if (this.enteredRoom.boss3 &&
