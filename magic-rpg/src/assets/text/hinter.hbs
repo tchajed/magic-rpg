@@ -1,0 +1,94 @@
+{{#eq object 'hinter1'}}
+  <h2>Student</h2>
+
+  (It's pretty obvious she's a student.)
+
+  <blockquote>
+    {{#questIncomplete .}}
+      <p>I need to study! What am I going to do?</p>
+    {{else holdingRightObject .}}
+      <p>Wonderful, thanks for bringing me my book! Now I can study. Where'd you
+      even find it? Outside? Oh that makes sense, I lose my textbooks there all
+      the time.</p>
+    {{else}}
+      <p>Thanks for bringing my book! I don't need any more help. Except with
+      this problem, but I should probably do it on my own.
+
+      Oh, you need some help getting through the maze over to the east? I've
+      never gone through the whole thing, but I figured out you have to
+      <strong>start with a right</strong>.</p>
+    {{/questIncomplete}}
+  </blockquote>
+{{else eq object 'hinter2'}}
+  <h2>Sketchy-looking man</h2>
+
+  <blockquote>
+  {{#questIncomplete .}}
+    <p>Hello wizard. I have a great reward for you. All you need to do is bring
+    me the oldest thing lying around here.</p>
+  {{else holdingRightObject .}}
+    <p>Wonderful! Thanks for fetching that. Want to do it again?</p>
+  {{else}}
+    <p>Wonderful! Thanks for fetching that. Want to do it again?</p>
+
+    <p>Ok, fine. I'll tell you something useful. <strong>After the first turn, take a
+      left</strong>. You're welcome.</p>
+  {{/questIncomplete}}
+  </blockquote>
+{{else eq object 'hinter3'}}
+  <h2>Knight</h2>
+  <blockquote>
+    {{#questIncomplete .}}
+      <p>The guardians are going to kill me! How did I lose that star? I must've
+      dropped it because it was hot.</p>
+    {{else holdingRightObject .}}
+      <p>Awesome, you found it! This'll save me for sure.</p>
+    {{else}}
+      <p>I just noticed there's a chip in the star. Oh well, nothing doing now.</p>
+
+      <p>I also realized I never properly rewarded you. I'll give you the best
+      reward: information! Because knowledge is power. Also swords, and actual
+      powers.</p>
+
+      <p>Anyway, bit of advice for your future travels: I don't remember what
+      the first couple turns are, but <strong>after that, go right</strong>.
+      It'll save you a lot of trouble, speaking from personal experience.</p>
+    {{/questIncomplete}}
+  </blockquote>
+{{else eq object 'hinter4'}}
+  <h2>Scholarly-looking man</h2>
+    {{#questIncomplete .}}
+      <blockquote>
+        <p>Where did that thing go? It was just here on this table.</p>
+      </blockquote>
+    {{else holdingRightObject .}}
+      <blockquote>
+        <p>You found her! Come here, you wandering kitty!</p>
+      </blockquote>
+    {{else}}
+      He's busy keeping track of the kitten.
+
+      <blockquote>
+        <p>By the way, something that might help you get through the messy and
+        inconvenient dungeon over to the east: I don't remember if there are
+        four or seven turns, but you should definitely take a <strong>left at the last
+          turn</strong>. Fourth or seventh one. Yup, definitely.</p>
+      </blockquote>
+    {{/questIncomplete}}
+{{else eq object 'hinter5'}}
+  <h2>Wandering soul</h2>
+  <blockquote>
+    {{#questIncomplete .}}
+      <p>COFFEE. I NEED SOME COFFEE. DO YOU HAVE ANY?</p>
+    {{else holdingRightObject .}}
+      <p>Awesome, thanks. As a reward, go ahead and keep the mug. I hear it has
+      the antidote.</p>
+
+      {{> expgain amount="5"}}
+    {{else}}
+      <p>How's that mug treating you?</p>
+    {{/questIncomplete}}
+  </blockquote>
+{{else}}
+  {{> notfound}}
+{{/eq}}

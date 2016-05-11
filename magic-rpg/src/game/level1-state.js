@@ -5,6 +5,38 @@ function countTrue(booleans) {
   return _.filter(booleans).length;
 }
 
+const fetchSolution = (() => {
+  let solution = {
+    'kitten': {o: 1, h: 4},
+    'book' : {o: 6, h: 1},
+    'fossil': {o: 5, h: 2},
+    'star1': {o: 15, h: 3},
+    'coffee': {o: 7, h: 5},
+  };
+  for (let name of Object.keys(solution)) {
+    let {o, h} = solution[name];
+    solution[name] = {object: 'object' + o, hinter: 'hinter' + h};
+  }
+
+  let forHinter = {};
+  for (let name of Object.keys(solution)) {
+    let soln = solution[name];
+    forHinter[soln.hinter] = soln.object;
+  }
+
+  let forObject = {};
+  for (let name of Object.keys(solution)) {
+    let soln = solution[name];
+    forObject[soln.object] = name;
+  }
+
+  return {
+    forName: solution,
+    forHinter: (hinter) => forHinter[hinter],
+    forObject: (object) => forObject[object],
+  };
+})();
+
 export default class State extends StateMachine {
   defaults() {
     return {
@@ -26,14 +58,16 @@ export default class State extends StateMachine {
       beatBoss1: false,
 
       // factory
-
       buyStatus: 'ignorant',
       sourced: {},
       bridgeStatus: 0,
 
       // boss2
-
       beatBoss2: false,
+
+      // pre-dungeon hinting
+      heldObject: null,
+      fetched: {},
     };
   }
 
@@ -130,6 +164,12 @@ export default class State extends StateMachine {
     }
     if (o === 'boss2') {
       this.set('beatBoss2', true);
+    }
+    if (obj.props.type === 'object') {
+      this.interactObject(o, obj);
+    }
+    if (obj.props.type === 'hinter') {
+      this.interactHinter(o, obj);
     }
   }
 
@@ -232,6 +272,51 @@ export default class State extends StateMachine {
     }
   }
 
+  interactObject(o) {
+    // dragon
+    if (o === 'object11') {
+      this.set('heldObject', null);
+    }
+    this.set('heldObject', o);
+  }
+
+  questIncomplete(hinter) {
+    return !(this.holdingRightObject(hinter) || this.solvedQuest(hinter));
+  }
+
+  holdingRightObject(hinter) {
+    let object = fetchSolution.forHinter(hinter);
+    if (this.heldObject === object) {
+      return true;
+    }
+  }
+
+  solvedQuest(hinter) {
+    let object = fetchSolution.forHinter(hinter);
+    let name = fetchSolution.forObject(object);
+    if (this.fetched[name]) {
+      return true;
+    }
+    return false;
+  }
+
+  interactHinter(hinter) {
+    let object = fetchSolution.forHinter(hinter);
+    let name = fetchSolution.forObject(object);
+
+    if (this.fetched[name]) {
+      return;
+    }
+
+    if (this.heldObject === object) {
+      this.set(`fetched.${name}`, true);
+      this.set('heldObject', null);
+      if (hinter === 'hinter5') {
+        this.modify('exp', (e) => e + 5);
+      }
+    }
+  }
+
   forObject(o, obj) {
     if (o === 'manager') {
       if (this.talkedToManager) {
@@ -286,6 +371,14 @@ export default class State extends StateMachine {
     if (o === 'boss2-exit') {
       if (this.beatBoss2) {
         return 'open';
+      }
+    }
+    if (obj.props.type === 'object') {
+      if (this.heldObject === o) {
+        return 'gone';
+      }
+      if (this.fetched[fetchSolution.forObject(o)]) {
+        return 'gone';
       }
     }
     return 'default';

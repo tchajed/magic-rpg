@@ -1,0 +1,7 @@
+{{#eq obj.props.type "hinter"}}
+  {{> hinter}}
+{{else eq obj.props.type "object"}}
+  {{> object}}
+{{else}}
+  {{> notfound}}
+{{/eq}}

@@ -12,6 +12,8 @@
   {{> factory}}
 {{else eq obj.props.room "boss2"}}
   {{> boss2}}
+{{else eq obj.props.room "pre-dungeon"}}
+  {{> preDungeon}}
 {{else eq object "bossA"}}
 {{#unless state.talkedToManager}}
 You don't know who I am! Why should I talk to you?
