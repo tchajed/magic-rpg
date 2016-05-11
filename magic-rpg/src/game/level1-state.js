@@ -64,6 +64,7 @@ export default class State extends StateMachine {
       bridgeStatus: 0,
 
       // boss2
+      talkedToAnyLackey: false,
       beatBoss2: false,
 
       // pre-dungeon hinting
@@ -132,6 +133,10 @@ export default class State extends StateMachine {
     return false;
   }
 
+  talkedToAnyBoss2Crew() {
+    return this.talkedToAnyLackey || this.beatBoss2;
+  }
+
   get chapter() {
     if (!this.talkedToManager) {
       return 'intro';
@@ -143,6 +148,10 @@ export default class State extends StateMachine {
     if (this.enteredRoom['factory-road'] &&
         !this.talkedToFactoryPeople()) {
       return 'ch2-factory';
+    }
+    if (this.enteredRoom.boss2 &&
+        !this.talkedToAnyBoss2Crew()) {
+      return 'ch2.5-boss2';
     }
     return null;
   }
@@ -185,6 +194,9 @@ export default class State extends StateMachine {
     }
     if (obj.props.type === 'dealer') {
       this.interactDealer(o, obj);
+    }
+    if (obj.props.type === 'lackey') {
+      this.set('talkedToAnyLackey', true);
     }
     if (o === 'boss2') {
       this.set('beatBoss2', true);
