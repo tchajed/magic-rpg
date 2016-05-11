@@ -1,5 +1,5 @@
 import h from 'virtual-dom/h';
-import news from './text/news.yaml';
+import news from '../assets/text/news.yaml';
 
 export default class News {
   constructor(state) {

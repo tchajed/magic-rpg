@@ -1,6 +1,7 @@
 import './styles.css';
 import AsciiGrid from './components/ascii';
 import InfoPanel from './components/panel';
+import News from './components/news';
 import Game from './game/game';
 import Mousetrap from 'mousetrap';
 import createElement from 'virtual-dom/create-element';
@@ -9,7 +10,6 @@ import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
 import Writing from './assets/level1-writing';
-import News from './assets/news';
 
 
 // This is organized poorly - it doesn't make sense for a View to have a model
