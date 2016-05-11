@@ -123,10 +123,15 @@ class Movement {
       up: null,
       down: null,
     };
+    this.skipNextHandle = false;
     // jshint loopfunc: true
     for (let [key, data] of keys) {
       Mousetrap.bind(data.shortcuts, () => {
-        this.keysDown[key] = this.clock;
+        if (!this.keysDown[key]) {
+          this.keysDown[key] = this.clock;
+          this.handle();
+          this.skipNextHandle = true;
+        }
         this.clock++;
         return false;
       }, 'keydown');
@@ -141,6 +146,10 @@ class Movement {
   }
 
   handle() {
+    if (this.skipNextHandle) {
+      this.skipNextHandle = false;
+      return;
+    }
     let maxKey = null;
     let maxClock = -1;
     for (let key of keys.keys()) {

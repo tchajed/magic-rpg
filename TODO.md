@@ -11,7 +11,7 @@
 - [x] saving game state
 - [x] delivering story/news to different component
 - [x] refactored state machine
-- [ ] BUG: key presses are not buffered, so they can be missed
+- [x] BUG: key presses are not buffered, so they can be missed
 - [x] add current room to state machine
 - [x] advance news on state transitions
 - [x] BUG: the goose chase text/STM is still very buggy
