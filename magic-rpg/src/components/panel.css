@@ -54,12 +54,12 @@ kbd {
     text-align: left;
 }
 
-.boss1,.boss2 {
+.boss1,.boss2,.boss3 {
   color: #dc322f;
   font-weight: bold;
 }
 
-.boss1.defeated, .boss2.defeated {
+.boss1.defeated, .boss2.defeated, .boss3.defeated {
   color: inherit;
 }
 

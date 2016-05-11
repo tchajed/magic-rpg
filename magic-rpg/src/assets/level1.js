@@ -11,6 +11,7 @@ import boss2 from './maps/boss2';
 import preDungeon from './maps/pre-dungeon';
 import dungeon from './maps/dungeon';
 import emptyRoom from './maps/empty-room';
+import boss3 from './maps/boss3';
 
 let emptyRooms = _.map(['a', 'b', 'c', 'd', 'e'], (index) => {
   return [emptyRoom(index), 'stitch-' + index];
@@ -26,7 +27,9 @@ let levelMaps = [
   [boss2, 'stitch6'],
   [preDungeon, 'stitch7'],
   [dungeon, 'stitch8'],
-].concat(emptyRooms);
+].concat(emptyRooms).concat([
+  [boss3, 'stitch9'],
+]);
 
 function stitchAll(levelMaps) {
   let bg = levelMaps[0][0].background;

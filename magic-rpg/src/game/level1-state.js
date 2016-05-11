@@ -40,7 +40,6 @@ const fetchSolution = (() => {
 export default class State extends StateMachine {
   defaults() {
     return {
-      level: 'level1',
       exp: 0,
       room: 'office',
       enteredRoom: {},
@@ -71,6 +70,9 @@ export default class State extends StateMachine {
       pickedAnyObject: false,
       heldObject: null,
       fetched: {},
+
+      // boss3
+      beatBoss3: false,
     };
   }
 
@@ -158,6 +160,13 @@ export default class State extends StateMachine {
        !this.pickedAnyObject) {
       return 'ch3-pre-dungeon';
     }
+    if (this.enteredRoom.boss3 &&
+        !this.beatBoss3) {
+      return 'ch3.5-boss3';
+    }
+    if (this.beatBoss3) {
+      return 'closing';
+    }
     return null;
   }
 
@@ -211,6 +220,9 @@ export default class State extends StateMachine {
     }
     if (obj.props.type === 'hinter') {
       this.interactHinter(o, obj);
+    }
+    if (o === 'boss3') {
+      this.set('beatBoss3', true);
     }
   }
 
@@ -411,6 +423,11 @@ export default class State extends StateMachine {
         return 'gone';
       }
     }
+    if (o === 'boss3') {
+      if (this.beatBoss3) {
+        return 'defeated';
+      }
+    }
     return 'default';
   }
 
@@ -533,5 +550,9 @@ export default class State extends StateMachine {
       }
     }
     return true;
+  }
+
+  get playerLevel() {
+    return this.beatBoss3 ? 4 : 3;
   }
 }

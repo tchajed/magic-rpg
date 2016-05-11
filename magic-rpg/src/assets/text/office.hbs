@@ -1,5 +1,5 @@
 {{#eq object "player"}}
-<h3>Level 3 Wizard</h3>
+<h3>Level {{state.playerLevel}} Wizard</h3>
 
 <p>This is you, the player. You are a wizard in Magical Consulting, LLC (a
 Delaware company).</p>
@@ -9,6 +9,9 @@ Delaware company).</p>
 {{#if state.fastMovement}}
 <p>You're on a bike! Wait, where did you even get that from?</p>
 {{/if}}
+
+{{#if state.beatBoss3}}
+<p>Congratulations! You beat the game.</p>
 
 <button id="clear-data">clear data</button>
 
