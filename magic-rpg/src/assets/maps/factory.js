@@ -71,8 +71,8 @@ const objects = () => {
     'control-dealer': dealer('Fine Control Powder', 'control'),
     'power-dealer': dealer('Long-lasting Powder', 'power'),
     'all-dealer': dealer('All-Purpose Powder', 'all'),
-    'lion-dealer': dealer('Li-Ion batteries', 'lion'),
-    'ur-dealer': dealer('Uranium', 'ur'),
+    'lion-dealer': dealer('Li-Ion Batteries', 'lion'),
+    'ur-dealer': dealer('Uranium Batteries', 'ur'),
   };
 };
 

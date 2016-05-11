@@ -22,10 +22,12 @@ Which you do.
 {{/eq}}
 {{/eq}}
 {{else eq object "plant-manager"}}
+<blockquote>
   {{#eq state.buyStatus 'ignorant'}}
     <p>Hi, we could use your help. We run a magic carpet business, but we lost
     access to all our raw materials at the same time! Maybe you could help us
-    source them from the right suppliers?</p>
+    source them from the right suppliers? Come back to me if you decide you're
+    up for the task.</p>
   {{else eq state.buyStatus 'explained'}}
     <p>Great! Thanks for agreeing to help us out. We're counting on you to get
     our town's economy back on track and avoid putting lots of people out of
@@ -65,15 +67,40 @@ Which you do.
   {{/unless}}
   {{/if}}
   {{/eq}}
+</blockquote>
 {{else eq obj.props.type "dealer"}}
 <blockquote>
+
 {{#unless state.permissionToBuy}}
 <p>Hello there. I'm a dealer in {{obj.props.resourceName}}. Unfortunately I
 only work with business customers and can't directly sell you any of my wares.
 There isn't actually enough space in the shop for all my stuff, obviously.</p>
 {{else}}
+  <p>Hello customer!</p>
+
+  {{#eq object "polyester-dealer"}}
+  <p>Polyester is the best! It's cheap, it's fake, it's basically a fabric!</p>
+  {{else eq object "control-dealer"}}
+  <p>Oh, you're using this for a flying carpet? This is the perfect type of
+  powder for you, then. It increases control more than any other powder, giving
+  a smooth and comfortable ride, even for inexperienced carpet users.</p>
+  {{else eq object "power-dealer"}}
+  <p>This is no ordinary powder: it lasts a long time, often supplementing
+  less-powerful batteries in magical components.</p>
+  {{else eq object "all-dealer"}}
+  <p>My product is very special &mdash; it combines a magical powder with an
+  all-natural energy source. The powder can be used to give things flight,
+  power electronics, and even bake cake!</p>
+  {{/eq}}
+
+  <p>&hellip;</p>
 {{#buying .}}
-Cool! Thanks for agreeing to buy {{obj.props.resourceName}}. You won't regret it.
+<p>Cool! Thanks for agreeing to buy {{obj.props.resourceName}}. You won't
+regret it.</p>
+
+{{#eq object "ur-dealer"}}
+<p>Please don't eat the batteries. You will regret that.</p>
+{{/eq}}
 {{else}}
 Sorry to see you go as a customer.
 {{/buying}}

@@ -21,14 +21,15 @@
   </blockquote>
 {{else eq object 'boss2'}}
   {{#unless state.beatBoss2}}
-  Boss 2 fights you!
+  <p>Boss 2 fights you!</p>
   {{else}}
   {{! already beat boss }}
+  <blockquote>
   <p>Ok, you beat me. I've opened the backdoor, which will let you go ahead.
   You better steer clear of the folk in the next area &mdash; they're quite
   dangerous, much more so than me.</p>
+  </blockquote>
   {{/unless}}
-  <p>
 {{else}}
   {{> notfound}}
 {{/eq}}

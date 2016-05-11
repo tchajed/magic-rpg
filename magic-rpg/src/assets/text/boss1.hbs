@@ -1,5 +1,11 @@
 {{#eq object "boss1"}}
   {{#unless state.beatBoss1}}
+      <p>The format for these battles is pretty straightforward: the two of you
+      spar against each other, summoning various creatures to help you.
+      Generally the summons fight by proxy, which makes it easier to go all-out
+      and not kill each other. People tend not to feel too bad about creatures
+      summoned from another dimension (go figure).</p>
+
     {{#eq state.boss1Leveling '-'}}
       <p>You've waltzed in here looking for trouble. The boss eyes you
       like you're 11 years old and thought that determination was all that
@@ -10,12 +16,20 @@
       fair fight. The boss eyes you as an equal. When &mdash; and if &mdash; you
       emerge victorious, you can know that skill was involved.</p>
 
+      <p>Spoiler alert: you do emerge victorious. The details of the battle are
+      complicated, but the high-level overview you cast some spells, he cast
+      some spells, and yours were better.</p>
+
       {{> expgain amount="50"}}
     {{else eq state.boss1Leveling '+'}}
       <p>You've trained heavily for this battle. It all comes down to making the
       critical move. Without stopping to look up from your phone, you dispatch the
       enemy with one overpowered move.</p>
+
       {{> expgain amount="20"}}
+
+      <p>Surely you didn't expect this to be <em>hard</em> after you
+      over-trained, right?</p>
     {{/eq}}
   {{else}}
     {{! already beat the boss }}
