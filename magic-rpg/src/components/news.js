@@ -1,5 +1,17 @@
 import h from 'virtual-dom/h';
 import news from '../assets/text/news.yaml';
+import gen from 'random-seed';
+
+let rand = gen.create(0);
+// Fischer-Yates in-place shuffle
+function shuffle(a) {
+  for (let i = a.length - 1; i >= 1; i--) {
+    let j = rand.range(i+1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+}
+shuffle(news);
+rand.done();
 
 export default class News {
   constructor(state) {
