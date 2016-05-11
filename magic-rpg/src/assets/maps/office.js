@@ -24,7 +24,7 @@ const background = Background.create(map, {
 const objects = () => {
   let player = new Entity(
     Texture.create("@"),
-    {name: "Player - level 3 wizard"}
+    {name: "Player"}
   );
 
   let objects = {
