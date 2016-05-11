@@ -102,11 +102,7 @@ const objects = () => {
   for (let o of Object.keys(objects)) {
     let obj = objects[o];
     if (obj.props.type === 'note') {
-      if (o.startsWith('hint')) {
-        obj.textures['note-seen'] = Texture.create("*");
-      } else {
-        obj.textures['note-seen'] = Texture.create(".");
-      }
+      obj.textures['note-seen'] = Texture.create(".");
     }
   }
 
