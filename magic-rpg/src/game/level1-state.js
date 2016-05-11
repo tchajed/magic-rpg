@@ -129,7 +129,7 @@ export default class State extends StateMachine {
     }
     if (this.enteredRoom.village &&
         !this.talkedToAnyVillagers()) {
-      return 'chapter1';
+      return 'ch1-village';
     }
     return null;
   }
