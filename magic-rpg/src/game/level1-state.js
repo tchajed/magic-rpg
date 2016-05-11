@@ -466,11 +466,14 @@ export default class State extends StateMachine {
   }
 
   gooseChaseDoneUpTo(o) {
-    let oIndex = this.gooseChaseChain.lastIndexOf(o);
+    let oIndex = this.gooseChaseChain.indexOf(o);
     if (oIndex === -1) {
       throw new Error(`non-goose chase villager ${o} queried`);
     }
-    return this.gooseChaseIndex >= oIndex;
+    if (oIndex === 0) {
+      return this.gooseChaseDone;
+    }
+    return this.gooseChaseIndex >= oIndex - 1;
   }
 
   get gooseChaseDone() {

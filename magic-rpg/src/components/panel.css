@@ -54,6 +54,10 @@ kbd {
     text-align: left;
 }
 
+.talked-to {
+  color: #5f8700;
+}
+
 .boss1,.boss2,.boss3 {
   color: #dc322f;
   font-weight: bold;

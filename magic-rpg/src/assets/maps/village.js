@@ -22,23 +22,36 @@ const background = Background.create(map, {
 
 const objects = () => {
   let villagers = {};
+  let names = [
+    'Alice',
+    'Bob',
+    'Caroline',
+    'Darius',
+    'Eve',
+    'Fjolfrin',
+    'Greg',
+    'Harriet',
+    'Isaac',
+    'Juliet',
+    'Kal',
+    'Loki',
+  ];
   for (let i = 1; i <= 12; i++) {
       let o = 'villager' + i;
-      let talkedChar = String.fromCharCode("A".charCodeAt(0) + i - 1);
+      // let talkedChar = String.fromCharCode("A".charCodeAt(0) + i - 1);
       villagers[o] = new Entity(
           {
               'default': Texture.create("!"),
-              'talked-to': Texture.create(talkedChar),
+              'talked-to': Texture.create("!"),
           },
           {
-              name: 'Villager',
+              name: names[i-1],
               type: 'villager',
           }
       );
   }
-  let objects = villagers;
 
-  return objects;
+  return villagers;
 };
 
 export default new LevelMap("village", background, objects);
