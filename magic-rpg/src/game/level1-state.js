@@ -58,6 +58,7 @@ export default class State extends StateMachine {
       beatBoss1: false,
 
       // factory
+      talkedToBridgeWorker: false,
       buyStatus: 'ignorant',
       sourced: {},
       bridgeStatus: 0,
@@ -123,6 +124,14 @@ export default class State extends StateMachine {
     return false;
   }
 
+  talkedToFactoryPeople() {
+    if (this.buyStatus !== 'ignorant' ||
+       this.talkedToBridgeWorker) {
+      return true;
+    }
+    return false;
+  }
+
   get chapter() {
     if (!this.talkedToManager) {
       return 'intro';
@@ -130,6 +139,10 @@ export default class State extends StateMachine {
     if (this.enteredRoom.village &&
         !this.talkedToAnyVillagers()) {
       return 'ch1-village';
+    }
+    if (this.enteredRoom['factory-road'] &&
+        !this.talkedToFactoryPeople()) {
+      return 'ch2-factory';
     }
     return null;
   }
@@ -163,6 +176,9 @@ export default class State extends StateMachine {
         this.modify('exp', (e) => e + expGain);
         this.set('beatBoss1', true);
       }
+    }
+    if (o === 'bridge-worker') {
+      this.set('talkedToBridgeWorker', true);
     }
     if (o === 'plant-manager') {
       this.interactPlantManager();
@@ -242,29 +258,15 @@ export default class State extends StateMachine {
   }
 
   interactPlantManager() {
-      if (this.buyStatus === 'ignorant') {
-        this.set('buyStatus', 'explained');
-      } else if (this.buyStatus === 'explained') {
-        this.set('buyStatus', 'agreed');
-      } else if (this.buyStatus === 'agreed') {
-        if (this.doneSourcing) {
-          this.set('bridgeStatus', 100);
-          return;
-        }
-        if (this.almostDoneSourcing && this.bridgeStatus < 90) {
-          this.set('bridgeStatus', 90);
-          return;
-        }
-        if (this.halfwaySourced && this.bridgeStatus < 50) {
-          this.set('bridgeStatus', 50);
-          return;
-        }
-      }
     if (this.buyStatus === 'ignorant') {
       this.set('buyStatus', 'explained');
-    } else if (this.buyStatus === 'explained') {
+      return;
+    }
+    if (this.buyStatus === 'explained') {
       this.set('buyStatus', 'agreed');
-    } else if (this.buyStatus === 'agreed') {
+      return;
+    }
+    if (this.buyStatus === 'agreed') {
       if (this.doneSourcing) {
         this.set('bridgeStatus', 100);
         return;

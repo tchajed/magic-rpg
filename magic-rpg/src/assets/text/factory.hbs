@@ -66,11 +66,19 @@ Which you do.
   {{/if}}
   {{/eq}}
 {{else eq obj.props.type "dealer"}}
+<blockquote>
+{{#unless state.permissionToBuy}}
+<p>Hello there. I'm a dealer in {{obj.props.resourceName}}. Unfortunately I
+only work with business customers and can't directly sell you any of my wares.
+There isn't actually enough space in the shop for all my stuff, obviously.</p>
+{{else}}
 {{#buying .}}
 Cool! Thanks for agreeing to buy {{obj.props.resourceName}}. You won't regret it.
 {{else}}
 Sorry to see you go as a customer.
 {{/buying}}
+{{/unless}}
+</blockquote>
 {{else}}
   {{> notfound}}
 {{/eq}}
