@@ -37,4 +37,4 @@ Some aspects I wanted to parody but didn't manage to incorporate include:
 
 ## Why do this?
 
-Written as a final electronic literature project for [CMS.845 (Interactive Narrative)](www.nickm.com/classes/interactive_narrative/2016_spring/).
+Written as a final electronic literature project for [CMS.845 (Interactive Narrative)](http://www.nickm.com/classes/interactive_narrative/2016_spring/).
