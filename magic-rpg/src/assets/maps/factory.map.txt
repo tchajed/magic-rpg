@@ -18,8 +18,8 @@ xxxxxxxxxxxxxxxx|                                                               
 xxxxxxxxxxxxxxxx|           +---------+       +---------+                                     |                              |                                     |
 xxxxxxxxxxxxxxxx|           | .  .. . |       | .  ...  |                                     |            +--+     \|/      |                                     |
 --+xxxxxxxxxxxxx|           |..  F    |       | .  P   .|                                     |     I      |%%|    --+--     |                                     |
-  |xxxxxxxxxxxxx|           |        .|       |.    .   |                                     |            +--+     /|\                                            |
-  |xxxxxxxxxxxxx|           |.        |       |         |                                     |                                                                    |
+  |xxxxxxxxxxxxx|           |        .|       |.    .   |                                                  +--+     /|\                                            |
+  |xxxxxxxxxxxxx|           |.        |       |         |                                                                                                          |
   +-------------+           +---- ----+       +---- ----+        +---------+                  |     -------------            |                                     |
   B                                                              |.  =   ==|                  |     O     O     O            |                                     |
 5                 W                                              |.^  A   &|                  |                              |                                     |
