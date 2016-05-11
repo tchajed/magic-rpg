@@ -18,11 +18,16 @@
       {{> expgain amount="20"}}
     {{/eq}}
   {{else}}
-    {{!-- already beat the boss --}}
+    {{! already beat the boss }}
     <p>Good job, wizard. You may now proceed to the next boss.</p>
+
+    <p>I've already opened the door, so you just have to walk through and find
+    the next guy. He's not hard, honestly, but it's usually a pain to find the
+    place.</p>
   {{/unless}}
 {{else eq object "boss1-door"}}
-    The door blocks your way. It's not clear how to open it from here &mdash; maybe somebody will open it for you?
+    The door blocks your way. It's not clear how to open it from here &mdash;
+    maybe somebody will open it for you?
 {{else}}
   {{> notfound}}
 {{/eq}}

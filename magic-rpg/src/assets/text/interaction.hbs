@@ -12,46 +12,10 @@
   {{> factory}}
 {{else eq obj.props.room "boss2"}}
   {{> boss2}}
+{{else eq obj.props.room "boss3"}}
+  {{> boss3}}
 {{else eq obj.props.room "pre-dungeon"}}
   {{> preDungeon}}
-{{else eq object "bossA"}}
-{{#unless state.talkedToManager}}
-You don't know who I am! Why should I talk to you?
-{{else}}
-<blockquote>
-<p>I'm the first boss. I guess I'd fight you or something?</p>
-
-</blockquote>
-{{/unless}}
-{{else eq object "greeter"}}
-
-<p>You arrive 15 minutes late to the meeting, after wandering around aimlessly,
-reading books that you've walked past every day in the office. Others don't
-comment on your tardiness (how polite of them). Instead they jump right in.</p>
-
-<p>You wander around more, looking for trouble. It would almost seem like you...
-wanted to fight mindless monsters? Who would do that? The creatures of the
-forest oblige you, happily coming to you with their monotonous troubles.</p>
-
-{{else eq object "bossB"}}
-{{#unless state.talkedToManager}}
-You don't know who I am! Why should I talk to you?
-{{else}}
-<blockquote>
-<p>I'm the second boss. I guess I'd fight you or something?</p>
-
-<p>It had all come to this. The final battle, against this boss of the {board}.
-This boss was special. There was a medical facility outside his office for a
-reason [well, mostly to save you some time]. As everyone but you has gathered,
-he is the leader of a great evil organization, the {evil organization}, which
-secretly controls the world. They have great interest in the {trade deal}
-falling apart, hoping that in the resulting anarchy their clandestine operation
-of illegal wand dealing would be all that people have left, funding their much
-more nefarious plans for world domination and enslavement. Despite this evil,
-the fight will be a fair one, and he will face you head on.</p>
-
-</blockquote>
-{{/unless}}
 {{else}}
   {{> notfound}}
 {{/eq}}
