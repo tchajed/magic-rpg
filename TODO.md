@@ -15,7 +15,7 @@
 - [x] add current room to state machine
 - [x] advance news on state transitions
 - [x] BUG: the goose chase text/STM is still very buggy
-- [ ] auto-deselect when object goes out of view
+- [x] auto-deselect when object goes out of view
 
 ## Game design - gameplay and story
 

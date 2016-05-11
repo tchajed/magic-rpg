@@ -72,6 +72,14 @@ export default class Game extends EventEmitter {
     return false;
   }
 
+  isVisible(objectId) {
+    let o = this.object(objectId);
+    if (o.rect.collides(this.viewPort.rect)) {
+      return true;
+    }
+    return false;
+  }
+
   segments() {
     let viewPort = this.viewPort;
     let buf = new RenderBuffer(viewPort.size);
@@ -79,6 +87,9 @@ export default class Game extends EventEmitter {
     buf.renderAt(viewOrigin, this.bg, 'bg');
 
     _.forOwn(this.objects, (v, id) => {
+      if (!this.isVisible(id)) {
+        return;
+      }
       let o = this.object(id);
       buf.renderAt(
         this.viewPort.translate(o.coords),
@@ -164,6 +175,10 @@ export default class Game extends EventEmitter {
       store.set('playerCoords', o.coords);
       this.state.set('room', this.bg.room(o.coords.y, o.coords.x));
       this.centerAround(objectId);
+      if (this.selection !== null &&
+          !this.isVisible(this.selection)) {
+        this.select(null);
+      }
     }
     this.emit('change', {
       type: 'object',
