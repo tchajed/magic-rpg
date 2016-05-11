@@ -14,6 +14,7 @@
 - [ ] BUG: key presses are not buffered, so they can be missed
 - [x] add current room to state machine
 - [x] advance news on state transitions
+- [ ] BUG: the goose chase text/STM is still very buggy
 
 ## Game design - gameplay and story
 
