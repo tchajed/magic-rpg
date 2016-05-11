@@ -87,6 +87,10 @@ export default class State extends StateMachine {
     let checks = {
       exp: true,
       'enteredRoom.village': true,
+      'enteredRoom.factory': true,
+      'enteredRoom.boss2-road': true,
+      'enteredRoom.boss2': true,
+      'enteredRoom.pre-dungeon': true,
       talkedToManager: true,
       beatBoss1: true,
       'notesSeen.hint1': true,
@@ -95,6 +99,10 @@ export default class State extends StateMachine {
       'bridgeStatus': true,
       'buyStatus': (oldVal, newVal) => newVal === 'explained',
       beatBoss2: true,
+      'fetched.kitten': true,
+      'fetched.book': true,
+      'fetched.fossil': true,
+      'fetched.star1': true,
     };
     let check = checks[ev.property];
     if (check === undefined) {
