@@ -1,4 +1,4 @@
-import {Texture, Background} from '../../game/assets';
+import {Texture, asciiBlock, Background} from '../../game/assets';
 import Entity from '../../game/entity';
 import LevelMap from './level-map';
 import map from './pre-dungeon.map.txt';
@@ -49,7 +49,10 @@ const objects = () => {
   }
   let sign = {
     'dungeon-sign': new Entity(
-      Texture.create("[###]"),
+      Texture.create(asciiBlock(`
+[###]
+|   |
+`)),
       { name: 'Sign' }
     ),
   };
