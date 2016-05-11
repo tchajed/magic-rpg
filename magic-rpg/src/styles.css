@@ -5,18 +5,6 @@ body {
 }
 #header {
     height: 4em;
-    font-weight: bold;
-    margin-top: 1em;
-}
-#header .title {
-    font-size: 2em;
-}
-#header .revision {
-    font-size: 1.5em;
-}
-#header a {
-    text-decoration: inherit;
-    color: inherit;
 }
 .unselectable {
     -webkit-user-select: none;

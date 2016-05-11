@@ -10,7 +10,7 @@ import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
 import Writing from './assets/level1-writing';
 import News from './assets/news';
-import gitrev from 'raw!./git-rev.txt';
+
 
 // This is organized poorly - it doesn't make sense for a View to have a model
 // that knows how to render itself.  It would be somewhat nice if View were a
@@ -79,16 +79,7 @@ let game = new Game(level1.background, level1.objects, level1.viewSize);
 
 // header
 new View(
-  {render: () => h('div',
-                   [
-                     h('span.title', 'Magic RPG'),
-                     h('span.revision', [
-                       ' — @',
-                       h('a', {
-                         href: `https://github.com/tchajed/magic-rpg/tree/${gitrev}`
-                       }, gitrev.slice(0, 8)),
-                     ]),
-                   ])}
+  {render: () => h('h1', 'Magic RPG')}
 ).init("#header");
 
 new GridView(
