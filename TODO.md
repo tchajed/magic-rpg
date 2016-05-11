@@ -12,15 +12,15 @@
 - [x] delivering story/news to different component
 - [x] refactored state machine
 - [ ] BUG: key presses are not buffered, so they can be missed
-- [ ] add current room to state machine
-- [ ] advance news on state transitions
+- [x] add current room to state machine
+- [x] advance news on state transitions
 
 ## Game design - gameplay and story
 
-- [ ] decide what battles play like
-- [ ] decide how and when to convey story
+- [x] decide what battles play like
+- [x] decide how and when to convey story
 - [x] write dialogue explaining what to do
-- [ ] try incorporating RPG trope quest
+- [x] incorporating RPG trope quest
 
 ## Experimental writing
 - [x] news text
