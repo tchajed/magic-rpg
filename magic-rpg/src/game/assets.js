@@ -185,19 +185,19 @@ export class Background extends Texture {
     let locs = new Map();
 
     let copyFrom = (bg, translation) => {
-      _.times(bg.bounds.height, (y) => {
-        _.times(bg.bounds.width, (x) => {
+      for (let y = 0; y < bg.bounds.height; y++) {
+        for (let x = 0; x < bg.bounds.width; x++) {
           let newCoords = translation.apply(new Coords(y, x));
           if (bg.cellProps[y][x].mask) {
             cells[newCoords.y][newCoords.x] = bg.cells[y][x];
             cellProps[newCoords.y][newCoords.x] = _.clone(bg.cellProps[y][x]);
           }
-        });
-      });
-
-      for (let [loc, coords] of bg.metadata.locs.entries()) {
-        locs.set(loc, translation.apply(coords));
+        }
       }
+
+      bg.metadata.locs.forEach((coords, loc) => {
+        locs.set(loc, translation.apply(coords));
+      });
     };
 
     copyFrom(bg1, translation1);
