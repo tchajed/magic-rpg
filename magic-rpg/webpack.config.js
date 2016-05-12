@@ -26,6 +26,10 @@ module.exports = {
         loader: 'raw',
       },
       {
+        test: /\.png/,
+        loader: 'url',
+      },
+      {
         test: /\.js/,
         loader: 'babel',
         include: __dirname + '/src',

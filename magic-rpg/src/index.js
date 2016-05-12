@@ -10,6 +10,7 @@ import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import * as level1 from './assets/level1';
 import Writing from './assets/level1-writing';
+import favicon from './assets/hat.png';
 
 
 // This is organized poorly - it doesn't make sense for a View to have a model
@@ -76,6 +77,10 @@ class NewsView extends View {
 }
 
 let game = new Game(level1.background, level1.objects, level1.viewSize);
+
+// favicon
+let link = document.querySelector("head link[rel=icon]");
+link.setAttribute("href", favicon);
 
 // header
 new View(
