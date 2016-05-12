@@ -16,6 +16,7 @@
 - [x] advance news on state transitions
 - [x] BUG: the goose chase text/STM is still very buggy
 - [x] auto-deselect when object goes out of view
+- [x] make water cooler unselectable / add text
 
 ## Game design - gameplay and story
 

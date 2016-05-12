@@ -148,6 +148,10 @@ export default class Game extends EventEmitter {
       this.select(null);
       return;
     }
+    if (newSelection === 'water') {
+      this.select('cooler');
+      return;
+    }
     this.selection = newSelection;
     this.emit('change', {
       type: 'selection',

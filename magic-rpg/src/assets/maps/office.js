@@ -95,7 +95,8 @@ const objects = () => {
 +-+
 | |
 +-+
-`)).boxDrawing()
+`)).boxDrawing(),
+    {name: 'Water Cooler'}
     ),
   };
 
