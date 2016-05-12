@@ -17,6 +17,7 @@
 - [x] BUG: the goose chase text/STM is still very buggy
 - [x] auto-deselect when object goes out of view
 - [x] make water cooler unselectable / add text
+- [ ] the constraint violation text is not really helpful enough
 
 ## Game design - gameplay and story
 

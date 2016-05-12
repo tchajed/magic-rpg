@@ -501,7 +501,7 @@ export default class State extends StateMachine {
       'thread':  sourced.polyester || sourced.cotton || sourced.silk,
       'powder': sourced.control || sourced.power || sourced.all,
       'power': sourced.lion || sourced.ur || sourced.all,
-      'one-power': countTrue([sourced.lion, sourced.ur, sourced.all]) === 1,
+      'le-one-power': countTrue([sourced.lion, sourced.ur, sourced.all]) <= 1,
       'silk->uranium': implies(sourced.silk, sourced.uranium),
       '!silk+uranium': !(sourced.silk && sourced.uranium),
       '!polyester': !sourced.polyester,

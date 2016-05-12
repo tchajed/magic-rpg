@@ -46,7 +46,7 @@ Which you do.
   {{#if state.doneSourcing}}
   <p>These are perfect! Thank you so much!</p>
   {{else}}
-  {{#unless state.sourceConstraints.[one-power]}}
+  {{#unless state.sourceConstraints.[le-one-power]}}
   <p>There are too many batteries in that. Why would you do that?</p>
   {{else unless state.sourceConstraints.[silk->uranium]}}
   <p>Ooh, it looks like the magic carpets are underpowered. Are you sure your
