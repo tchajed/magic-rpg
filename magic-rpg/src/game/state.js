@@ -70,7 +70,7 @@ export default class StateMachine extends EventEmitter {
     store.set(first, this[first]);
     this.emit('transition', {
       property: propname,
-      oldVal: oldVal,
+      oldVal,
       newVal: v,
     });
   }

@@ -6,6 +6,7 @@
     "rules": {
         "comma-dangle": ["error", "always-multiline"],
         "no-unused-vars": "error",
-        "no-const-assign": "error"
+        "no-const-assign": "error",
+        "object-shorthand": "error"
     }
 }
