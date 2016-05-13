@@ -190,10 +190,10 @@ export default class State extends StateMachine {
     }
     if (o === 'boss1') {
       let expGain = 0;
-      if (this.boss1Leveling == '=') {
+      if (this.boss1Leveling === '=') {
         expGain = 50;
       }
-      if (this.boss1Leveling == '+') {
+      if (this.boss1Leveling === '+') {
         expGain = 20;
       }
       if (expGain > 0 && !this.beatBoss1) {
@@ -251,10 +251,10 @@ export default class State extends StateMachine {
     }
 
     if (o === 'villager3') {
-      if (this.mailDelivery == 'not-started') {
+      if (this.mailDelivery === 'not-started') {
         this.set('mailDelivery', 'taken');
       }
-      if (this.mailDelivery == 'delivered') {
+      if (this.mailDelivery === 'delivered') {
         this.set('mailDelivery', 'done');
         this.modify('exp', (e) => e + 30);
       }
@@ -478,7 +478,7 @@ export default class State extends StateMachine {
   }
 
   get gooseChaseDone() {
-    return this.gooseChaseIndex == this.gooseChaseChain.length - 1;
+    return this.gooseChaseIndex === this.gooseChaseChain.length - 1;
   }
 
   get boss1Leveling() {

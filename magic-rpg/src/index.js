@@ -58,8 +58,8 @@ class PanelView extends View {
   listen() {
     this.model.game.on('change', (ev) => {
       if (ev.type === 'selection' ||
-      (ev.type === 'object' && ev.objectId == this.selection) ||
-      ev.type == 'state') {
+      (ev.type === 'object' && ev.objectId === this.selection) ||
+      ev.type === 'state') {
         this.update();
       }
     });
