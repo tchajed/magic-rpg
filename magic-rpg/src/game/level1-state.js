@@ -521,8 +521,8 @@ export default class State extends StateMachine {
     if (resources.length === 1) {
       return resources[0];
     }
-    resources[resources.length-1] = "and " + resources[resources.length-1];
-    return resources.join(", ");
+    resources[resources.length-1] = 'and ' + resources[resources.length-1];
+    return resources.join(', ');
   }
 
   get isMissingResources() {

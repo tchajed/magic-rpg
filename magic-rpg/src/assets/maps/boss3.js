@@ -12,10 +12,10 @@ const objects = () => {
   return {
     boss3: new Entity(
       {
-        'default': Texture.create("!"),
-        'defeated': Texture.create("!"),
+        'default': Texture.create('!'),
+        'defeated': Texture.create('!'),
       },
-      {name: "Final boss"}
+      {name: 'Final boss'}
     ),
   };
 };

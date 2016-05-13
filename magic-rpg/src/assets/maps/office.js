@@ -23,17 +23,17 @@ const background = Background.create(map, {
 
 const objects = () => {
   const player = new Entity(
-    Texture.create("@"),
-    {name: "Player"}
+    Texture.create('@'),
+    {name: 'Player'}
   );
 
   const objects = {
     manager: new Entity(
       {
-        default: Texture.create("!"),
-        seen: Texture.create("M"),
+        default: Texture.create('!'),
+        seen: Texture.create('M'),
       },
-      {name: "Manager"}
+      {name: 'Manager'}
     ),
     table: new Entity(
       Texture.create(asciiBlock(`
@@ -44,43 +44,43 @@ const objects = () => {
 /----------/
         `
       )),
-      {name: "Table"}
+      {name: 'Table'}
     ),
     note1: new Entity(
-      Texture.create("."),
+      Texture.create('.'),
       {type: 'note'}
     ),
     note2: new Entity(
-      Texture.create("."),
+      Texture.create('.'),
       {type: 'note'}
     ),
     note3: new Entity(
-      Texture.create("."),
+      Texture.create('.'),
       {type: 'note'}
     ),
     note4: new Entity(
-      Texture.create("."),
+      Texture.create('.'),
       {type: 'note'}
     ),
     hint1: new Entity(
-      Texture.create("."),
+      Texture.create('.'),
       {name: 'Instructions for level 4 promotion',
         type: 'note'}
     ),
     hint2: new Entity(
-      Texture.create("."),
+      Texture.create('.'),
       {name: 'Instructions for level 4 promotion',
         type: 'note'}
     ),
     hint3: new Entity(
-      Texture.create("."),
+      Texture.create('.'),
       {name: 'Instructions for level 4 promotion',
         type: 'note'}
     ),
     door: new Entity(
       {
-          default: Texture.create("|\n|\n|"),
-              open: Texture.create(""),
+          default: Texture.create('|\n|\n|'),
+              open: Texture.create(''),
       },
       {name: 'Door'}
     ),
@@ -103,11 +103,11 @@ const objects = () => {
   for (const o of Object.keys(objects)) {
     const obj = objects[o];
     if (obj.props.type === 'note') {
-      obj.textures['note-seen'] = Texture.create(".");
+      obj.textures['note-seen'] = Texture.create('.');
     }
   }
 
   return _.merge(objects, {player});
 };
 
-export default new LevelMap("office", background, objects);
+export default new LevelMap('office', background, objects);

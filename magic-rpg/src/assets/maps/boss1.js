@@ -14,19 +14,19 @@ const objects = () => {
   return {
     boss1: new Entity(
       {
-        'default': Texture.create("!"),
-        'defeated': Texture.create("!"),
+        'default': Texture.create('!'),
+        'defeated': Texture.create('!'),
       },
       {name: 'Boss'}
     ),
     'boss1-door': new Entity(
       {
-        'default': Texture.create("|\n|"),
-        'open': Texture.create(""),
+        'default': Texture.create('|\n|'),
+        'open': Texture.create(''),
       },
       {name: 'Door'}
     ),
   };
 };
 
-export default new LevelMap("boss1", background, objects);
+export default new LevelMap('boss1', background, objects);

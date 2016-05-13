@@ -40,7 +40,7 @@ export default class StateMachine extends EventEmitter {
   }
 
   _resolve(propname) {
-    const proppath = propname.split(".");
+    const proppath = propname.split('.');
     const first = proppath[0];
     const prop = proppath.pop();
     let obj = this;
@@ -49,7 +49,7 @@ export default class StateMachine extends EventEmitter {
     }
     proppath.forEach((component, i) => {
       if (obj[component] === undefined) {
-        const badpath = proppath.slice(i).join(".");
+        const badpath = proppath.slice(i).join('.');
         throw new Error(`attempt to access non-existent path ${badpath}`);
       }
       obj = obj[component];

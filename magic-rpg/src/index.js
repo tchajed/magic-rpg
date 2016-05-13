@@ -79,25 +79,25 @@ class NewsView extends View {
 const game = new Game(level1.background, level1.objects, level1.viewSize);
 
 // favicon
-const link = document.querySelector("head link[rel=icon]");
-link.setAttribute("href", favicon);
+const link = document.querySelector('head link[rel=icon]');
+link.setAttribute('href', favicon);
 
 // header
 new View(
   {render: () => h('h1', 'Magic RPG')}
-).init("#header");
+).init('#header');
 
 new GridView(
   new AsciiGrid(game))
-  .init("#ascii-grid");
+  .init('#ascii-grid');
 
 new PanelView(
   new InfoPanel(game, new Writing(game.state)))
-  .init("#info-panel");
+  .init('#info-panel');
 
 new NewsView(
   new News(game.state))
-  .init("#news-panel");
+  .init('#news-panel');
 
 const keys = new Map([
   ['left', {
@@ -197,7 +197,7 @@ Mousetrap.bind('b', () => {
   movement.changeInterval(interval(game.state.get('fastMovement')));
 });
 
-const infoPanel = document.querySelector("#info-panel");
+const infoPanel = document.querySelector('#info-panel');
 Mousetrap.bind('j', () => {
   infoPanel.scrollTop += 20;
   return false;

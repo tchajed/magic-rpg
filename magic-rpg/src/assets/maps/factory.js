@@ -23,8 +23,8 @@ const objects = () => {
   const dealer = (name, resource) => {
     return new Entity(
       {
-        'default': Texture.create("!"),
-        purchased: Texture.create("!"),
+        'default': Texture.create('!'),
+        purchased: Texture.create('!'),
       },
       {
         name: name + ' Dealer',
@@ -36,11 +36,11 @@ const objects = () => {
   };
   return {
     'plant-manager': new Entity(
-      Texture.create("!"),
+      Texture.create('!'),
       {name: 'Plant manager'}
     ),
     'bridge-worker': new Entity(
-      Texture.create("!"),
+      Texture.create('!'),
       {name: 'Bridge construction worker'}
     ),
     'bridge': new Entity(
@@ -60,7 +60,7 @@ const objects = () => {
 #
 #
 `)),
-        'done': Texture.create(""),
+        'done': Texture.create(''),
       },
       {name: 'Bridge'}
     ),
@@ -76,4 +76,4 @@ const objects = () => {
   };
 };
 
-export default new LevelMap("factory", background, objects);
+export default new LevelMap('factory', background, objects);

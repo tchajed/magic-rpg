@@ -17,27 +17,27 @@ const objects = () => {
   return {
     boss2: new Entity(
       {
-        'default': Texture.create("!"),
-        'defeated': Texture.create("!"),
+        'default': Texture.create('!'),
+        'defeated': Texture.create('!'),
       },
-      {name: "Second boss"}
+      {name: 'Second boss'}
     ),
     'boss2-lackey1': new Entity(
-      Texture.create("!"),
+      Texture.create('!'),
       {type: 'lackey'}
     ),
     'boss2-lackey2': new Entity(
-      Texture.create("!"),
+      Texture.create('!'),
       {type: 'lackey'}
     ),
     'boss2-lackey3': new Entity(
-      Texture.create("!"),
+      Texture.create('!'),
       {type: 'lackey'}
     ),
     'boss2-exit': new Entity(
       {
-        'default': Texture.create("|"),
-        'open': Texture.create(""),
+        'default': Texture.create('|'),
+        'open': Texture.create(''),
       }
     ),
   };

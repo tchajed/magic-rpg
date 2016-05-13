@@ -24,7 +24,7 @@ export default class Writing {
       }),
       // delegate events from the generated template
       onclick: (e) => {
-        if (e.target.id === "clear-data") {
+        if (e.target.id === 'clear-data') {
           this.state.clear();
           this.state.reset();
         }

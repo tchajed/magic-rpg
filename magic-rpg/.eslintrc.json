@@ -10,6 +10,8 @@
         "object-shorthand": "error",
         "valid-typeof": "error",
         "eqeqeq": "error",
-        "prefer-const": ["error", {"destructuring": "all"}]
+        "prefer-const": ["error", {"destructuring": "all"}],
+        "no-useless-escape": "error",
+        "quotes": ["error", "single"]
     }
 }

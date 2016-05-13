@@ -11,4 +11,4 @@ const objects = () => {
   return {};
 };
 
-export default new LevelMap("factory-road", background, objects);
+export default new LevelMap('factory-road', background, objects);

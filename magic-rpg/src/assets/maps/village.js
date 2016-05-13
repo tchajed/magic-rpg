@@ -41,8 +41,8 @@ const objects = () => {
       // const talkedChar = String.fromCharCode("A".charCodeAt(0) + i - 1);
       villagers[o] = new Entity(
           {
-              'default': Texture.create("!"),
-              'talked-to': Texture.create("!"),
+              'default': Texture.create('!'),
+              'talked-to': Texture.create('!'),
           },
           {
               name: names[i-1],
@@ -54,4 +54,4 @@ const objects = () => {
   return villagers;
 };
 
-export default new LevelMap("village", background, objects);
+export default new LevelMap('village', background, objects);

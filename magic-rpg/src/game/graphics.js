@@ -102,7 +102,7 @@ export class ViewPort {
 }
 
 export class Cell {
-  constructor(text, objectId=null, className="") {
+  constructor(text, objectId=null, className='') {
     this.text = text;
     this.objectId = objectId;
     this.className = className;
@@ -129,7 +129,7 @@ export class RenderBuffer {
 
   // TODO: this is pretty heavy in the profile; for bg, should not render every
   // texture pixel but instead every viewport pixel
-  renderAt(basePos, texture, objectId=null, className="") {
+  renderAt(basePos, texture, objectId=null, className='') {
     _.each(texture.cells, (row, dy) => {
       _.each(row, (c, dx) => {
         const y = basePos.y + dy,

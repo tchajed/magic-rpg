@@ -10,12 +10,12 @@ const namedLocs = {
 };
 
 for (let i = 1; i <= 5; i++) {
-  const offset = "A".charCodeAt(0);
+  const offset = 'A'.charCodeAt(0);
   namedLocs[String.fromCharCode(offset + i - 1)] = {name: 'hinter' + i};
 }
 
 for (let i = 1; i <= 16; i++) {
-  const offset = "a".charCodeAt(0);
+  const offset = 'a'.charCodeAt(0);
   namedLocs[String.fromCharCode(offset + i - 1)] = {name: 'object' + i};
 }
 
@@ -25,7 +25,7 @@ const objects = () => {
   const hinters = {};
   for (let i = 1; i <= 5; i++) {
     hinters['hinter' + i] = new Entity(
-      Texture.create("!"),
+      Texture.create('!'),
       {
         type: 'hinter',
       });
@@ -41,7 +41,7 @@ const objects = () => {
     objects['object' + i] = new Entity(
       {
         'default': Texture.create(symbols[i - 1]),
-        'gone': Texture.create(""),
+        'gone': Texture.create(''),
       },
       {
         type: 'object',

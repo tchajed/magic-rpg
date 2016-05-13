@@ -3,7 +3,7 @@ import {Bounds, Coords, Delta} from './graphics';
 import boxDrawing from './boxDrawing';
 
 const parseDesc = function(desc) {
-    const lines = _.filter(desc.split("\n"), (line) => {
+    const lines = _.filter(desc.split('\n'), (line) => {
       return line.length > 0;
     });
     if (lines.length === 0) {
@@ -62,8 +62,8 @@ export class Texture {
 //    `
 // works as expected. Note that no de-indentation is performed.
 export const asciiBlock = (s) => {
-  var first = s.indexOf("\n");
-  var last = s.lastIndexOf("\n");
+  var first = s.indexOf('\n');
+  var last = s.lastIndexOf('\n');
   return s.substring(first+1, last);
 };
 
