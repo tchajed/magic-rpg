@@ -5,6 +5,7 @@
     },
     "rules": {
         "comma-dangle": ["error", "always-multiline"],
-        "no-unused-vars": "error"
+        "no-unused-vars": "error",
+        "no-const-assign": "error"
     }
 }
