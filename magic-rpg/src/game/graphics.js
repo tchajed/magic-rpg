@@ -121,7 +121,7 @@ export class RenderBuffer {
   constructor(size) {
     this.size = size;
     this.cells = _.times(size.height, () => {
-      let row = _.times(size.width, () => new Cell(' ', 'empty', 'empty'));
+      const row = _.times(size.width, () => new Cell(' ', 'empty', 'empty'));
       row.push(new Cell('\n', 'spacer'));
       return row;
     });
@@ -132,7 +132,7 @@ export class RenderBuffer {
   renderAt(basePos, texture, objectId=null, className="") {
     _.each(texture.cells, (row, dy) => {
       _.each(row, (c, dx) => {
-        let y = basePos.y + dy,
+        const y = basePos.y + dy,
         x = basePos.x + dx;
         if (this.size.contains(new Coords(y, x)) &&
         texture.mask(dy, dx)) {
@@ -144,7 +144,7 @@ export class RenderBuffer {
 
   compressed() {
     let accum = null;
-    let rendered = [];
+    const rendered = [];
     _.each(this.cells, (row, y) => {
       _.each(row, (cell, x) => {
         // initialize with first cell

@@ -7,7 +7,7 @@ export default class InfoPanel {
   }
 
   render() {
-    let selection = this.game.selection;
+    const selection = this.game.selection;
     if (selection === null) {
       return this.writing.story();
     }

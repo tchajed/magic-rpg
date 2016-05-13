@@ -6,27 +6,27 @@ function countTrue(booleans) {
 }
 
 const fetchSolution = (() => {
-  let solution = {
+  const solution = {
     'kitten': {o: 1, h: 4},
     'book' : {o: 6, h: 1},
     'fossil': {o: 5, h: 2},
     'star1': {o: 15, h: 3},
     'coffee': {o: 7, h: 5},
   };
-  for (let name of Object.keys(solution)) {
-    let {o, h} = solution[name];
+  for (const name of Object.keys(solution)) {
+    const {o, h} = solution[name];
     solution[name] = {object: 'object' + o, hinter: 'hinter' + h};
   }
 
-  let forHinter = {};
-  for (let name of Object.keys(solution)) {
-    let soln = solution[name];
+  const forHinter = {};
+  for (const name of Object.keys(solution)) {
+    const soln = solution[name];
     forHinter[soln.hinter] = soln.object;
   }
 
-  let forObject = {};
-  for (let name of Object.keys(solution)) {
-    let soln = solution[name];
+  const forObject = {};
+  for (const name of Object.keys(solution)) {
+    const soln = solution[name];
     forObject[soln.object] = name;
   }
 
@@ -89,7 +89,7 @@ export default class State extends StateMachine {
     if (_.isEqual(ev.oldVal, ev.newVal)) {
       return false;
     }
-    let checks = {
+    const checks = {
       exp: true,
       'enteredRoom.village': true,
       'enteredRoom.factory': true,
@@ -109,7 +109,7 @@ export default class State extends StateMachine {
       'fetched.fossil': true,
       'fetched.star1': true,
     };
-    let check = checks[ev.property];
+    const check = checks[ev.property];
     if (check === undefined) {
       return false;
     }
@@ -120,7 +120,7 @@ export default class State extends StateMachine {
   }
 
   talkedToAnyVillagers() {
-    for (let villager of Object.keys(this.villagersTalkedTo)) {
+    for (const villager of Object.keys(this.villagersTalkedTo)) {
       if (this.villagersTalkedTo[villager]) {
         return true;
       }
@@ -271,7 +271,7 @@ export default class State extends StateMachine {
     }
 
     if (this.gooseChaseChain.indexOf(o) !== -1) {
-      let oIndex = this.gooseChaseChain.indexOf(o);
+      const oIndex = this.gooseChaseChain.indexOf(o);
       if (oIndex === this.gooseChaseIndex + 1) {
         this.set('gooseChaseIndex', oIndex);
       }
@@ -328,15 +328,15 @@ export default class State extends StateMachine {
   }
 
   holdingRightObject(hinter) {
-    let object = fetchSolution.forHinter(hinter);
+    const object = fetchSolution.forHinter(hinter);
     if (this.heldObject === object) {
       return true;
     }
   }
 
   solvedQuest(hinter) {
-    let object = fetchSolution.forHinter(hinter);
-    let name = fetchSolution.forObject(object);
+    const object = fetchSolution.forHinter(hinter);
+    const name = fetchSolution.forObject(object);
     if (this.fetched[name]) {
       return true;
     }
@@ -344,8 +344,8 @@ export default class State extends StateMachine {
   }
 
   interactHinter(hinter) {
-    let object = fetchSolution.forHinter(hinter);
-    let name = fetchSolution.forObject(object);
+    const object = fetchSolution.forHinter(hinter);
+    const name = fetchSolution.forObject(object);
 
     if (this.fetched[name]) {
       return;
@@ -467,7 +467,7 @@ export default class State extends StateMachine {
   }
 
   gooseChaseDoneUpTo(o) {
-    let oIndex = this.gooseChaseChain.indexOf(o);
+    const oIndex = this.gooseChaseChain.indexOf(o);
     if (oIndex === -1) {
       throw new Error(`non-goose chase villager ${o} queried`);
     }
@@ -493,10 +493,10 @@ export default class State extends StateMachine {
   }
 
   get sourceConstraints() {
-    let implies = (a, b) => {
+    const implies = (a, b) => {
       return !a || b;
     };
-    let sourced = this.get('sourced');
+    const sourced = this.get('sourced');
     return {
       'thread':  sourced.polyester || sourced.cotton || sourced.silk,
       'powder': sourced.control || sourced.power || sourced.all,
@@ -511,8 +511,8 @@ export default class State extends StateMachine {
   }
 
   get missingResources() {
-    let constraints = this.sourceConstraints;
-    let resources = _.flatMap(['thread', 'powder', 'power'], (resource) => {
+    const constraints = this.sourceConstraints;
+    const resources = _.flatMap(['thread', 'powder', 'power'], (resource) => {
       return constraints[resource] ? [] : [resource];
     });
     if (resources.length === 0) {
@@ -526,7 +526,7 @@ export default class State extends StateMachine {
   }
 
   get isMissingResources() {
-    let constraints = this.sourceConstraints;
+    const constraints = this.sourceConstraints;
     if (constraints.thread && constraints.powder && constraints.power) {
       return false;
     }
@@ -538,8 +538,8 @@ export default class State extends StateMachine {
   }
 
   get almostDoneSourcing() {
-    let constraints = this.sourceConstraints;
-    let satisfied = _.map(Object.keys(constraints), (name) => constraints[name]);
+    const constraints = this.sourceConstraints;
+    const satisfied = _.map(Object.keys(constraints), (name) => constraints[name]);
     // all but 0 or 1 contraints are met
     if (countTrue(satisfied) >= satisfied.length - 1) {
       return true;
@@ -547,8 +547,8 @@ export default class State extends StateMachine {
   }
 
   get doneSourcing() {
-    let constraints = this.sourceConstraints;
-    for (let name of Object.keys(constraints)) {
+    const constraints = this.sourceConstraints;
+    for (const name of Object.keys(constraints)) {
       if (!constraints[name]) {
         return false;
       }

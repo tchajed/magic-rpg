@@ -26,7 +26,7 @@ class View {
   }
 
   init(selector) {
-    let component = document.querySelector(selector);
+    const component = document.querySelector(selector);
     component.appendChild(this.rootNode);
     this.listen();
   }
@@ -35,8 +35,8 @@ class View {
   listen() {}
 
   update() {
-    let newTree = this.model.render();
-    let patches = diff(this.tree, newTree);
+    const newTree = this.model.render();
+    const patches = diff(this.tree, newTree);
     this.rootNode = patch(this.rootNode, patches);
     this.tree = newTree;
   }
@@ -76,10 +76,10 @@ class NewsView extends View {
   }
 }
 
-let game = new Game(level1.background, level1.objects, level1.viewSize);
+const game = new Game(level1.background, level1.objects, level1.viewSize);
 
 // favicon
-let link = document.querySelector("head link[rel=icon]");
+const link = document.querySelector("head link[rel=icon]");
 link.setAttribute("href", favicon);
 
 // header
@@ -130,7 +130,7 @@ class Movement {
     };
     this.skipNextHandle = false;
     // jshint loopfunc: true
-    for (let [key, data] of keys) {
+    for (const [key, data] of keys) {
       Mousetrap.bind(data.shortcuts, () => {
         if (!this.keysDown[key]) {
           this.keysDown[key] = this.clock;
@@ -157,7 +157,7 @@ class Movement {
     }
     let maxKey = null;
     let maxClock = -1;
-    for (let key of keys.keys()) {
+    for (const key of keys.keys()) {
       if (this.keysDown[key] !== null && this.keysDown[key] > maxClock) {
         maxClock = this.keysDown[key];
         maxKey = key;
@@ -176,11 +176,11 @@ class Movement {
   }
 }
 
-let interval = (fastMovement) => {
+const interval = (fastMovement) => {
   return fastMovement ? 1000/25 : 1000/10;
 };
 
-let movement = new Movement((delta) => {
+const movement = new Movement((delta) => {
   game.moveObject('player', delta[0], delta[1]);
 }, interval(game.state.get('fastMovement')));
 
@@ -197,7 +197,7 @@ Mousetrap.bind('b', () => {
   movement.changeInterval(interval(game.state.get('fastMovement')));
 });
 
-let infoPanel = document.querySelector("#info-panel");
+const infoPanel = document.querySelector("#info-panel");
 Mousetrap.bind('j', () => {
   infoPanel.scrollTop += 20;
   return false;

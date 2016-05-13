@@ -22,12 +22,12 @@ const background = Background.create(map, {
 });
 
 const objects = () => {
-  let player = new Entity(
+  const player = new Entity(
     Texture.create("@"),
     {name: "Player"}
   );
 
-  let objects = {
+  const objects = {
     manager: new Entity(
       {
         default: Texture.create("!"),
@@ -100,8 +100,8 @@ const objects = () => {
     ),
   };
 
-  for (let o of Object.keys(objects)) {
-    let obj = objects[o];
+  for (const o of Object.keys(objects)) {
+    const obj = objects[o];
     if (obj.props.type === 'note') {
       obj.textures['note-seen'] = Texture.create(".");
     }

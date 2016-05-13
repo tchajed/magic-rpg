@@ -21,8 +21,8 @@ const background = Background.create(map, {
 });
 
 const objects = () => {
-  let villagers = {};
-  let names = [
+  const villagers = {};
+  const names = [
     'Alice',
     'Bob',
     'Caroline',
@@ -37,8 +37,8 @@ const objects = () => {
     'Loki',
   ];
   for (let i = 1; i <= 12; i++) {
-      let o = 'villager' + i;
-      // let talkedChar = String.fromCharCode("A".charCodeAt(0) + i - 1);
+      const o = 'villager' + i;
+      // const talkedChar = String.fromCharCode("A".charCodeAt(0) + i - 1);
       villagers[o] = new Entity(
           {
               'default': Texture.create("!"),

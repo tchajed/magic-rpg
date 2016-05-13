@@ -3,13 +3,13 @@ import {Bounds, Coords, Delta} from './graphics';
 import boxDrawing from './boxDrawing';
 
 const parseDesc = function(desc) {
-    let lines = _.filter(desc.split("\n"), (line) => {
+    const lines = _.filter(desc.split("\n"), (line) => {
       return line.length > 0;
     });
     if (lines.length === 0) {
       return [[]];
     }
-    let width = _.max(_.map(lines, (l) => l.length));
+    const width = _.max(_.map(lines, (l) => l.length));
     return _.map(lines, (line) => {
       return _.times(width, (i) => {
         if (i < line.length) {
@@ -68,10 +68,10 @@ export const asciiBlock = (s) => {
 };
 
 const parseNames = (cells, labelToNameMapping) => {
-  let nameToLocs = new Map();
+  const nameToLocs = new Map();
   _.each(cells, (row, y) => {
     _.each(row, (cell, x) => {
-      let info = labelToNameMapping[cell];
+      const info = labelToNameMapping[cell];
       if (info !== undefined) {
         if (nameToLocs.has(info.name)) {
           throw new Error(`duplicate shortcut ${cell} seen at (${y}, ${x})`);
@@ -108,9 +108,9 @@ export class Background extends Texture {
   }
 
   static create(desc, labelToNameMapping) {
-    let cells = parseDesc(desc);
-    let nameToLocs = parseNames(cells, labelToNameMapping);
-    let cellProps = _.map(cells, (row) => {
+    const cells = parseDesc(desc);
+    const nameToLocs = parseNames(cells, labelToNameMapping);
+    const cellProps = _.map(cells, (row) => {
       return _.map(row, (cell) => {
         return {
           mask: cell !== 'x',
@@ -142,7 +142,7 @@ export class Background extends Texture {
   collides(coords, size) {
     for (var dy = 0; dy < size.height; dy++) {
       for (var dx = 0; dx < size.width; dx++) {
-        let y = coords.y + dy,
+        const y = coords.y + dy,
           x = coords.x + dx;
         if (!this.mask(y, x) ||
           !this.traversable(y, x)) {
@@ -157,37 +157,37 @@ export class Background extends Texture {
   // location marker such that bg2's named pivot is positioned at bg1's named
   // location. Any overlap is taken from bg2.
   static stitch(bg1, bg2, marker) {
-    let loc = bg1.loc(marker);
-    let pivot = bg2.loc(marker);
-    let translate21 = Delta.of(loc, pivot);
-    let bg2UL = translate21.apply(Coords.zero);
-    let bg2LR = translate21.apply(new Coords(bg2.bounds.height, bg2.bounds.width));
-    let newUL = new Coords(Math.min(0, bg2UL.y),
+    const loc = bg1.loc(marker);
+    const pivot = bg2.loc(marker);
+    const translate21 = Delta.of(loc, pivot);
+    const bg2UL = translate21.apply(Coords.zero);
+    const bg2LR = translate21.apply(new Coords(bg2.bounds.height, bg2.bounds.width));
+    const newUL = new Coords(Math.min(0, bg2UL.y),
                            Math.min(0, bg2UL.x));
-    let newLR = new Coords(Math.max(bg2LR.y, bg1.bounds.height),
+    const newLR = new Coords(Math.max(bg2LR.y, bg1.bounds.height),
                            Math.max(bg2LR.x, bg1.bounds.width));
-    let newSize = new Bounds(newLR.y - newUL.y, newLR.x - newUL.x);
-    let translation1 = Delta.of(Coords.zero, newUL);
-    let translation2 = translate21.plus(translation1);
+    const newSize = new Bounds(newLR.y - newUL.y, newLR.x - newUL.x);
+    const translation1 = Delta.of(Coords.zero, newUL);
+    const translation2 = translate21.plus(translation1);
 
-    let emptyArray = (bounds, def) => {
+    const emptyArray = (bounds, def) => {
       return _.times(bounds.height, () => {
         return _.times(bounds.width, () => def);
       });
     };
 
-    let cells = emptyArray(newSize, 'x');
-    let cellProps = emptyArray(newSize, {
+    const cells = emptyArray(newSize, 'x');
+    const cellProps = emptyArray(newSize, {
       mask: false,
       traversable: false,
       room: 'none',
     });
-    let locs = new Map();
+    const locs = new Map();
 
-    let copyFrom = (bg, translation) => {
+    const copyFrom = (bg, translation) => {
       for (let y = 0; y < bg.bounds.height; y++) {
         for (let x = 0; x < bg.bounds.width; x++) {
-          let newCoords = translation.apply(new Coords(y, x));
+          const newCoords = translation.apply(new Coords(y, x));
           if (bg.cellProps[y][x].mask) {
             cells[newCoords.y][newCoords.x] = bg.cells[y][x];
             cellProps[newCoords.y][newCoords.x] = _.clone(bg.cellProps[y][x]);

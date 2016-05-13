@@ -30,7 +30,7 @@ export default class Game extends EventEmitter {
       });
     });
     if (store.get('playerCoords')) {
-      let coords = store.get('playerCoords');
+      const coords = store.get('playerCoords');
       this.objects.player.coords = new Coords(coords.y, coords.x);
     }
     this.centerAround('player');
@@ -47,19 +47,19 @@ export default class Game extends EventEmitter {
   }
 
   object(objectId) {
-    let obj = this.objects[objectId];
-    let state = this.state.forObject(objectId, obj);
+    const obj = this.objects[objectId];
+    const state = this.state.forObject(objectId, obj);
     return this.objects[objectId].in(state);
   }
 
   // Would objectId collide with anything if it took space rect?
   // Returns a colliding object or null if nothing collides.
   collides(objectId, rect) {
-    for (let id of Object.keys(this.objects)) {
+    for (const id of Object.keys(this.objects)) {
       if (id === objectId) {
         continue;
       }
-      let other = this.object(id);
+      const other = this.object(id);
       if (other.rect.collides(rect)) {
         return id;
       }
@@ -73,7 +73,7 @@ export default class Game extends EventEmitter {
   }
 
   isVisible(objectId) {
-    let o = this.object(objectId);
+    const o = this.object(objectId);
     if (o.rect.collides(this.viewPort.rect)) {
       return true;
     }
@@ -81,16 +81,16 @@ export default class Game extends EventEmitter {
   }
 
   segments() {
-    let viewPort = this.viewPort;
-    let buf = new RenderBuffer(viewPort.size);
-    let viewOrigin = this.viewPort.translate(new Coords(0, 0));
+    const viewPort = this.viewPort;
+    const buf = new RenderBuffer(viewPort.size);
+    const viewOrigin = this.viewPort.translate(new Coords(0, 0));
     buf.renderAt(viewOrigin, this.bg, 'bg');
 
     _.forOwn(this.objects, (v, id) => {
       if (!this.isVisible(id)) {
         return;
       }
-      let o = this.object(id);
+      const o = this.object(id);
       buf.renderAt(
         this.viewPort.translate(o.coords),
         o.texture,
@@ -107,7 +107,7 @@ export default class Game extends EventEmitter {
   }
 
   render() {
-    let segments = this.segments();
+    const segments = this.segments();
     return h('code.ascii', _.map(segments, (segment) => {
       if (this.isObject(segment.objectId)) {
         return h('span', {
@@ -160,17 +160,17 @@ export default class Game extends EventEmitter {
   }
 
   centerAround(objectId) {
-    let o = this.object(objectId);
-    let dy = Math.floor((this.viewPort.size.height - o.bounds.height)/2);
-    let dx = Math.floor((this.viewPort.size.width - o.bounds.width)/2);
-    let origin = new Coords(o.coords.y - dy, o.coords.x - dx);
+    const o = this.object(objectId);
+    const dy = Math.floor((this.viewPort.size.height - o.bounds.height)/2);
+    const dx = Math.floor((this.viewPort.size.width - o.bounds.width)/2);
+    const origin = new Coords(o.coords.y - dy, o.coords.x - dx);
     this.viewPort.origin = origin;
   }
 
   moveObject(objectId, dy, dx) {
     this.assertValidObject(objectId);
-    let o = this.object(objectId);
-    let newCoords = new Coords(o.coords.y + dy, o.coords.x + dx);
+    const o = this.object(objectId);
+    const newCoords = new Coords(o.coords.y + dy, o.coords.x + dx);
     if (this.collides(objectId, new Rectangle(newCoords, o.bounds))) {
       return;
     }
@@ -192,12 +192,12 @@ export default class Game extends EventEmitter {
   }
 
   action() {
-    let player = this.object('player');
-    let sphereOfInfluence = new Rectangle(
+    const player = this.object('player');
+    const sphereOfInfluence = new Rectangle(
       new Coords(player.coords.y - 1, player.coords.x - 1),
       new Bounds(player.bounds.height + 2, player.bounds.width + 2)
     );
-    let collision = this.collides('player', sphereOfInfluence);
+    const collision = this.collides('player', sphereOfInfluence);
     if (collision && this.isObject(collision)) {
       this.select(collision);
     }

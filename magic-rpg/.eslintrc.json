@@ -9,6 +9,7 @@
         "no-const-assign": "error",
         "object-shorthand": "error",
         "valid-typeof": "error",
-        "eqeqeq": "error"
+        "eqeqeq": "error",
+        "prefer-const": ["error", {"destructuring": "all"}]
     }
 }

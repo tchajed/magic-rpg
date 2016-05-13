@@ -6,8 +6,8 @@ export default class LevelMap {
   }
 
   objects(background) {
-    let objs = _.cloneDeep(this._objects);
-    for (let o of Object.keys(objs)) {
+    const objs = _.cloneDeep(this._objects);
+    for (const o of Object.keys(objs)) {
       objs[o].placeAt(background.loc(o));
       objs[o].props.room = this.name;
     }

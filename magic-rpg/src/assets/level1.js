@@ -13,11 +13,11 @@ import dungeon from './maps/dungeon';
 import emptyRoom from './maps/empty-room';
 import boss3 from './maps/boss3';
 
-let emptyRooms = _.map(['a', 'b', 'c', 'd', 'e'], (index) => {
+const emptyRooms = _.map(['a', 'b', 'c', 'd', 'e'], (index) => {
   return [emptyRoom(index), 'stitch-' + index];
 });
 
-let levelMaps = [
+const levelMaps = [
   [office, null],
   [village, 'stitch1'],
   [boss1, 'stitch2'],
@@ -33,7 +33,7 @@ let levelMaps = [
 
 function stitchAll(levelMaps) {
   let bg = levelMaps[0][0].background;
-  for (let [nextMap, stitch] of levelMaps.slice(1)) {
+  for (const [nextMap, stitch] of levelMaps.slice(1)) {
     bg = Background.stitch(bg, nextMap.background, stitch);
   }
   return bg;
@@ -42,7 +42,7 @@ function stitchAll(levelMaps) {
 export const background = stitchAll(levelMaps);
 
 export const objects = (() => {
-  let maps = _.map(levelMaps, (map) => {
+  const maps = _.map(levelMaps, (map) => {
     return map[0];
   });
   return _.merge.apply(

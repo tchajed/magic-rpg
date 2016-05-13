@@ -20,7 +20,7 @@ const background = Background.create(map, {
 });
 
 const objects = () => {
-  let dealer = (name, resource) => {
+  const dealer = (name, resource) => {
     return new Entity(
       {
         'default': Texture.create("!"),

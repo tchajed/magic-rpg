@@ -29,8 +29,8 @@ export default class StateMachine extends EventEmitter {
   }
 
   reset() {
-    let def = this.defaults();
-    for (let key of this.stateKeys) {
+    const def = this.defaults();
+    for (const key of this.stateKeys) {
       this[key] = def[key];
     }
     this.emit('transition', {
@@ -40,16 +40,16 @@ export default class StateMachine extends EventEmitter {
   }
 
   _resolve(propname) {
-    let proppath = propname.split(".");
-    let first = proppath[0];
-    let prop = proppath.pop();
+    const proppath = propname.split(".");
+    const first = proppath[0];
+    const prop = proppath.pop();
     let obj = this;
     if (proppath.length === 0 && obj[prop] === undefined) {
       throw new Error(`attempt to access non-existent property ${propname}`);
     }
     proppath.forEach((component, i) => {
       if (obj[component] === undefined) {
-        let badpath = proppath.slice(i).join(".");
+        const badpath = proppath.slice(i).join(".");
         throw new Error(`attempt to access non-existent path ${badpath}`);
       }
       obj = obj[component];
@@ -58,14 +58,14 @@ export default class StateMachine extends EventEmitter {
   }
 
   get(propname) {
-    let {obj, prop} = this._resolve(propname);
+    const {obj, prop} = this._resolve(propname);
     return obj[prop];
   }
 
   modify(propname, f) {
-    let {obj, prop, first} = this._resolve(propname);
-    let oldVal = obj[prop];
-    let v = f(oldVal);
+    const {obj, prop, first} = this._resolve(propname);
+    const oldVal = obj[prop];
+    const v = f(oldVal);
     obj[prop] = v;
     store.set(first, this[first]);
     this.emit('transition', {

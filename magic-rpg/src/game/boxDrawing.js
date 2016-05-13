@@ -10,7 +10,7 @@ function getCell(cells, y, x) {
 }
 
 function arrayMatch(mask, expected, a) {
-  let matchExpected = (e, v) => {
+  const matchExpected = (e, v) => {
     if (Array.isArray(e)) {
       return e.indexOf(v) !== -1;
     }
@@ -52,11 +52,11 @@ function replacement(surr) {
 }
 
 export default function boxDrawing(cells) {
-  let replacements = [];
+  const replacements = [];
     _.each(cells, (row, y) => {
         _.each(row, (cell, x) => {
             if (cell === '+') {
-                let surroundings = [
+                const surroundings = [
                     getCell(cells, y-1, x),
                     getCell(cells, y, x+1),
                     getCell(cells, y+1, x),
@@ -64,7 +64,7 @@ export default function boxDrawing(cells) {
                 ];
                 // buffer replacements so we can match on + while computing
                 // them
-                let repl = replacement(surroundings);
+                const repl = replacement(surroundings);
                 if (repl) {
                   replacements.push({y, x, repl});
                 }
