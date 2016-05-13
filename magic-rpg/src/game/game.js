@@ -114,7 +114,7 @@ export default class Game extends EventEmitter {
           className: segment.className,
           onclick: () => {
             this.select(segment.objectId);
-          }
+          },
         }, segment.text);
         } else {
         return h('span', {

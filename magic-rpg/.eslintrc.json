@@ -4,6 +4,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "comma-dangle": ["error", "always-multiline"],
         "no-unused-vars": "error"
     }
 }

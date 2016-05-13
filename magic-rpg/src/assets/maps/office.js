@@ -18,7 +18,7 @@ const background = Background.create(map, {
   B: {name: 'hint2'},
   C: {name: 'hint3'},
   D: {name: 'door'},
-  1: {name: 'stitch1'}
+  1: {name: 'stitch1'},
 });
 
 const objects = () => {
