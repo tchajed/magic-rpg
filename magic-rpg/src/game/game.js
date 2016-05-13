@@ -3,7 +3,6 @@ import _ from 'lodash';
 import {EventEmitter} from 'events';
 import {ViewPort, Rectangle, Bounds, Coords, RenderBuffer} from './graphics';
 import State from './level1-state';
-import store from 'store';
 import classNames from 'classnames';
 
 export default class Game extends EventEmitter {
@@ -29,8 +28,8 @@ export default class Game extends EventEmitter {
         transition: ev,
       });
     });
-    if (store.get('playerCoords')) {
-      const coords = store.get('playerCoords');
+    if (this.state.playerCoords) {
+      const coords = this.state.get('playerCoords');
       this.objects.player.coords = new Coords(coords.y, coords.x);
     }
     this.centerAround('player');
@@ -176,7 +175,7 @@ export default class Game extends EventEmitter {
     }
     o.coords = newCoords;
     if (objectId === 'player') {
-      store.set('playerCoords', o.coords);
+      this.state.set('playerCoords', o.coords);
       this.state.set('room', this.bg.room(o.coords.y, o.coords.x));
       this.centerAround(objectId);
       if (this.selection !== null &&

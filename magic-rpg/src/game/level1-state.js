@@ -42,6 +42,7 @@ export default class State extends StateMachine {
     return {
       exp: 0,
       room: 'office',
+      playerCoords: null,
       enteredRoom: {},
       talkedToManager: false,
       newsItem: -1,

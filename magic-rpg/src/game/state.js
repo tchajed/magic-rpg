@@ -1,5 +1,8 @@
+import _ from 'lodash';
 import {EventEmitter} from 'events';
 import store from 'store';
+
+const saveKey = 'magic-rpg:save';
 
 export default class StateMachine extends EventEmitter {
   // to be overriden
@@ -7,32 +10,42 @@ export default class StateMachine extends EventEmitter {
     return {};
   }
 
-  get stateKeys() {
-    return Object.keys(this.defaults());
-  }
-
   constructor() {
     super();
+    this._props = {};
     this.reset();
+
+    for (const key of Object.keys(this._props)) {
+      Object.defineProperty(this, key, {
+        get() {
+          return this._props[key];
+        },
+      });
+    }
+  }
+
+  persist() {
+    store.set(saveKey, this._props);
   }
 
   restore() {
-    store.forEach((key, val) => {
-      this[key] = val;
+    _.forOwn(store.get(saveKey), (val, key) => {
+      this._props[key] = val;
     });
     return this;
   }
 
   clear() {
-    store.clear();
+    store.remove(saveKey);
     return this;
   }
 
   reset() {
     const def = this.defaults();
-    for (const key of this.stateKeys) {
-      this[key] = def[key];
+    for (const key of Object.keys(def)) {
+      this._props[key] = def[key];
     }
+
     this.emit('transition', {
       property: '*',
     });
@@ -41,9 +54,8 @@ export default class StateMachine extends EventEmitter {
 
   _resolve(propname) {
     const proppath = propname.split('.');
-    const first = proppath[0];
     const prop = proppath.pop();
-    let obj = this;
+    let obj = this._props;
     if (proppath.length === 0 && obj[prop] === undefined) {
       throw new Error(`attempt to access non-existent property ${propname}`);
     }
@@ -54,7 +66,7 @@ export default class StateMachine extends EventEmitter {
       }
       obj = obj[component];
     });
-    return {obj, prop, first};
+    return {obj, prop};
   }
 
   get(propname) {
@@ -63,11 +75,15 @@ export default class StateMachine extends EventEmitter {
   }
 
   modify(propname, f) {
-    const {obj, prop, first} = this._resolve(propname);
+    const {obj, prop} = this._resolve(propname);
     const oldVal = obj[prop];
     const v = f(oldVal);
+    if (v === oldVal) {
+      // reduce spurious transitions and store operations
+      return;
+    }
     obj[prop] = v;
-    store.set(first, this[first]);
+    this.persist();
     this.emit('transition', {
       property: propname,
       oldVal,
@@ -76,10 +92,6 @@ export default class StateMachine extends EventEmitter {
   }
 
   set(propname, v) {
-    // reduce spurious transitions and store operations
-    if (this.get(propname) === v) {
-      return;
-    }
     this.modify(propname, () => v);
   }
 
