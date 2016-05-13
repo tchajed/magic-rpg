@@ -156,6 +156,9 @@ export class Background extends Texture {
   // Create a new texture based on attaching bg2 to bg1 at a common named
   // location marker such that bg2's named pivot is positioned at bg1's named
   // location. Any overlap is taken from bg2.
+  //
+  // Re-uses objects from bg1 and bg2 - the backgrounds should be discarded
+  // after stitching.
   static stitch(bg1, bg2, marker) {
     const loc = bg1.loc(marker);
     const pivot = bg2.loc(marker);
@@ -187,10 +190,11 @@ export class Background extends Texture {
     const copyFrom = (bg, translation) => {
       for (let y = 0; y < bg.bounds.height; y++) {
         for (let x = 0; x < bg.bounds.width; x++) {
-          const newCoords = translation.apply(new Coords(y, x));
-          if (bg.cellProps[y][x].mask) {
+          const propsHere = bg.cellProps[y][x];
+          if (propsHere.mask) {
+            const newCoords = translation.apply(new Coords(y, x));
             cells[newCoords.y][newCoords.x] = bg.cells[y][x];
-            cellProps[newCoords.y][newCoords.x] = _.clone(bg.cellProps[y][x]);
+            cellProps[newCoords.y][newCoords.x] = propsHere;
           }
         }
       }
