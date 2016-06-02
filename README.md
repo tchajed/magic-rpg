@@ -51,6 +51,6 @@ Some aspects I wanted to parody but didn't manage to incorporate include:
 - Enemies respawn automatically upon leaving an area and returning
 - NPCs happily repeat themselves every time you talk to them
 
-## Why do this?
+--------
 
 Written as a final electronic literature project for [CMS.845 (Interactive Narrative)](http://www.nickm.com/classes/interactive_narrative/2016_spring/).
